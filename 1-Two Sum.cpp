@@ -22,7 +22,7 @@
 using std::vector;
 
 // Approach 2 (Hash Table)
-// 时间复杂度O(n)，空间复杂度O(n)
+// Time complexity: O(n), Space complexity: O(n)
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -41,7 +41,7 @@ public:
 };
 
 // Approach 1 (Brute Force)
-// 时间复杂度O(n^2)
+// Time complexity: O(n^2)
 /* class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
