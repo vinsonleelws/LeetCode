@@ -41,7 +41,7 @@ public:
         {
             vector<string> solution(n, string(n, '.'));
             for(int i=0; i<n; i++)
-                    solution[i][row_pos[i]] = 'Q';
+                solution[i][row_pos[i]] = 'Q';
             result.push_back(solution);
         }
         else
