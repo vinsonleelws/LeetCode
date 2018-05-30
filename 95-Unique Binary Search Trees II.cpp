@@ -32,7 +32,7 @@ The above output corresponds to the 5 unique BST's shown below:
  * };
  */
  
-// 这道题是之前的 Unique Binary Search Trees 独一无二的二叉搜索树的延伸，之前那个只要求算出所有不同的二叉搜索树的个数，
+// 这道题是"96-Unique Binary Search Trees"独一无二的二叉搜索树的延伸，之前那个只要求算出所有不同的二叉搜索树的个数，
 // 这道题让把那些二叉树都建立出来。这种建树问题一般来说都是用递归来解，这道题也不例外，划分左右子树，递归构造。
 
 // 构建BST的基本原则：
