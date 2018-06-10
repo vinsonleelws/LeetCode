@@ -1,3 +1,4 @@
+/* 
 You are given an n x n 2D matrix representing an image.
 
 Rotate the image by 90 degrees (clockwise).
@@ -38,7 +39,10 @@ rotate the input matrix in-place such that it becomes:
   [14, 3, 4, 1],
   [12, 6, 8, 9],
   [16, 7,10,11]
-]
+] */
+
+// 48-旋转图片
+// 找规律
 
 // 解法一：
 // 分两步走：首先对原数组取其转置矩阵，然后把每行的数字翻转可得到结果，如下所示(其中蓝色数字表示翻转轴)：
@@ -54,7 +58,7 @@ public:
         int n = matrix.size();
         for(int i=0; i<n; i++)
         {
-            for(int j=i+1; j<n; j++)
+            for(int j=i+1; j<n; j++)  // i+1交换过的元素不会重复交换
                 if(i!=j)
                     swap(matrix[i][j], matrix[j][i]);
             

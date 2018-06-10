@@ -1,3 +1,4 @@
+/* 
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
@@ -22,7 +23,10 @@ From the top-left corner, there are a total of 3 ways to reach the bottom-right 
 Example 2:
 
 Input: m = 7, n = 3
-Output: 28
+Output: 28 */
+
+// 62-不同的路径数
+// DP
 
 // 思路：
 // 使用动态规划，我们可以维护一个二维数组dp，其中dp[i][j]表示到当前位置不同的走法的个数，

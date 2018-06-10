@@ -1,4 +1,4 @@
-Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+/* Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
 (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
 
@@ -16,7 +16,10 @@ Output: 4
 Example 2:
 
 Input: nums = [4,5,6,7,0,1,2], target = 3
-Output: -1
+Output: -1 */
+
+// 在旋转有序数组中搜索
+// Binary Search
 
 // 思路：基于二分查找，根据旋转数组的性质，进一步细化更新左右端点的条件
 

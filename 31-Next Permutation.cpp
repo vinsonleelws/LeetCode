@@ -1,3 +1,4 @@
+/* 
 Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
 If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
@@ -8,7 +9,11 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 1,2,3 → 1,3,2
 3,2,1 → 1,2,3
-1,1,5 → 1,5,1
+1,1,5 → 1,5,1 
+*/
+
+// 下一个排列
+// 找规律
 
 // 思路：
 // 这道题让我们求下一个排列顺序，由题目中给的例子可以看出来，如果给定数组是降序，

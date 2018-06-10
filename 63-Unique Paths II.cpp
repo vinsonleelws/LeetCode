@@ -1,4 +1,4 @@
-A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+/* A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 
@@ -22,7 +22,10 @@ There is one obstacle in the middle of the 3x3 grid above.
 There are two ways to reach the bottom-right corner:
 1. Right -> Right -> Down -> Down
 2. Down -> Down -> Right -> Right
-
+ */
+ 
+// 63-不同的路径数II(有障碍物)
+// DP
 
 // 使用动态规划，当遇到为1的点，将该位置的dp数组中的值清零；
 // 需注意的特殊情况：障碍物在原点的时候，直接返回0，否则置dp[0]=1.

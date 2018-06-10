@@ -1,3 +1,4 @@
+/* 
 Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
 
 Example 1:
@@ -19,9 +20,14 @@ Input:
   [9,10,11,12]
 ]
 Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+ */
+ 
 
+// 54-螺旋数组
+// 找规律 
+ 
 // 思路：
-// mxn的矩阵中算出按螺旋顺序的环数计算公式是：min(m+1, n+1) / 2
+// m x n的矩阵中算出按螺旋顺序的环数计算公式是：min(m+1, n+1) / 2
 
 class Solution {
 public:

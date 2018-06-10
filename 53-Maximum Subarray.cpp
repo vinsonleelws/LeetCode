@@ -1,3 +1,4 @@
+/* 
 Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
 Example:
@@ -8,7 +9,10 @@ Explanation: [4,-1,2,1] has the largest sum = 6.
 
 Follow up:
 
-If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle. */
+
+// 53-子数组的最大和
+// DP, Greedy; Divide and Conquer
 
 // O(n) solution
 // Greedy approach

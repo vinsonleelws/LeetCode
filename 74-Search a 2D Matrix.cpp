@@ -1,4 +1,4 @@
-Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+/* Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
 
     Integers in each row are sorted from left to right.
     The first integer of each row is greater than the last integer of the previous row.
@@ -24,6 +24,12 @@ matrix = [
 ]
 target = 13
 Output: false
+ */
+ 
+// 74-搜索一个二维矩阵
+// Binary Search ; Trick
+// 把一个长度为n的一维数组转化为m*n的二维数组(m*n = n)后，那么原一维数组中下标为i的元素将出现在
+// 二维数组中的[i/n][i%n]的位置.
 
 // My solution 1:
 // 思路：首先选取右上角的数字，与target比较：
@@ -131,15 +137,21 @@ public:
 class Solution {
 public:
     bool searchMatrix(vector<vector<int> > &matrix, int target) {
-        if (matrix.empty() || matrix[0].empty()) return false;
-        if (target < matrix[0][0] || target > matrix.back().back()) return false;
+        if (matrix.empty() || matrix[0].empty()) 
+            return false;
+        if (target < matrix[0][0] || target > matrix.back().back()) 
+            return false;
         int m = matrix.size(), n = matrix[0].size();
         int left = 0, right = m * n - 1;
-        while (left <= right) {
+        while (left <= right) 
+        {
             int mid = (left + right) / 2;
-            if (matrix[mid / n][mid % n] == target) return true;
-            else if (matrix[mid / n][mid % n] < target) left = mid + 1;
-            else right = mid - 1;
+            if (matrix[mid / n][mid % n] == target) 
+                return true;
+            else if (matrix[mid / n][mid % n] < target) 
+                left = mid + 1;
+            else 
+                right = mid - 1;
         }
         return false;
     }

@@ -1,10 +1,16 @@
-Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+/* 
+Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). 
+n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
+Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
-Note: You may not slant the container and n is at least 2. 
+Note: You may not slant the container and n is at least 2.  
+*/
 
+// 装最多水的容器
+// Tag: Array, Two Pointers
+// Similar Problem: 42-Trapping Rain Water
 
-
-
+// #1
 class Solution {
 public:
     int maxArea(vector<int>& height) {
@@ -31,7 +37,7 @@ public:
 // Space complexity : O(1). Constant space is used.
 
 
-// Approach #2 Brute Force [Time Limit Exceeded]
+// #2 Brute Force [Time Limit Exceeded]
 class Solution {
 public:
     int maxArea(vector<int>& height) {

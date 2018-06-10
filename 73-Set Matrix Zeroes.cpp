@@ -1,4 +1,4 @@
-Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in-place.
+/* Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in-place.
 
 Example 1:
 
@@ -35,7 +35,11 @@ Follow up:
     A straight forward solution using O(mn) space is probably a bad idea.
     A simple improvement uses O(m + n) space, but still not the best solution.
     Could you devise a constant space solution?
-
+ */
+ 
+// 73-矩阵赋零
+// Trick
+ 
 // 解法比较：
 // 空间复杂度为O(mn)的直接解法：直接新建一个和matrix等大小的矩阵，然后一行一行的扫，只要有0，
 // 就将新建的矩阵的对应行全赋0，行扫完再扫列，然后把更新完的矩阵赋给matrix即可，这个算法的空间复杂度太高。
@@ -46,7 +50,7 @@ Follow up:
 // 思路：首先使用两个变量firstRowZero和firstColZero来分别记录第一行和第一列是否有0元素。然后用原数组的第一行第一列来记录各行各列是否有0：
 // 总步骤如下：
 // - 先扫描第一行第一列，如果有0，则将各自的flag设置为true;
-// - 然后扫描除去第一行第一列的整个数组，如果有0，则将对应的第一行和第一列的数字赋0;
+// - 然后扫描除去第一行第一列的整个数组，如果有0，则将对应的第一行和第一列的数字赋0，比如matrix[i][j]==0，则令matrix[0][j] = 0; matrix[i][0] = 0;;
 // - 再次遍历除去第一行第一列的整个数组，如果对应的第一行和第一列的数字有一个为0，则将当前值赋0;
 // - 最后根据第一行第一列的flag来更新第一行第一列.
 

@@ -1,3 +1,4 @@
+/* 
 Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
@@ -35,7 +36,10 @@ for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
 
+ */
 
+// 删除有序数组中的重复项  
+// Two Pointers 快慢指针
 
 // Reference method:
 // 我们使用快慢指针来记录遍历的坐标，最开始时两个指针都指向第一个数字，

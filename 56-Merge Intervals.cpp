@@ -1,4 +1,4 @@
-Given a collection of intervals, merge all overlapping intervals.
+/* Given a collection of intervals, merge all overlapping intervals.
 
 Example 1:
 
@@ -10,7 +10,7 @@ Example 2:
 
 Input: [[1,4],[4,5]]
 Output: [[1,5]]
-Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
+Explanation: Intervals [1,4] and [4,5] are considerred overlapping. */
 
 /**
  * Definition for an interval.
@@ -21,6 +21,10 @@ Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
  *     Interval(int s, int e) : start(s), end(e) {}
  * };
  */
+
+// 56-合并间隔
+// Sort
+
 class Solution {
 public:
     vector<Interval> merge(vector<Interval>& intervals) {
@@ -46,6 +50,24 @@ public:
             return arg1.end<arg2.end;
         else
             return arg1.start<arg2.start;
+    }
+};
+
+// 另一种写法：
+class Solution {
+public:
+    vector<Interval> merge(vector<Interval>& intervals) {
+        if (intervals.empty()) return {};
+        sort(intervals.begin(), intervals.end(), [](Interval &a, Interval &b) {return a.start < b.start;});
+        vector<Interval> res{intervals[0]};
+        for (int i = 1; i < intervals.size(); ++i) {
+            if (res.back().end < intervals[i].start) {
+                res.push_back(intervals[i]);
+            } else {
+                res.back().end = max(res.back().end, intervals[i].end);
+            }
+        }   
+        return res;
     }
 };
 
