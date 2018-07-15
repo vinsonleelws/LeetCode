@@ -1,4 +1,4 @@
-Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+/*Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 Symbol       Value
 I             1
@@ -46,7 +46,18 @@ Input: 1994
 Output: "MCMXCIV"
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
+*/
 
+class Solution {
+public:
+    string intToRoman(int num) {
+        
+    }
+};
+
+
+// 数字转换成罗马数字
+// Math ; 找规律
 
 // Reference method
 class Solution {

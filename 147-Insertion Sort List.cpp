@@ -1,4 +1,4 @@
-Sort a linked list using insertion sort.
+/*Sort a linked list using insertion sort.
 
 
 A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.
@@ -21,6 +21,7 @@ Example 2:
 
 Input: -1->5->3->4->0
 Output: -1->0->3->4->5
+*/
 
 /**
  * Definition for singly-linked list.
@@ -31,7 +32,45 @@ Output: -1->0->3->4->5
  * };
  */
 
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        
+    }
+};
+
+
+// 链表插入排序
+
+
+// Reference solution: O(n^2)
+// 以dummy结点为头结点，新建一个链表，逐步往新链表中插入元素
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        ListNode *dummy = new ListNode(INT_MIN), *cur = dummy;
+        while (head) 
+        {
+            ListNode *t = head->next;
+            cur = dummy;
+            while (cur->next && cur->next->val <= head->val) // 找到第一个大于当前结点的结点，将该结点插入到当前结点前面
+                cur = cur->next;
+            head->next = cur->next;
+            cur->next = head;
+            head = t;
+        }
+        return dummy->next;
+    }
+};
+// 过程：
+// 1) 4->2->1->3
+// 2) -1->4  2->1->3  (假设dummy值为-1)
+// 3) -1->2->4  1->3
+// 4) -1->1->2->4   3
+// 5) -1->1->2->3->4
+
 // My solution:
+// 在原链表基础上修改
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
@@ -45,7 +84,7 @@ public:
         {
             ListNode* pNext = pCur->next;
             ListNode* pHead = dummy->next;
-            if(pHead->val > pNext->val)
+            if(pHead->val > pNext->val) // 若结点值小于头结点的值，将其插入到头结点
             {
                 pCur->next = pNext->next;
                 dummy->next = pNext;
@@ -68,21 +107,3 @@ public:
     }
 };
 
-// 另一种写法：
-class Solution {
-public:
-    ListNode* insertionSortList(ListNode* head) {
-        ListNode *dummy = new ListNode(-1), *cur = dummy;
-        while (head) {
-            ListNode *t = head->next;
-            cur = dummy;
-            while (cur->next && cur->next->val <= head->val) {
-                cur = cur->next;
-            }
-            head->next = cur->next;
-            cur->next = head;
-            head = t;
-        }
-        return dummy->next;
-    }
-};

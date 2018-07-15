@@ -1,4 +1,4 @@
-Given a string s, partition s such that every substring of the partition is a palindrome.
+/*Given a string s, partition s such that every substring of the partition is a palindrome.
 
 Return all possible palindrome partitioning of s.
 
@@ -10,6 +10,10 @@ Output:
   ["aa","b"],
   ["a","a","b"]
 ]
+*/
+
+// 拆分回文串
+// DFS (Backtracking)
 
 // Backtracking/DFS
 class Solution {

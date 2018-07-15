@@ -1,9 +1,11 @@
+/*
 Remove all elements from a linked list of integers that have value val.
 
 Example:
 
 Input:  1->2->6->3->4->5->6, val = 6
 Output: 1->2->3->4->5
+*/
 
 /**
  * Definition for singly-linked list.
@@ -13,6 +15,16 @@ Output: 1->2->3->4->5
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        
+    }
+};
+
+// 移除链表元素
+
 // My solution:
 class Solution {
 public:
@@ -27,7 +39,7 @@ public:
         {
             if(node->next->val == val)
             {
-                if(node->next->next)
+                if(node->next->next)  // 若待删除结点后面还有结点
                 {
                     ListNode* pNext = node->next->next;
                     node->next = pNext;
@@ -47,7 +59,8 @@ public:
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if (!head) return NULL;
+        if (!head) 
+            return NULL;
         head->next = removeElements(head->next, val);
         return head->val == val ? head->next : head;
     }

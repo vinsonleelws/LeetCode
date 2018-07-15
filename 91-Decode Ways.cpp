@@ -1,4 +1,4 @@
-A message containing letters from A-Z is being encoded to numbers using the following mapping:
+/*A message containing letters from A-Z is being encoded to numbers using the following mapping:
 
 'A' -> 1
 'B' -> 2
@@ -20,7 +20,12 @@ Output: 3
 Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
 
+// 译码方法 
 // DP
+
+*/
+// DP
+// dp[i]表示i及i以前构成的字符串的译码方法数
 // 递推公式：
 // dp[i] = (s[i]=='0'? 0 : dp[i-1]) + g2(i-1, i)*dp[i-2]; 
 // dp[0] = s[0]=='0'? 0 : 1;

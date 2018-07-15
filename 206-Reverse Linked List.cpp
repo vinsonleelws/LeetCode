@@ -1,3 +1,4 @@
+/*
 Reverse a singly linked list.
 
 Example:
@@ -9,7 +10,7 @@ Follow up:
 
 A linked list can be reversed either iteratively or recursively. Could you implement both?
 
-
+*/
 
 /**
  * Definition for singly-linked list.
@@ -19,9 +20,69 @@ A linked list can be reversed either iteratively or recursively. Could you imple
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        
+    }
+};
+
+
+// 反转链表
  
+
 // #1 Iterative
-// 基于迭代的实现：
+// Iterative（使用dummy结点）
+
+// My solution
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head) 
+            return head;
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *cur = head;
+        ListNode *curNext = cur->next;
+        head->next = NULL;
+        while (curNext) 
+        {
+            ListNode *curNextNext = curNext->next;
+            curNext->next = cur;
+            cur = curNext;
+            curNext = curNextNext;
+        }
+        dummy->next = cur;
+
+        return dummy->next;
+    }
+};
+
+// 另一种写法
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head) 
+            return head;
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *cur = head;
+        while (cur->next) 
+        {
+            ListNode *tmp = cur->next;
+            cur->next = tmp->next;
+            tmp->next = dummy->next;
+            dummy->next = tmp;
+        }
+
+        return dummy->next;
+    }
+};
+
+
+// My solution；
+// Iterative（不使用dummy结点）：
 // 直接基于原链表修改
 class Solution {
 public:
@@ -53,6 +114,8 @@ public:
         return pCur;
     }
 };
+
+
 
 // 使用栈：
 class Solution {
@@ -92,8 +155,8 @@ public:
             return head;
         ListNode *p = head;
         head = reverseList(p->next);
-        p->next->next = p;
-        p->next = NULL;
+        p->next->next = p;  // 使后一个结点指向自己
+        p->next = NULL;     // 自己指向NULL
         return head;
     }
 };

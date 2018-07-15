@@ -1,4 +1,4 @@
-Reverse bits of a given 32 bits unsigned integer.
+/*Reverse bits of a given 32 bits unsigned integer.
 
 Example:
 
@@ -8,15 +8,18 @@ Explanation: 43261596 represented in binary as 00000010100101000001111010011100,
              return 964176192 represented in binary as 00111001011110000010100101000000.
 
 Follow up:
-If this function is called many times, how would you optimize it?
+If this function is called many times, how would you optimize it?*/
 
-// Bit Manipulation
 class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
         
     }
 };
+
+
+// 反转位 (eg. 001 -> 100)
+// Bit Manipulation
 
 // -------------------------------------
 // 基本思路都是对原数字的每一位进行操作，低位反转成高位

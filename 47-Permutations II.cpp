@@ -1,4 +1,4 @@
-Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+/*Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 
 Example:
 
@@ -9,6 +9,19 @@ Output:
   [1,2,1],
   [2,1,1]
 ]
+*/
+
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        
+    }
+};
+
+
+// 全排列II (含重复项)
+// Sort + DFS (Backtracking) + visit数组
+
 
 // 避免重复的产生，在递归函数中要判断前面一个数和当前的数是否相等，如果相等，
 // 前面的数必须已经使用了，即对应的iFlag中的值为1，当前的数字才能使用，

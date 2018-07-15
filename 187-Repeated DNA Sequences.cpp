@@ -1,4 +1,4 @@
-All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
+/*All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
 
 Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.
 
@@ -13,7 +13,19 @@ public:
     vector<string> findRepeatedDnaSequences(string s) {
         
     }
+};*/
+
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        
+    }
 };
+
+
+// 重复的DNA序列
+// Hash Table ; Bit Manipulation
+
 
 // -----------------------------------------------------
 // Reference solution:
@@ -26,12 +38,12 @@ public:
         int n = s.size();
         for (int i = 0; i + 9 < n; ++i) {
             string t = s.substr(i, 10);
-            if (st.count(t))
+            if (st.count(t))  // 如果重复
             {
                 if(!res.count(t))
                     res.insert(t);
             }
-            else 
+            else   // 否则
                 st.insert(t);
         }
         return vector<string>{res.begin(), res.end()};

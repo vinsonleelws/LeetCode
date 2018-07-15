@@ -1,3 +1,4 @@
+/* 
 Given a sorted integer array without duplicates, return the summary of its ranges.
 
 Example 1:
@@ -11,7 +12,11 @@ Example 2:
 Input:  [0,2,3,4,6,8,9]
 Output: ["0","2->4","6","8->9"]
 Explanation: 2,3,4 form a continuous range; 8,9 form a continuous range.
+ */
 
+// 总结区间
+// Two Pointers
+ 
 // My solution: Runtime beats 100% of cpp submissions.
 class Solution {
 public:

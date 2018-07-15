@@ -1,3 +1,4 @@
+/* 
 Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.
 
 Example: 
@@ -9,6 +10,10 @@ Explanation: the subarray [4,3] has the minimal length under the problem constra
 Follow up:
 If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n). 
 
+*/
+
+// 子数组和的最小长度
+// Two Pointers ; Binery Search
 
 // 双指针
 // 时间复杂度O(n)
@@ -27,7 +32,7 @@ public:
             
             while(sum>=s)
             {
-                len = min(right-left, len);  // 注意这里是right-left而不是right-left+1
+                len = min(right-left, len);  // 注意这里是right-left而不是right-left+1，因为right比实际加到sum里的数的下标多1
                 sum -= nums[left++];
             }
         }
@@ -75,19 +80,26 @@ class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
         int len = nums.size(), sums[len + 1] = {0}, res = len + 1;
-        for (int i = 1; i < len + 1; ++i) sums[i] = sums[i - 1] + nums[i - 1];
-        for (int i = 0; i < len + 1; ++i) {
+        for (int i = 1; i < len + 1; ++i) 
+            sums[i] = sums[i - 1] + nums[i - 1];
+        for (int i = 0; i < len + 1; ++i) 
+        {
             int right = searchRight(i + 1, len, sums[i] + s, sums);
-            if (right == len + 1) break;
-            if (res > right - i) res = right - i;
+            if (right == len + 1) 
+                break;
+            if (res > right - i) 
+                res = right - i;
         }
         return res == len + 1 ? 0 : res;
     }
     int searchRight(int left, int right, int key, int sums[]) {
-        while (left <= right) {
+        while (left <= right) 
+        {
             int mid = (left + right) / 2;
-            if (sums[mid] >= key) right = mid - 1;
-            else left = mid + 1;
+            if (sums[mid] >= key) 
+                right = mid - 1;
+            else 
+                left = mid + 1;
         }
         return left;
     }

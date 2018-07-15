@@ -1,9 +1,11 @@
+/* 
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 
 Example:
 
 Input: 1->2->4, 1->3->4
-Output: 1->1->2->3->4->4
+Output: 1->1->2->3->4->4 
+*/
 
 /**
  * Definition for singly-linked list.
@@ -13,6 +15,60 @@ Output: 1->1->2->3->4->4
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+ 
+// 合并两个有序链表
+
+// Reference solution:
+// #1
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode *dummy = new ListNode(-1), *cur = dummy;
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                cur->next = l1;
+                l1 = l1->next;
+            } else {
+                cur->next = l2;
+                l2 = l2->next;
+            }
+            cur = cur->next;
+        }
+        cur->next = l1 ? l1 : l2;
+        return dummy->next;
+    }
+};
+
+// #2 递归解法
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        if (l1->val < l2->val) {
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = mergeTwoLists(l1, l2->next);
+            return l2;
+        }
+    }
+};
+
+// #3
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        ListNode *head = l1->val < l2->val ? l1 : l2;
+        ListNode *nonhead = l1->val < l2->val ? l2 : l1;
+        head->next = mergeTwoLists(head->next, nonhead);
+        return head;
+    }
+};
+ 
+// My solution:
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {

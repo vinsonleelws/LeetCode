@@ -1,4 +1,4 @@
-The count-and-say sequence is the sequence of integers with the first five terms as following:
+/*The count-and-say sequence is the sequence of integers with the first five terms as following:
 
 1.     1
 2.     11
@@ -23,7 +23,21 @@ Example 2:
 
 Input: 4
 Output: "1211"
+*/
 
+class Solution {
+public:
+    string countAndSay(int n) {
+        
+    }
+};
+
+
+// 数一数，说一说
+// 找规律
+
+
+// 对于前一个数，找出相同元素的个数，把个数和该元素存到新的string里
 
 class Solution {
 public:
@@ -59,5 +73,28 @@ public:
         }
 
         return str;
+    }
+};
+
+
+// Reference solution:
+class Solution {
+public:
+    string countAndSay(int n) {
+        if (n <= 0) return "";
+        string res = "1";
+        while (--n) {
+            string cur = "";
+            for (int i = 0; i < res.size(); ++i) {
+                int cnt = 1;
+                while (i + 1 < res.size() && res[i] == res[i + 1]) {
+                    ++cnt;
+                    ++i;
+                }
+                cur += to_string(cnt) + res[i];
+            }
+            res = cur;
+        }
+        return res;
     }
 };

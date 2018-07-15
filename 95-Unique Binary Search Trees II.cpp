@@ -1,4 +1,4 @@
-Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1 ... n.
+/*Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1 ... n.
 
 Example:
 
@@ -19,8 +19,12 @@ The above output corresponds to the 5 unique BST's shown below:
      3     2     1      1   3      2
     /     /       \                 \
    2     1         2                 3
+*/
 
-   
+
+// 独一无二的二叉搜索树II (生成所有不同的BST)   
+// DFS
+
    
 /**
  * Definition for a binary tree node.
@@ -57,6 +61,7 @@ public:
             {
                 vector<TreeNode*> *leftSubTree = generateTreesDFS(start, i - 1);
                 vector<TreeNode*> *rightSubTree = generateTreesDFS(i + 1, end);
+                
                 for (int j = 0; j < leftSubTree->size(); ++j) 
                 {
                     for (int k = 0; k < rightSubTree->size(); ++k) 

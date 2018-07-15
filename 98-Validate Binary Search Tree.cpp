@@ -1,4 +1,4 @@
-Given a binary tree, determine if it is a valid binary search tree (BST).
+/*Given a binary tree, determine if it is a valid binary search tree (BST).
 
 Assume a BST is defined as follows:
 
@@ -23,7 +23,7 @@ Example 2:
     3   6
 Output: false
 Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
-             is 5 but its right child's value is 4.
+             is 5 but its right child's value is 4.*/
 
 /**
  * Definition for a binary tree node.
@@ -34,6 +34,18 @@ Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        
+    }
+};
+
+
+// 验证二叉搜索树
+// DFS ; Binary tree inorder traversal
+
 
 // Reference solution:
 // #1

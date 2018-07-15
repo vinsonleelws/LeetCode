@@ -1,4 +1,4 @@
-Reverse a linked list from position m to n. Do it in one-pass.
+/*Reverse a linked list from position m to n. Do it in one-pass.
 
 Note: 1 ≤ m ≤ n ≤ length of list.
 
@@ -6,7 +6,7 @@ Example:
 
 Input: 1->2->3->4->5->NULL, m = 2, n = 4
 Output: 1->4->3->2->5->NULL
-
+*/
 
 /**
  * Definition for singly-linked list.
@@ -16,6 +16,78 @@ Output: 1->4->3->2->5->NULL
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        
+    }
+};
+
+// Reverse Linked List II-反转链表II（from position m to n）
+
+// My solution:
+class Solution {
+public:
+    ListNode *reverseBetween(ListNode *head, int m, int n) {
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *cur = dummy;
+        ListNode *pre; 
+        for (int i = 1; i <= m - 1; ++i) 
+            cur = cur->next;
+        pre = cur;
+        cur = cur->next;
+        ListNode* curNext = cur->next;
+        ListNode* last = cur;
+        for (int i = m; i <= n-1; ++i)
+        {
+            ListNode* curNextNext = curNext->next;
+            curNext->next = cur;
+            cur = curNext;
+            curNext = curNextNext;
+        }
+        pre->next = cur;
+        last->next = curNext;
+
+        return dummy->next;
+    }
+};
+
+// Reference solution:
+// Runtime beats 100% of cpp submissions.
+// 使用dummy结点方便处理修改头结点的情况，简化逻辑：
+// pre指向第一个待反转结点的前一个结点, front记录上一个cur, last表示反转后的最后一个结点（也即第一个待反转结点）
+class Solution {
+public:
+    ListNode *reverseBetween(ListNode *head, int m, int n) {
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *cur = dummy;
+        ListNode *pre, *front, *last; 
+        for (int i = 1; i <= m - 1; ++i) 
+            cur = cur->next;
+        pre = cur;
+        last = cur->next;
+        for (int i = m; i <= n; ++i)
+        {
+            cur = pre->next;
+            pre->next = cur->next;
+            cur->next = front;
+            front = cur;
+        }
+        cur = pre->next;
+        pre->next = front;
+        last->next = cur;
+        return dummy->next;
+    }
+};
+// 转换过程：
+// 从第二个for循环开始：
+// i=2: 1->3->4->5->NULL  cur/front -> 2->NULL
+// i=3: 1->4->5->NULL  cur/front -> 3->2->NULL
+// i=4: 1->5->NULL  cur/front -> 4->3->2->NULL
+// last:2
+// 1->4->3->2->5->NULL
 
 // My solution:
 // 特殊情况的考虑：
@@ -78,34 +150,5 @@ public:
         start->next = end;
         
         return head;
-    }
-};
-
-
-// Reference solution:
-// Runtime beats 100% of cpp submissions.
-// 使用dummy结点方便处理修改头结点的情况，简化逻辑：
-// pre指向第一个待反转结点的前一个结点, front记录上一个cur, last表示反转后的最后一个结点（也即第一个待反转结点）
-class Solution {
-public:
-    ListNode *reverseBetween(ListNode *head, int m, int n) {
-        ListNode *dummy = new ListNode(-1);
-        dummy->next = head;
-        ListNode *cur = dummy;
-        ListNode *pre, *front, *last; 
-        for (int i = 1; i <= m - 1; ++i) 
-            cur = cur->next;
-        pre = cur;
-        last = cur->next;
-        for (int i = m; i <= n; ++i) {
-            cur = pre->next;
-            pre->next = cur->next;
-            cur->next = front;
-            front = cur;
-        }
-        cur = pre->next;
-        pre->next = front;
-        last->next = cur;
-        return dummy->next;
     }
 };

@@ -1,4 +1,4 @@
-The gray code is a binary numeral system where two successive values differ in only one bit.
+/*The gray code is a binary numeral system where two successive values differ in only one bit.
 
 Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.
 
@@ -15,14 +15,22 @@ For a given n, a gray code sequence is not uniquely defined.
 For example, [0,2,3,1] is also a valid gray code sequence according to the above definition.
 
 For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
+*/
+
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        
+    }
+};
 
 
-// åŸºäºè½¬æ¢å…¬å¼çš„æ–¹æ³•ï¼š93. Restore IP Addresses
+// æ ¼é›·ç 
+// Math ; Backtracking
 
 
-             // preæŒ‡Oš¸|a /D%¤å¸¦Oš¸|a /D%¤åOš¸|a /D%¤çš„Oš¸|a /D%¤å‰Oš¸|a /D%¤ç»“Oš¸|ç¬¬Oš¸|a /D%¤å¾…Oš¸|a /D%¤ç»“Oš¸|a /D%¤
-ã€Oš¸|a /D%¤ã€Oš¸|a /D// 93, front æŒ‡Oš¸|a /Dè®°Oš¸|a /D%¤ä¸ŠOš¸|a /D%¤cï¼ŒOš¸|a /D%ï¼ŒOš¸|a /D%, lastè¡¨Oš¸|a /D%¤åOš¸|a /D%¤åOš¸|a /D%¤çš„Oš¸|a /D%¤æœ€Oš¸|a /D%¤ä¸€Oš¸|a /D%¤èŠ‚Oš¸|a /D%¤ï¼ŒOš¸|a /Dç»“Oš¸|a /D%¤ï¼ˆOš¸|a /D%¤ï¼‰Oš¸|a /D%ä¹ŸOš¸|a /D%¤å³Oš¸|a /D%¤ç¬¬Oš¸|a /D%¤å¾…Oš¸|a /D%
-ã€Oš¸|a /D%¤ã€Oš¸|a /D// Runtime beats 100% of cpp submissions.¤åOš¸|a /D%¤ç»“Oš¸|a /D%¤¤estore IP Addresses /D%¤
+// åŸºäºè½¬æ¢å…¬å¼çš„æ–¹æ³•ï¼š
+// å·¦ç§»+å¼‚æˆ–
 // Beats 100% cpp solutions.
 class Solution {
 public:
@@ -63,3 +71,35 @@ unsigned int grayToBinary(unsigned int num)
     }
     return num;
 }
+
+
+// ä½¿ç”¨setæ¥ä¿å­˜å·²ç»äº§ç”Ÿçš„ç»“æœï¼Œæˆ‘ä»¬ä»0å¼€å§‹ï¼Œéå†å…¶äºŒè¿›åˆ¶æ¯ä¸€ä½ï¼Œå¯¹å…¶å–åï¼Œç„¶åçœ‹å…¶æ˜¯å¦åœ¨setä¸­å‡ºç°è¿‡ï¼Œ
+// å¦‚æœæ²¡æœ‰ï¼Œæˆ‘ä»¬å°†å…¶åŠ å…¥setå’Œç»“æœresä¸­ï¼Œç„¶åå†å¯¹è¿™ä¸ªæ•°çš„æ¯ä¸€ä½è¿›è¡Œéå†ï¼Œä»¥æ­¤ç±»æ¨å°±å¯ä»¥æ‰¾å‡ºæ‰€æœ‰çš„æ ¼é›·ç äº†
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        vector<int> res;
+        unordered_set<int> s;
+        helper(n, s, 0, res);
+        return res;
+    }
+
+    void helper(int n, unordered_set<int>& s, int out, vector<int>& res) {
+        if (!s.count(out)) 
+        {
+            s.insert(out);
+            res.push_back(out);
+        }
+        for (int i = 0; i < n; ++i) {
+            int t = out;
+            if ((t & (1 << i)) == 0) 
+                t |= (1 << i);
+            else 
+                t &= ~(1 << i);
+            if (s.count(t)) 
+                continue;
+            helper(n, s, t, res);
+            break;
+        }
+    }
+};

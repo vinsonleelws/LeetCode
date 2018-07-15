@@ -1,4 +1,4 @@
-Given an input string, reverse the string word by word.
+/*Given an input string, reverse the string word by word.
 
 Example:  
 
@@ -12,6 +12,11 @@ Note:
     You need to reduce multiple spaces between two words to a single space in the reversed string.
 
 Follow up: For C programmers, try to solve it in-place in O(1) space.
+*/
+
+// 翻转字符串中的单词
+// 
+
 
 // 不仅要实现反转，还需将多余的空格去掉：去掉头尾空格，单词间的空格有多个的话变成一个。
 
@@ -26,7 +31,7 @@ class Solution {
 public:
     void reverseWords(string &s) {
         int cur = 0, n = s.size();
-        reverse(s.begin(), s.end());
+        reverse(s.begin(), s.end());  // 先翻转整个字符串
         for (int i = 0; i < n; ++i) 
         {
             if (s[i] != ' ') 

@@ -1,4 +1,4 @@
-Given an array of strings, group anagrams together.
+/*Given an array of strings, group anagrams together.
 
 Example:
 
@@ -13,7 +13,17 @@ Output:
 Note:
 
     All inputs will be in lowercase.
-    The order of your output does not matter.
+    The order of your output does not matter.*/
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+
+    }
+};
+
+// 求给定字符串集的所有错位词
+// Hash Table
 
 // 思路：基于字符串排序 + 哈希表的算法。
 class Solution {

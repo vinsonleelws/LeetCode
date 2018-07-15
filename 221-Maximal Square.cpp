@@ -1,4 +1,4 @@
-Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+/*Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
 
 For example, given the following matrix:
 
@@ -8,6 +8,10 @@ For example, given the following matrix:
 1 0 0 1 0
 
 Return 4. 
+*/
+
+// 最大正方形面积
+// DP
 
 // Reference solution: 
 // #1:
@@ -18,7 +22,7 @@ Return 4.
 // 而一般情况的递推公式：
 // dp[i][j] = min(dp[i - 1][j - 1], min(dp[i][j - 1], dp[i - 1][j])) + 1;
 // 这是由于对于任意一点dp[i][j]，由于该点是正方形的右下角，所以该点的右边，下边，右下边都不用考虑，
-// 关心的就是左边，上边，和左上边。这三个位置的dp值suppose都应该算好的，还有就是要知道一点，只有当前(i, j)位置为1，
+// 关心的就是左边，上边，和左上边。这三个位置的dp已经算好，还有就是要知道一点，只有当前(i, j)位置为1，
 // dp[i][j]才有可能大于0，否则dp[i][j]一定为0。当(i, j)位置为1，此时要看dp[i-1][j-1], dp[i][j-1]，和dp[i-1][j]这三个位置，
 // 我们找其中最小的值，并加上1，就是dp[i][j]的当前值了。
 // 最后再用dp[i][j]的值来更新结果width的值即可。

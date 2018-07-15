@@ -1,3 +1,4 @@
+/* 
 Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
 For example, given the following triangle
@@ -15,12 +16,32 @@ Note:
 
 Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
 
+ */
+
 // [2],
 // [3,4],
 // [6,5,7],
 // [4,1,8,3]
 
+// 三角形从顶部到底部的最小路径和
 // DP
+
+
+// 更加简洁的方法是从底向上维护dp数组
+// Bottom up
+class Solution {
+public:
+    int minimumTotal(vector<vector<int> > &triangle) {
+        int n = triangle.size();
+        vector<int> dp(triangle.back());
+        for (int i = n - 2; i >= 0; --i) // 从倒数第二行开始
+            for (int j = 0; j <= i; ++j) 
+                dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j];
+
+        return dp[0];
+    }
+};
+
 
 // My solution:
 // Top-down
@@ -55,20 +76,6 @@ public:
     }
 };
 
-// 更加简洁的方法是从底向上维护dp数组
-// Bottom up
-class Solution {
-public:
-    int minimumTotal(vector<vector<int> > &triangle) {
-        int n = triangle.size();
-        vector<int> dp(triangle.back());
-        for (int i = n - 2; i >= 0; --i) 
-            for (int j = 0; j <= i; ++j) 
-                dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j];
-
-        return dp[0];
-    }
-};
 
 // Testing cases:
 // Input: 

@@ -1,8 +1,9 @@
+/*
 Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
 
 Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, the linked list should become 1 -> 2 -> 4 after calling your function. 
 
-
+*/
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -11,6 +12,17 @@ Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node wi
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        
+    }
+};
+
+
+// 删除链表中的某结点（只给出待删除结点，不提供链表的起点）
+// 结点值覆盖
 
 // 这道题让我们删除链表的一个节点，与平常不一样的是没有给我们链表的起点，只给我们了一个要删的节点。
 // 这道题的处理方法是先把当前节点的值用下一个节点的值覆盖，如此进行直到最后一个节点，最后将倒数第二个节点的next置空即可。

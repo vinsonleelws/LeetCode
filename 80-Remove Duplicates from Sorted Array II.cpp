@@ -1,3 +1,4 @@
+/* 
 Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
@@ -35,20 +36,23 @@ for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
 
-
+ */
 // 思路：
-// 这题是Remove Duplicates from Sorted Array 有序数组中去除重复项的延续，依然采用快慢指针的方法去做。
+// 这题是 "26-Remove Duplicates from Sorted Array" 有序数组中去除重复项的延续，依然采用快慢指针的方法去做。
 // 这里允许最多重复的次数是两次，那么我们就需要用一个变量count来记录允许重复的次数，count初始化为1，
 // 如果出现过一次重复，则count加1(变为2)。每次根据快慢指针指向的数进行操作：如果快慢指针指向的值相等而且count==1，
-// 那么nums[++j] = nums[i]; count++; 而如果两值不相等，nums[++j] = nums[i], count = 1;
+// 那么nums[++j] = nums[i]; count++; 而如果两值不相等，nums[++j] = nums[i], count = 1; (j指向结果数组最后的一个元素)
+
+// 删除有序数组中的重复项II-数字最多重复两次
+// Two Pointers 快慢指针
 
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         if(nums.empty()) 
             return 0;
-        int j = 0, count=1;
-        for(int i = 1; i < nums.size(); ++i) // note that i starts with 1
+        int j = 0, count = 1;
+        for(int i = 1; i < nums.size(); ++i) // note that i starts with 1, j starts with 0
         {
             if(nums[i]!=nums[j])
             {

@@ -1,4 +1,4 @@
-Implement strStr().
+/*Implement strStr().
 
 Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
@@ -17,6 +17,17 @@ Clarification:
 What should we return when needle is an empty string? This is a great question to ask during an interview.
 
 For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+*/
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        
+    }
+};
+
+// 实现strStr()函数
+// Two Pointers
 
 // My solution.
 // 提升时间效率的小技巧：并不需要遍历整个haystack字符串，只需遍历到剩下的长度和子字符串相等的位置即可.

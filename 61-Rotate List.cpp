@@ -1,3 +1,4 @@
+/*
 Given a linked list, rotate the list to the right by k places, where k is non-negative.
 
 Example 1:
@@ -17,6 +18,7 @@ rotate 1 steps to the right: 2->0->1->NULL
 rotate 2 steps to the right: 1->2->0->NULL
 rotate 3 steps to the right: 0->1->2->NULL
 rotate 4 steps to the right: 2->0->1->NULL
+*/
 
 /**
  * Definition for singly-linked list.
@@ -26,14 +28,26 @@ rotate 4 steps to the right: 2->0->1->NULL
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        
+    }
+};
+
+
+// 旋转链表
+
  
 // 思路：
 // 若k大于链表长度n，则取k=k%n;
 // 在原链表上走n-k-1步，这时的结点作为最后一个结点，而它下一个节点作为头结点;
+
 // 特殊情况的考虑：
 // 当n==k或n==1时，相当于不旋转，直接返回.
 // 当head==nullptr或k==0时，直接返回head.
  
+// My solution:
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
@@ -41,11 +55,12 @@ public:
             return head;
         int n=0;
         ListNode* pNode=head;
-        while(pNode)
+        while(pNode)  // 计算链表长度n
         {
             n++;
             pNode = pNode->next;
         }
+        
         if(k==n || n==1)
             return head;
         else if(k>n)

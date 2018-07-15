@@ -1,4 +1,4 @@
-Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+/*Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
 Note:
 
@@ -22,11 +22,17 @@ Example 3:
 
 Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
+*/
+
+
+// 单词拆分
+// DP
+
 
 // DP
 // dp[i]: 从起始到下标i-1，s是否可以被切分。
 // 递推式：
-// dp[i] || = dp[j] && s.substr(j, i-j) for 0<=j<i
+// dp[i] || = dp[j] && find(wordDict.begin(), wordDict.end(), s.substr(j, i-j))!=wordDict.end())    (for 0<=j<i)
 // dp[0] = 1
 class Solution {
 public:

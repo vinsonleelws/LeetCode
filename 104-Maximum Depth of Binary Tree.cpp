@@ -1,4 +1,4 @@
-Given a binary tree, find its maximum depth.
+/*Given a binary tree, find its maximum depth.
 
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
@@ -16,7 +16,7 @@ Given binary tree [3,9,20,null,null,15,7],
 
 return its depth = 3.
 
-
+*/
 
 /**
  * Definition for a binary tree node.
@@ -27,6 +27,19 @@ return its depth = 3.
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        
+    }
+};
+
+
+// 求二叉树的最大深度
+// DFS ; Levelorder traversal
+
+
 // 法一：基于递归的方法
 class Solution {
 public:

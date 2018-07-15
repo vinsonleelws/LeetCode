@@ -1,3 +1,4 @@
+/* 
 Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
 
 The same repeated number may be chosen from candidates unlimited number of times.
@@ -25,7 +26,11 @@ A solution set is:
   [2,3,3],
   [3,5]
 ]
+ */
 
+// 组合之和（数组中的数字可以重复使用）
+// Backtracking
+ 
 // 思路：
 // 像这种结果要求返回所有符合要求解的题十有八九都是要利用到递归，而且解题的思路都大同小异，
 // 相类似的题目有 Path Sum II 二叉树路径之和之二，Subsets II 子集合之二，Permutations 全排列，

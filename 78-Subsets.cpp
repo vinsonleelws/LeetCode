@@ -1,3 +1,4 @@
+/* 
 Given a set of distinct integers, nums, return all possible subsets (the power set).
 
 Note: The solution set must not contain duplicate subsets.
@@ -15,7 +16,11 @@ Output:
   [2,3],
   [1,2],
   []
-]
+] 
+*/
+
+// 78-幂集
+// DFS
 
 // My solution；
 // Beats 100% cpp solutions.
@@ -59,12 +64,40 @@ public:
     }
 };
 
+// 另一种写法：
+class Solution {
+public:
+    vector<vector<int> > subsets(vector<int> &num) {
+        vector<vector<int> > res;
+        vector<int> out;
+        getSubsets(num, 0, out, res);
+        return res;
+    }
+    void getSubsets(vector<int> &num, int pos, vector<int> &out, vector<vector<int> > &res) {
+        res.push_back(out);
+        for (int i = pos; i < num.size(); ++i) {
+            out.push_back(num[i]);
+            getSubsets(num, i + 1, out, res);
+            out.pop_back();
+        }
+    }
+};
+
+// 添加的顺序为：
+// []
+// [1] 
+// [1 2] 
+// [1 2 3] 
+// [1 3] 
+// [2] 
+// [2 3] 
+// [3] 
 
 
 // 非递归的解法：
 // 基本思路：
-以nums=[1,2,3]为例子说明
-初始化result为[]，然后每一步如下进行
+// 以nums=[1,2,3]为例子说明
+// 初始化result为[]，然后每一步如下进行
 // [] -> [] [1]
 // [] [1] -> [] [1] [2] [1,2]
 // [] [1] [2] [1,2] -> [] [1] [2] [1,2] [3] [1,3] [2,3] [1,2,3]

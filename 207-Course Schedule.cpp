@@ -1,4 +1,4 @@
-There are a total of n courses you have to take, labeled from 0 to n-1.
+/*There are a total of n courses you have to take, labeled from 0 to n-1.
 
 Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
 
@@ -29,14 +29,27 @@ Note:
     This problem is equivalent to finding if a cycle exists in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.
     Topological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.
     Topological sort could also be done via BFS.
+*/
 
-// BFS or DFS
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        
+    }
+};
+
+// 课程表
+// BFS + 队列 ; DFS + visit数组
 
 // Reference solution:
 // #1 BFS
 // 定义二维数组graph来表示这个有向图，一维数组in来表示每个顶点的入度。首先根据输入来建立这个有向图，并将入度数组初始化。然后我们使用一个队列，
 // 将所有入度为0的点放入队列中，然后开始遍历队列，从graph里遍历其连接的点，每到达一个新节点，将其入度减一，如果此时该点入度为0，则放入队列末尾。
 // 直到遍历完队列中所有的值，若此时还有节点的入度不为0，则说明环存在，返回false，反之则返回true。
+// 
+// 步骤：
+// (1) 根据prerequisites建立邻接矩阵graph和度数数组in，入度为0的点入队
+// (2) 遍历队列，从graph里遍历其连接的点，每到达一个新节点，将其入度减一，如果此时该点入度为0，则放入队列末尾。
 class Solution {
 public:
     bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
@@ -74,6 +87,10 @@ public:
 // 先建立好有向图，用一个一维数组visit来记录访问状态，这里有三种状态，0表示还未访问过，1表示已经访问了且无环，-1表示有冲突。
 // 然后从第一个门课开始，找其可构成哪门课，暂时将当前课程标记为已访问，然后对新得到的课程调用DFS递归，直到出现新的课
 // 程已经访问过了，则返回false，没有冲突的话返回true，然后把标记为已访问的课程改为未访问。
+// 步骤：
+// (1) 根据prerequisites建立邻接矩阵graph，使用visit数组记录每个课程的访问状态： -1 - conflict, 0 - not visited, 1 - visited and acyclic
+// (2) 从第一个门课开始，找其可构成哪门课，暂时将当前课程标记为已访问，然后对新得到的课程调用DFS递归，直到出现新的课程已经访问过了，则返回false，
+// 没有冲突的话返回true，然后把标记为已访问的课程改为未访问。
 class Solution {
 public:
     bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
@@ -89,10 +106,10 @@ public:
         return true;
     }
     
-    bool canFinishDFS(vector<vector<int> > &graph, vector<int> &visit, int i) {
-        if (visit[i] == -1) 
+    bool canFinishDFS(cosnt vector<vector<int> > &graph, vector<int> &visit, int i) {
+        if (visit[i] == -1)  // -1 : conflict
             return false;
-        if (visit[i] == 1) 
+        if (visit[i] == 1)  // 1 : visited and acyclic
             return true;
         
         visit[i] = -1;  // conflict

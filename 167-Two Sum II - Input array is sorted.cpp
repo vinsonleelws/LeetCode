@@ -1,4 +1,4 @@
-Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+/* Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
 
 The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
 
@@ -12,7 +12,11 @@ Example:
 Input: numbers = [2,7,11,15], target = 9
 Output: [1,2]
 Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
+ */
 
+// 两数之和II-输入数组有序
+// Two Pointers ; Binary Search
+ 
 // 介于是sorted array，我们可以使用分别指向头尾的双指针，时间复杂度为O(n)。
 // My solution:
 class Solution {
@@ -23,13 +27,9 @@ public:
         
         while(start<end)
         {
-            if(nums[start]+nums[end]==target)
-            {
-                result.push_back(start);
-                result.push_back(end);
-                return result;
-            }
-            else if(nums[start]+nums[end]<target)
+            if(numbers[start]+numbers[end]==target)
+                return {start+1, end+1};  /* result.push_back(start); result.push_back(start); return result; */
+            else if(numbers[start]+numbers[end]<target)
                 start++;
             else
                 end--;
@@ -46,9 +46,12 @@ public:
             int t = target - numbers[i], left = i + 1, right = numbers.size() - 1;
             while (left < right) {
                 int mid = left + (right - left) / 2;
-                if (numbers[mid] == t) return {i + 1, mid + 1};
-                else if (numbers[mid] < t) left = mid + 1;
-                else right = mid;
+                if (numbers[mid] == t) 
+                    return {i + 1, mid + 1};
+                else if (numbers[mid] < t) 
+                    left = mid + 1;
+                else 
+                    right = mid;
             }
         }
         return {};

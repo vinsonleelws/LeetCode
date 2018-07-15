@@ -1,4 +1,4 @@
-Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+/*Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 
 For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
 
@@ -13,6 +13,7 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
    -3   9
    /   /
  -10  5
+ */
 
 /**
  * Definition for singly-linked list.
@@ -32,6 +33,18 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  * };
  */
 
+class Solution {
+public:
+    TreeNode* sortedListToBST(ListNode* head) {
+        
+    }
+};
+
+
+// 将有序链表转换为二叉搜索树
+// DFS ; 快慢指针+DFS
+
+
 // 法一：基于递归的实现，每次根据结点下标扫描链表
 class Solution {
 public:
@@ -41,7 +54,7 @@ public:
         
         int len=0;
         ListNode* pNode = head;
-        while(pNode->next)
+        while(pNode->next)  // 计算链表长度len
         {
             len++;
             pNode = pNode->next;
@@ -54,10 +67,10 @@ public:
         if(start>end)
             return NULL;
         
-        int mid = (start+end)>>1;
+        int mid = (start+end)>>1;  
         ListNode* midnode = head;
         for(int i=0; i<mid; i++)
-            midnode = midnode->next;
+            midnode = midnode->next;	// 找到中间结点作为根结点
         TreeNode* root = new TreeNode(midnode->val);
         root->left = sortedListToBSTRecursive(head, start, mid-1);
         root->right = sortedListToBSTRecursive(head, mid+1, end);
@@ -67,7 +80,7 @@ public:
 // 由于可能存在多次对链表从头到尾的扫描，导致时间效率不高。
 
 
-// 法二：使用快慢指针
+// 法二：使用快慢指针+DFS
 // 快指针fast一次走两步，慢指针slow一次走一步; last指针记录slow的前一个结点
 // 当fast指针走到尾时，slow指针恰好走到中间结点，根节点的值由slow指向的结点值产生。
 // 接下来递归调用生成左右子树：
@@ -88,8 +101,8 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-        fast = slow->next;
-        last->next = NULL;
+        fast = slow->next; // 用fast标记右子树的开端
+        last->next = NULL; // 断开左子树的尾端
         TreeNode *root = new TreeNode(slow->val);
         if (head != slow) 
             root->left = sortedListToBST(head);

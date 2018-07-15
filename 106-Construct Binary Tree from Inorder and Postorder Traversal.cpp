@@ -1,3 +1,4 @@
+/* 
 Given inorder and postorder traversal of a tree, construct the binary tree.
 
 Note:
@@ -15,7 +16,9 @@ Return the following binary tree:
   9  20
     /  \
    15   7
-
+   
+ */
+ 
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -25,6 +28,17 @@ Return the following binary tree:
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        
+    }
+};
+ 
+// 由中序和后序遍历建立二叉树
+// DFS
+
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
@@ -35,7 +49,7 @@ public:
     {
         if (pLeft > pRight || iLeft > iRight) 
             return NULL;
-        int i = 0;
+        int i = iLeft;
         while(i<=iRight && postorder[pRight] != inorder[i])
             i++;
         

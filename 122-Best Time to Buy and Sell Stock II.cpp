@@ -1,3 +1,4 @@
+/* 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
 Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).
@@ -24,8 +25,11 @@ Example 3:
 Input: [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
-
+*/
+ 
+// 买卖股票的最佳时间II (不限制买入和卖出次数)
 // Greedy
+
 // 若不限制买入和卖出次数的话，我们可以获得全局最高利润。因此只需遍历数组，将利润相加即可。
 class Solution {
 public:

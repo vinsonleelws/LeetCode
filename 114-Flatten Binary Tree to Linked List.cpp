@@ -1,4 +1,4 @@
-Given a binary tree, flatten it to a linked list in-place.
+/*Given a binary tree, flatten it to a linked list in-place.
 
 For example, given the following tree:
 
@@ -21,7 +21,7 @@ The flattened tree should look like:
         5
          \
           6
-
+*/
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -31,6 +31,19 @@ The flattened tree should look like:
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        
+    }
+};
+
+
+// 将二叉树（按前序遍历的顺序）展开成链表  
+// DFS
+
 
 // Reference solution:
 // #1
@@ -46,11 +59,12 @@ public:
         if (root->right) 
             flatten(root->right);
         TreeNode *tmp = root->right;
-        root->right = root->left;
-        root->left = NULL;
-        while (root->right) 
+        root->right = root->left;  // 根的右子指向左子
+        root->left = NULL;  // 左子置空
+
+        while (root->right)  // 连接根的右子
             root = root->right;
-        root->right = tmp;
+        root->right = tmp;  
     }
 };
 
@@ -83,7 +97,7 @@ public:
              6
              
 // #2
-// 非迭代版本的实现：
+// 非递归版本的实现：
 // 从根节点开始出发：
 // 1）若左结点存在，则找到该左结点的最右结点，将其右孩子设置为根结点的右孩子，再把根节点的右孩子设置为其左孩子，同时根节点左孩子置空。
 // 2）更新根节点为其右孩子。

@@ -1,3 +1,4 @@
+/* 
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
 Note:
@@ -15,7 +16,9 @@ Return the following binary tree:
   9  20
     /  \
    15   7
-
+   
+ */
+ 
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -25,6 +28,19 @@ Return the following binary tree:
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        
+    }
+};
+
+
+// 由先序和中序遍历建立二叉树
+// DFS
+ 
+// My solution
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -33,7 +49,7 @@ public:
         
         TreeNode* root = new TreeNode(preorder[0]);
         int i=0;
-        while(i<inorder.size() && inorder[i]!=preorder[0])
+        while(i<inorder.size() && inorder[i]!=preorder[0]) // 确定左子树结点数
             i++;
         
         vector<int> preorderLeftPart, preorderRightPart, inorderLeftPart, inorderRightPart;
@@ -67,12 +83,13 @@ public:
     {
         if (pLeft > pRight || iLeft > iRight) 
             return NULL;
-        int i = 0;
+        
+        int i = iLeft;
         while(i<=iRight && preorder[pLeft] != inorder[i])
             i++;
         
         TreeNode *cur = new TreeNode(preorder[pLeft]);
-        cur->left = buildTree(preorder, pLeft + 1, pLeft + i - iLeft, inorder, iLeft, i - 1);
+        cur->left = buildTree(preorder, pLeft + 1, pLeft + i - iLeft, inorder, iLeft, i - 1);  // i-iLeft 是因为inorder tree是从数组的iLeft开始的
         cur->right = buildTree(preorder, pLeft + i - iLeft + 1, pRight, inorder, i + 1, iRight);
         return cur;
     }

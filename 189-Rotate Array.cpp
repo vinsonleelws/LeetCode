@@ -1,3 +1,4 @@
+/* 
 Given an array, rotate the array to the right by k steps, where k is non-negative.
 
 Example 1:
@@ -21,14 +22,20 @@ Note:
 
     Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.
     Could you do it in-place with O(1) extra space?
+*/
 
+// 数组旋转
+// 位置映射；循环置换；翻转；
     
 // Reference solution:
 
 // #1 
 // Cyclic Replacements 循环置换法
 // 首先找到位置变换的映射表达式，对于位置i的数字，旋转后它的位置变为(i+k)%n
-// 然后我们对数字进行循环置换。
+// 然后我们对数字进行循环置换：
+// 每个数字的位置发生了移动，若数组长度为n，则需要赋值n次，使用一个计数器，到达n时循环结束，
+// 每次将当前位置的值赋给它旋转后的位置，并将该位置的值作为下一次要操作的值(cur)。
+// 用变量start记录开始的位置(0)，如果映射的位置i等于start，那么start和i都自加1，cur = nums[i].
 // 以Example 1为例：
 // 每一步操作的过程如下：
 // 1 2 3 4 5 6 7

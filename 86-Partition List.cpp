@@ -1,3 +1,4 @@
+/*
 Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
 
 You should preserve the original relative order of the nodes in each of the two partitions.
@@ -6,6 +7,7 @@ Example:
 
 Input: head = 1->4->3->2->5->2, x = 3
 Output: 1->2->2->4->3->5
+*/
 
 /**
  * Definition for singly-linked list.
@@ -14,7 +16,19 @@ Output: 1->2->2->4->3->5
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
+ * 
  */
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        
+    }
+};
+
+
+// 划分链表
+// Two Pointers
 
 // Reference solution:
 // #1
@@ -82,16 +96,16 @@ public:
         ListNode* pNode = dummy;
         ListNode* pPrev = dummy;
         
-        while(pNode->next && pNode->next->val < x)
+        while(pNode->next && pNode->next->val < x)  // 找到值大于等于x的结点
             pNode = pNode->next;
         pPrev = pNode;
         
         while(pNode->next)
         {
             ListNode* pNext = pNode->next;
-            if(pNext->val >= x)
+            if(pNext->val >= x)  // 如果大于等于x，接着走
                 pNode = pNode->next;
-            else
+            else                // 反之，将其插入pPrev之后
             {
                 pNode->next = pNext->next;
                 pNext->next = pPrev->next;

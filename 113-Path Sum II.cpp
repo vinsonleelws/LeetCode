@@ -1,4 +1,4 @@
-Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+/*Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
 
 Note: A leaf is a node with no children.
 
@@ -20,7 +20,7 @@ Return:
    [5,4,11,2],
    [5,8,4,5]
 ]
-
+*/
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -30,6 +30,19 @@ Return:
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        
+    }
+};
+
+
+// 二叉树的路径和II (找所有合法路径)
+// DFS
+
+
 class Solution {
 public:
     vector<vector<int>> pathSum(TreeNode* root, int sum) {

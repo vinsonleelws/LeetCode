@@ -1,3 +1,4 @@
+/* 
 Given a linked list, remove the n-th node from the end of list and return its head.
 
 Example:
@@ -13,6 +14,8 @@ Given n will always be valid.
 Follow up:
 
 Could you do this in one pass?
+*/
+
 
 /**
  * Definition for singly-linked list.
@@ -23,7 +26,10 @@ Could you do this in one pass?
  * };
  */
  
-// Reference solution (one pass solution)
+// 移除链表倒数第N个结点（N是合法的）
+// Two Pointers
+
+ // Reference solution (one pass solution)
 // 使用两个指针pre和cur, cur先走n步，如果此时指向的是空指针，表示要删除的是头结点，
 // 返回head->next. 否则，让cur和pre同时走，直到cur走到最后一个结点，
 // 此时pre指向的是待删除结点的前一个结点。

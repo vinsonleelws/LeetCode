@@ -1,6 +1,8 @@
+/*
 A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
 
 Return a deep copy of the list. 
+*/
 
 /**
  * Definition for singly-linked list with a random pointer.
@@ -10,6 +12,11 @@ Return a deep copy of the list.
  *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
  * };
  */
+
+
+// 拷贝带随机指针的链表
+// 复制-连接-断开 ; Hash Table
+
 // 法一：
 class Solution {
 public:
@@ -18,7 +25,7 @@ public:
             return NULL;
         
        RandomListNode* pNode = head;
-       while(pNode)
+       while(pNode)  // 首先在原链表每个结点后面复制具有相同label值的结点
        {
            RandomListNode* pNext = pNode->next;
            pNode->next = new RandomListNode(pNode->label);
@@ -27,7 +34,7 @@ public:
        }
        
        pNode = head;
-       while(pNode)
+       while(pNode) // 连接random指针
        {
            RandomListNode* pNext = pNode->next;
            if(pNode->random)
@@ -38,7 +45,7 @@ public:
        RandomListNode* newHead = head->next;
        RandomListNode* newNode = newHead;
        pNode = head;
-       while(pNode)
+       while(pNode)  // 原链表与新链表分离
        {
            if(newNode->next)
            {
@@ -60,13 +67,15 @@ public:
 class Solution {
 public:
     RandomListNode *copyRandomList(RandomListNode *head) {
-        if (!head) return NULL;
+        if (!head) 
+        	return NULL;
         RandomListNode *res = new RandomListNode(head->label);
         RandomListNode *node = res;
         RandomListNode *cur = head->next;
         map<RandomListNode*, RandomListNode*> m;
         m[head] = res;
-        while (cur) {
+        while (cur) // 一边产生新链表一边构建哈希表
+        {
             RandomListNode *tmp = new RandomListNode(cur->label);
             node->next = tmp;
             m[cur] = tmp;
@@ -75,7 +84,9 @@ public:
         }
         node = res;
         cur = head;
-        while (node) {
+        
+        while (node)  // 建立random连接
+        {
             node->random = m[cur->random];
             node = node->next;
             cur = cur->next;

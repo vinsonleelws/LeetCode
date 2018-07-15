@@ -1,4 +1,5 @@
-Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+/* 
+Given an array of size n, find the majority element. The majority element is the element that appears more than |_ n/2 _| times.
 
 You may assume that the array is non-empty and the majority element always exist in the array.
 
@@ -11,11 +12,12 @@ Example 2:
 
 Input: [2,2,1,1,1,2,2]
 Output: 2
+*/
 
-// 求众数
+// 众数（找次数超|_n/2_|的数）
+// 找规律（摩尔投票法，O(n)，O(1)）；Hash Table；Bit Manipulation
 
 // 思路：最简单的方法是用哈希表来做，时间复杂度和空间复杂度都为O(n)
-
 // 然而有一种十分精巧的方法：摩尔投票法 Moore Voting，时间复杂度为O(n)，空间复杂度为O(1)
 // 这种投票法先将第一个数字假设为众数，然后把计数器设为1，比较下一个数和此数是否相等，若相等则计数器加一，反之减一。
 // 然后看此时计数器的值，若为零，则将当前值设为候选众数。以此类推直到遍历完整个数组，当前候选众数即为该数组的众数.
@@ -28,8 +30,13 @@ public:
     int majorityElement(vector<int>& nums) {
         int res = 0, cnt = 0;
         for (int num : nums) {
-            if (cnt == 0) {res = num; ++cnt;}
-            else (num == res) ? ++cnt : --cnt;
+            if (cnt == 0) 
+            {
+                res = num; 
+                ++cnt;
+            }
+            else 
+                (num == res) ? ++cnt : --cnt;
         }
         return res;
     }

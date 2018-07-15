@@ -1,3 +1,4 @@
+/*
 Given a sorted linked list, delete all duplicates such that each element appear only once.
 
 Example 1:
@@ -9,7 +10,7 @@ Example 2:
 
 Input: 1->1->2->3->3
 Output: 1->2->3
-
+*/
 
 /**
  * Definition for singly-linked list.
@@ -19,6 +20,16 @@ Output: 1->2->3
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        
+    }
+};
+
+
+// 删除有序链表中的重复项（保留一个）
+
  
 class Solution {
 public:

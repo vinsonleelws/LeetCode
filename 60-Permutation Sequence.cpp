@@ -1,3 +1,4 @@
+/*
 The set [1,2,3,...,n] contains a total of n! unique permutations.
 
 By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
@@ -25,6 +26,18 @@ Example 2:
 
 Input: n = 4, k = 9
 Output: "2314"
+*/
+
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        
+    }
+};
+
+
+// 排列顺序
+// 找规律 ; DFS (Backtracking)
 
 // 思路：
 // 可通过找规律，根据公式直接求出每一位的数字。
@@ -68,8 +81,6 @@ Output: "2314"
 // k更新公式：k <- k%(n-1)!
 // 更新n：n--;
 
-
-
 class Solution {
 public:
     string getPermutation(int n, int k) {
@@ -92,5 +103,39 @@ public:
         }
         
         return result;
+    }
+};
+
+
+// My solution: (TLE)
+// 纯粹采用类似于题目"46-Permutations"的Backtracking方法将导致TLE
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        vector<bool> iFlag(n+1, 0);
+        string res;
+        int K = k;
+        permutations(n, n, iFlag, res, K);
+        return res;
+    }
+    
+    void permutations(int n, int level, vector<bool> iFlag, string& res, int& k)
+    {
+        if(level==0)
+            k--;
+        else
+            for(int i=1; i<=n; i++)
+            {   
+                if(!iFlag[i])
+                {
+                    res += to_string(i);
+                    iFlag[i] = true;
+                    permutations(n, level-1, iFlag, res, k);
+                    if(k==0)
+                        return;
+                    res.pop_back();
+                    iFlag[i] = false;
+                }
+            }
     }
 };

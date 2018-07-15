@@ -1,3 +1,4 @@
+/* 
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
 You may assume no duplicates in the array.
@@ -20,7 +21,10 @@ Output: 4
 Example 4:
 
 Input: [1,3,5,6], 0
-Output: 0
+Output: 0 
+*/
+
+// 搜素插入的位置
 
 class Solution {
 public:
@@ -40,6 +44,6 @@ public:
             else
                 end = mid-1;
         }
-        return start;
+        return start;  // 由于总是插入第一个>=目标数字的数字的所在位置，返回start而不是end
     }
 };

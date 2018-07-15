@@ -27,7 +27,7 @@ public:
         {
             sort(nums.begin(), nums.end());
             
-            for(unsigned i=0; i<nums.size()-1; i++)
+            for(unsigned i=0; i<nums.size()-1; i++)  // 每次先固定一个数, nums[i]
             {
                 if (nums[i] > 0) 
                     break;
@@ -36,13 +36,13 @@ public:
                 
                 int j=i+1;
                 int target = -nums[i];
-                int k=nums.size()-1;
+                int k=nums.size()-1;  // 尾指针
                 while(j<k)
                 {
                     if(nums[j]+nums[k] == target)
                     {
                         result.push_back({nums[i], nums[j], nums[k]});
-                        while(j<k && nums[j]==nums[j+1])
+                        while(j<k && nums[j]==nums[j+1])  // 去重
                             j++;
                         while(j<k && nums[k]==nums[k-1])
                             k--;

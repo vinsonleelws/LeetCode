@@ -1,4 +1,4 @@
-Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
+/*Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
 
 Example 1:
 
@@ -11,7 +11,17 @@ Example 2:
 Input: 128
 Output: 1
 Explanation: Integer 128 has binary representation 00000000000000000000000010000000
+*/
 
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        
+    }
+};
+
+// 位1的个数
+// Bit Manipulation
 
 // My solution: Runtime beats 100% of cpp submissions.
 class Solution {

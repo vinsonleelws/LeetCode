@@ -1,4 +1,4 @@
-A peak element is an element that is greater than its neighbors.
+/* A peak element is an element that is greater than its neighbors.
 
 Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element and return its index.
 
@@ -22,7 +22,11 @@ Explanation: Your function can return either index number 1 where the peak eleme
 Note:
 
 Your solution should be in logarithmic complexity.
+ */
 
+// 寻找数组的局部峰值
+// Binary Search
+ 
 // 题目要求在对数时间复杂度内完成，自然而然就想到了二分查找法：
 // 解法如下，每次去比较中间数字和它右边一个数字的大小，进而缩小查找空间。
 class Solution {
@@ -32,13 +36,13 @@ public:
         while(low<high)
         {
             int mid = (low+high)>>1;
-            if(nums[mid]>nums[mid+1])
+            if(nums[mid]>nums[mid+1]) // 其中一个峰值在mid或mid之前
                 high = mid;
             else
-                low = mid+1; 
+                low = mid+1; // 峰值在mid之后
         }
         
-        return high;
+        return high;  // or low
     }
 };
 

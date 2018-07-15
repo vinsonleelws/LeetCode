@@ -1,4 +1,4 @@
-Given n, how many structurally unique BST's (binary search trees) that store values 1 ... n?
+/*Given n, how many structurally unique BST's (binary search trees) that store values 1 ... n?
 
 Example:
 
@@ -13,11 +13,15 @@ Given n = 3, there are a total of 5 unique BST's:
     /     /       \                 \
    2     1         2                 3
 
-
+*/
    
 
-// 思路：找规律，获得地推公式，然后用DP算法求。
 
+// 独一无二的二叉搜索树(数目)
+// DP
+//  
+//    
+// 思路：找规律，获得地推公式，然后用DP算法求。
 
 
 // 这道题实际上是 Catalan Number卡塔兰数的一个例子。

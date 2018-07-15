@@ -1,3 +1,4 @@
+/* 
 Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
 
 Example 1:
@@ -14,7 +15,10 @@ Example 3:
 
 Input: [1,2,1], k = 0
 Output: false
+*/
 
+// 包含重复值II（坐标之差在一定范围内）
+// Hash Table
 
 // 此题一开始用Brute force，被OJ无情地判为TLE。其实正解应该使用Hash Table来解：
 class Solution {

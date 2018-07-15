@@ -1,3 +1,4 @@
+/*
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,
 reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
 
@@ -10,6 +11,7 @@ Given 1->2->3->4, reorder it to 1->4->2->3.
 Example 2:
 
 Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
+*/
 
 /**
  * Definition for singly-linked list.
@@ -19,6 +21,17 @@ Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        
+    }
+};
+
+
+// 链表重排序
+// 找中间节点（快慢指针or遍历） + 翻转链表 + 隔元素插入结点
 
 // 思路：
 // 这道链表重排序问题可以拆分为以下三个小问题：
@@ -47,11 +60,11 @@ public:
         for(int i=0; i<n/2; i++)
             pNode = pNode->next;
 
-        ListNode* harf = pNode->next;
+        ListNode* harf = pNode->next;  // 将链表分割为两部分
         pNode->next = NULL;
         ListNode* pNext = harf->next;
         harf->next = NULL;
-        while(pNext)
+        while(pNext) // 翻转后面的第二个链表
         {
            ListNode* pNextNext = pNext->next;
            pNext->next = harf;

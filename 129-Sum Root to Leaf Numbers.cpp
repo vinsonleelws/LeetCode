@@ -1,4 +1,4 @@
-Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+/*Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
 
 An example is the root-to-leaf path 1->2->3 which represents the number 123.
 
@@ -32,7 +32,7 @@ The root-to-leaf path 4->9->5 represents the number 495.
 The root-to-leaf path 4->9->1 represents the number 491.
 The root-to-leaf path 4->0 represents the number 40.
 Therefore, sum = 495 + 491 + 40 = 1026.
-
+*/
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -42,6 +42,20 @@ Therefore, sum = 495 + 491 + 40 = 1026.
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+
+class Solution {
+public:
+    int sumNumbers(TreeNode* root) {
+        
+    }
+};
+
+
+// 所有根到叶子结点组成的数字之和
+// DFS
+
+
 class Solution {
 public:
     int sumNumbers(TreeNode* root) {

@@ -1,4 +1,4 @@
-Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+/*Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
 
 Note: For the purpose of this problem, we define empty string as valid palindrome.
 
@@ -10,7 +10,18 @@ Output: true
 Example 2:
 
 Input: "race a car"
-Output: false
+Output: false*/
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        
+    }
+};
+
+
+// 验证回文字符串 (忽略字母大小写)
+// Two Pointers
 
 // 所谓回文，就是一个正读和反读都一样的字符串，比如“level”或者“noon”等等就是回文串。但是这里，加入了空格和非字母数字的字符，增加了些难度，
 // 但其实原理还是很简单：只需要建立两个指针，left和right, 分别从字符的开头和结尾处开始遍历整个字符串，如果遇到非字母数字的字符就跳过，继续往下找，
@@ -35,7 +46,7 @@ public:
                     if(s[left] != s[right])
                         return false;
                 }
-                else if(s[left]!=s[right] && abs(s[left]-s[right]) != 32)
+                else if(s[left]!=s[right] && abs(s[left]-s[right]) != 32)  // 大小写字母的ascii码相差32
                     return false;
 
                 left++;

@@ -21,7 +21,7 @@ public:
             bool neg_target = false;
             if(target<0)
                 neg_target = true;
-            for(int i=0; i<nums.size(); i++)
+            for(int i=0; i<nums.size(); i++)  // 每次固定一个数nums[i]
             {
                 if(neg_target && nums[i]>=0)
                     break;
@@ -29,13 +29,13 @@ public:
                 if(i>0 && nums[i]==nums[i-1])
                     continue;
                     
-                int j=i+1, k=nums.size()-1;
+                int j=i+1, k=nums.size()-1;  // 头指针j, 尾指针k
                 while(j<k)
                 {
                     int curSum = nums[i] + nums[j] + nums[k];
                     if(abs(target-curSum) < abs(target-sum))
                     {
-                        if(target == curSum)
+                        if(target == curSum) 
                             return curSum;
                         sum = curSum;
                         while(j<k && nums[j] == nums[j+1])

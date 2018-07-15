@@ -1,3 +1,4 @@
+/* 
 Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
 
 Example 1:
@@ -11,8 +12,13 @@ Example 2:
 Input: [-2,0,-1]
 Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+ */
 
+ 
+// 最大子数组乘积
 // DP
+
+ 
 // 每次记录最大值和最小值，在每遍历完一个数时，都要更新最终的最大值。递推公式：
 // mini = min(min(maximum*nums[i], minimum*nums[i]), nums[i]);
 // maxi = max(max(maximum*nums[i], minimum*nums[i]), nums[i]);

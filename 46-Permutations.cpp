@@ -1,4 +1,4 @@
-Given a collection of distinct integers, return all possible permutations.
+/*Given a collection of distinct integers, return all possible permutations.
 
 Example:
 
@@ -12,6 +12,17 @@ Output:
   [3,1,2],
   [3,2,1]
 ]
+*/
+
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        
+    }
+};
+
+// 全排列
+// DFS (Backtracking) + visit数组
 
 // My solution:
 class Solution {
@@ -20,7 +31,7 @@ public:
         vector<vector<int>> result;
         vector<bool> iFlag(nums.size(), 0);
         vector<int> res;
-        permutations(nums, nums.size(), iFlag, res, result);
+        permutations(nums, n, iFlag, res, result);
         return result;
     }
     
@@ -42,6 +53,18 @@ public:
             }
     }
 };
+
+/*
+Output:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+*/
 
 
 // Other reference solution:

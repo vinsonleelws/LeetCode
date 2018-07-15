@@ -1,4 +1,4 @@
-Given a string, find the length of the longest substring without repeating characters.
+/*Given a string, find the length of the longest substring without repeating characters.
 
 Examples:
 
@@ -8,7 +8,25 @@ Given "bbbbb", the answer is "b", with the length of 1.
 
 Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
+*/
 
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        
+    }
+};
+
+
+// 最长无重复字符的子串的长度
+// Hash Table
+
+
+// My solution
+// Hash Table
+// 使用哈希表记录字符上一次出现的位置
+// 如果相同字符之间的间距大于当前的count，则count++; 
+// 反之，如果count > max_count，则更新max_count，更新count = i - pre_position[s[i]];
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -43,6 +61,7 @@ public:
         if(max_count < count)
             max_count = count;
         
+        delete[] pre_position;
         return max_count;
     }
 };

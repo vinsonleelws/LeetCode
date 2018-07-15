@@ -1,4 +1,4 @@
-Given a binary tree, return the postorder traversal of its nodes' values.
+/*Given a binary tree, return the postorder traversal of its nodes' values.
 
 Example:
 
@@ -12,6 +12,7 @@ Input: [1,null,2,3]
 Output: [3,2,1]
 
 Follow up: Recursive solution is trivial, could you do it iteratively?
+*/
 
 /**
  * Definition for a binary tree node.
@@ -51,7 +52,8 @@ public:
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        if (!root) return {};
+        if (!root) 
+            return {};
         vector<int> res;
         stack<TreeNode*> s{{root}};
         while (!s.empty()) 
@@ -59,8 +61,10 @@ public:
             TreeNode *t = s.top(); 
             s.pop();
             res.insert(res.begin(), t->val);
-            if (t->left) s.push(t->left);
-            if (t->right) s.push(t->right);
+            if (t->left) 
+                s.push(t->left);
+            if (t->right) 
+                s.push(t->right);
         }
         return res;
     }
@@ -132,15 +136,51 @@ public:
         vector<int> res;
         stack<TreeNode*> s{{root}};
         TreeNode *head = root;
-        while (!s.empty()) {
+        while (!s.empty()) 
+        {
             TreeNode *t = s.top();
-            if ((!t->left && !t->right) || t->left == head || t->right == head) {
+            if ((!t->left && !t->right) || t->left == head || t->right == head) 
+            {
                 res.push_back(t->val);
                 s.pop();
                 head = t;
-            } else {
-                if (t->right) s.push(t->right);
-                if (t->left) s.push(t->left);
+            } 
+            else 
+            {
+                if (t->right) 
+                    s.push(t->right);
+                if (t->left) 
+                    s.push(t->left);
+            }
+        }
+        return res;
+    }
+};
+
+
+// My solution:
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        if (!root) return {};
+        vector<int> res;
+        stack<TreeNode*> s{{root}};
+        TreeNode *child = root;
+        while (!s.empty()) 
+        {
+            TreeNode *t = s.top();
+            if ((!t->left && !t->right) || t->left == child || t->right == child) 
+            {
+                res.push_back(t->val);
+                s.pop();
+                child = t;
+            } 
+            else 
+            {
+                if (t->right) 
+                    s.push(t->right);
+                if (t->left) 
+                    s.push(t->left);
             }
         }
         return res;

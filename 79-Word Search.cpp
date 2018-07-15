@@ -1,3 +1,4 @@
+/* 
 Given a 2D board and a word, find if the word exists in the grid.
 
 The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
@@ -15,11 +16,23 @@ Given word = "ABCCED", return true.
 Given word = "SEE", return true.
 Given word = "ABCB", return false.
 
+ */
+ 
+class Solution {
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        
+    }
+};
+ 
+// 78-单词搜索
+// Backtracking 
+ 
 // 思路：这道题是典型的深度优先遍历DFS的应用，原二维数组就像是一个迷宫，可以上下左右四个方向行走，
 // 我们以二维数组中每一个数都作为起点和给定字符串做匹配，利用一个和原数组等大小的bool型visited数组来记录
 // 当前位置是否已经被访问过，因为题目要求一个cell只能被访问一次。如果二维数组board的当前字符和目标字符串
-// word对应的字符相等，则对其上下左右四个邻字符分别调用DFS的递归函数，
-// 只要有一个返回true，那么就表示可以找到对应的字符串，否则就不能找到.
+// word对应的字符相等，则对其上下左右四个邻字符分别调用DFS的递归函数，只要有一个返回true，那么就表示可以
+// 找到对应的字符串，否则就不能找到.
 class Solution {
 public:
     bool exist(vector<vector<char>>& board, string word) {
@@ -48,7 +61,7 @@ public:
             {
                 visited[i][j] = true;
                 bool flag =  existDFS(board, word, visited, index+1, i+1, j) || existDFS(board, word, visited, index+1, i, j+1) || \
-                existDFS(board, word, visited, index+1, i-1, j) ||existDFS(board, word, visited, index+1, i, j-1);
+                existDFS(board, word, visited, index+1, i-1, j) || existDFS(board, word, visited, index+1, i, j-1);
                 visited[i][j] = false;
                 return flag;
             }

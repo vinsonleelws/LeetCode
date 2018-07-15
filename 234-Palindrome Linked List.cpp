@@ -1,3 +1,4 @@
+/*
 Given a singly linked list, determine if it is a palindrome.
 
 Example 1:
@@ -12,7 +13,7 @@ Output: true
 
 Follow up:
 Could you do it in O(n) time and O(1) space?
-
+*/
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -21,6 +22,19 @@ Could you do it in O(n) time and O(1) space?
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        
+    }
+};
+
+
+
+// 回文链表
+// 快慢指针+翻转
+
 
 // O(n) time and O(1) space
 // 快慢指针+反转后半段链表

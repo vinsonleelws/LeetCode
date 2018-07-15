@@ -1,4 +1,4 @@
-Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+/*Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
 
 OJ's undirected graph serialization:
 
@@ -22,6 +22,8 @@ Visually, the graph looks like the following:
          / \
          \_/
 
+*/
+
 /**
  * Definition for undirected graph.
  * struct UndirectedGraphNode {
@@ -31,8 +33,19 @@ Visually, the graph looks like the following:
  * };
  */
 
+class Solution {
+public:
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        
+    }
+};
+
+// 无向图复制
 // DFS
-// 使用一个哈希表来记录已知结点
+
+
+// DFS
+// 使用一个哈希表来记录已知结点 <label, UndirectedGraphNode*>
 class Solution {
 public:
     UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {

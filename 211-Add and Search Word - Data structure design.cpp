@@ -1,4 +1,4 @@
-Design a data structure that supports the following two operations:
+/*Design a data structure that supports the following two operations:
 
 void addWord(word)
 bool search(word)
@@ -13,7 +13,7 @@ addWord("mad")
 search("pad") -> false
 search("bad") -> true
 search(".ad") -> true
-search("b..") -> true
+search("b..") -> true*/
 
 class WordDictionary {
 public:
@@ -40,6 +40,11 @@ public:
  * bool param_2 = obj.search(word);
  */
  
+
+// 添加和查找单词 - 数据结构设计
+// Backtracking, Design, Trie
+
+
 // --------------------------------------------------------------------
 
 // 一般要在字典中搜索字符串，最简单而有效率的方式还是使用字典树结构，
@@ -54,7 +59,8 @@ public:
         TrieNode *child[26];
         bool isWord;
         TrieNode() : isWord(false) {
-            for (auto &a : child) a = NULL;
+            for (auto &a : child) 
+                a = NULL;
         }
     };
 

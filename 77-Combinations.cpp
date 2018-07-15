@@ -1,4 +1,4 @@
-Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+/*Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 
 Example:
 
@@ -12,6 +12,17 @@ Output:
   [1,3],
   [1,4],
 ]
+*/
+
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
+        
+    }
+};
+
+// 组合
+// DFS (Backtracking)
 
 // 递归解法：
 class Solution {

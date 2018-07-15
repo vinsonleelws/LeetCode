@@ -1,3 +1,4 @@
+/* 
 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
 (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
@@ -14,7 +15,11 @@ Output: 1
 Example 2:
 
 Input: [2,2,2,0,1]
-Output: 0
+Output: 0 
+*/
+
+// 寻找旋转数组的最小值（可能包含重复元素）
+// Binary Search
 
 // 当旋转数组有重复项时，我们需考虑特殊情况：
 // (1) 当头和尾元素值相等时，我们进一步看中间元素是否相等，如果三个元素都相等，我们不能得到进一步行动的指导信息，此时最好的办法将左指针(或右指针)移动一位，这对结果不会产生影响，再继续搜索。
@@ -36,7 +41,7 @@ public:
             if(start == end-1)
                 return nums[end];
             int mid = (start+end)>>1;
-            if(nums[start]==nums[mid] && nums[end]==nums[mid])
+            if(nums[start]==nums[mid] && nums[end]==nums[mid])  // 关键。相比"153-Find Minimum in Rotated Sorted Array"多的一步判断步骤
                 start++;  // or end--;
             else if(nums[mid] >= nums[start])
                 start = mid;

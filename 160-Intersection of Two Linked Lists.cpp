@@ -1,4 +1,4 @@
-Write a program to find the node at which the intersection of two singly linked lists begins.
+/*Write a program to find the node at which the intersection of two singly linked lists begins.
 
 For example, the following two linked lists:
 
@@ -16,7 +16,7 @@ Notes:
     The linked lists must retain their original structure after the function returns.
     You may assume there are no cycles anywhere in the entire linked structure.
     Your code should preferably run in O(n) time and use only O(1) memory.
-
+*/
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -25,6 +25,21 @@ Notes:
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+    }
+};
+
+
+// 两个链表的交叉点
+
+
+// 思路：分别遍历两个链表，得到分别对应的长度。然后求长度的差值，把较长的那个链表向后移动这个差值的个数，然后一一比较即可
+// （如果两个链长度相同的话，那么对应的一个个比下去就能找到）
+
 // My solution:
 class Solution {
 public:

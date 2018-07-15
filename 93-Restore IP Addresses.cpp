@@ -1,9 +1,22 @@
-Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+/*Given a string containing only digits, restore it by returning all possible valid IP address combinations.
 
 Example:
 
 Input: "25525511135"
 Output: ["255.255.11.135", "255.255.111.35"]
+*/
+
+
+class Solution {
+public:
+    vector<string> restoreIpAddresses(string s) {
+        
+    }
+};
+
+
+// 构建所有可能的IP地址
+// DFS (Backtracking)
 
 // Reference solution:
 // 基于回溯法
@@ -17,7 +30,7 @@ public:
         vector<string> result;
         if(n<4)
             return result;
-        restoreIpAddressesBacktracking(s, 4, "", result);
+        restoreIpAddressesBacktracking(s, 4, "", result);  // 4 : 4段字符串
         return result;
     }
     
@@ -36,12 +49,12 @@ public:
                 {
                     string str = s.substr(0, i);
                     int num = atoi(str.c_str());
-                    if(num>255 || i>=2 && str[0]=='0')
+                    if(num>255 || i>=2 && str[0]=='0') // num>255, 及00， 01， 001， 011， 000等非法情况
                         break;
                     else
                     {
                         if(n!=1)
-                            restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str+".", result);
+                            restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str+".", result);  // 对子字符串s.substr(i)进行调用
                         else
                             restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str, result);
                     }
@@ -52,7 +65,8 @@ public:
     }
 };
 
-// 下面的写法只是将入口的判断条件改为 if(n == 0 && s.empty()), 但会TLE造成TLE...
+
+// 下面的写法只是将入口的判断条件改为 if(n == 0 && s.empty()), 但会造成TLE...
 // 可见判断条件连写对时间效率影响还是挺大的。
 class Solution {
 public:
@@ -94,6 +108,7 @@ public:
         }
     }
 };
+
 
 // 另一种写法：
 class Solution {

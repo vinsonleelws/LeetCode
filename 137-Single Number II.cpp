@@ -1,4 +1,4 @@
-Given a non-empty array of integers, every element appears three times except for one, which appears exactly once. Find that single one.
+/*Given a non-empty array of integers, every element appears three times except for one, which appears exactly once. Find that single one.
 
 Note:
 
@@ -13,6 +13,18 @@ Example 2:
 
 Input: [0,1,0,1,0,1,99]
 Output: 99
+*/
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        
+    }
+};
+
+
+// 单独的数字II (除了一个元素只出现一次，其它都出现3次)
+// Bit Manipulation
 
 // 法一：
 class Solution {

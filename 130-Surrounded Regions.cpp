@@ -1,4 +1,4 @@
-Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
+/*Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
 
 A region is captured by flipping all 'O's into 'X's in that surrounded region.
 
@@ -18,7 +18,21 @@ X O X X
 
 Explanation:
 
-Surrounded regions shouldn’t be on the border, which means that any 'O' on the border of the board are not flipped to 'X'. Any 'O' that is not on the border and it is not connected to an 'O' on the border will be flipped to 'X'. Two cells are connected if they are adjacent cells connected horizontally or vertically.
+Surrounded regions shouldn’t be on the border, which means that any 'O' on the border of the board are not flipped to 'X'.
+Any 'O' that is not on the border and it is not connected to an 'O' on the border will be flipped to 'X'.
+Two cells are connected if they are adjacent cells connected horizontally or vertically.
+*/
+
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+        
+    }
+};
+
+// 包围区域
+// DFS
+
 
 // Reference solution:
 // 这题有点像围棋，将被X包住的O都变成X，但边界上的O以及与边界O相邻的其他O除外。基本思路是使用DFS：
@@ -42,13 +56,13 @@ public:
     void solveDFS(vector<vector<char> > &board, int i, int j) {
         if (board[i][j] == 'O') {
             board[i][j] = '$';
-            if (i > 0 && board[i - 1][j] == 'O') 
+            if (i > 0 && board[i - 1][j] == 'O')
                 solveDFS(board, i - 1, j);
-            if (j < board[i].size() - 1 && board[i][j + 1] == 'O') 
+            if (j < board[i].size() - 1 && board[i][j + 1] == 'O')
                 solveDFS(board, i, j + 1);
-            if (i < board.size() - 1 && board[i + 1][j] == 'O') 
+            if (i < board.size() - 1 && board[i + 1][j] == 'O')
                 solveDFS(board, i + 1, j);
-            if (j > 0 && board[i][j - 1] == 'O') 
+            if (j > 0 && board[i][j - 1] == 'O')
                 solveDFS(board, i, j - 1);
         }
     }
@@ -65,7 +79,7 @@ public:
                 if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
                     if (board[i][j] == 'O') dfs(board, i , j);
                 }
-            }   
+            }
         }
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
@@ -76,7 +90,7 @@ public:
     }
     void dfs(vector<vector<char>> &board, int x, int y) {
         int m = board.size(), n = board[0].size();
-        vector<vector<int>> dir{{0,-1},{-1,0},{0,1},{1,0}};
+        vector<vector<int>> dir{{0, -1}, { -1, 0}, {0, 1}, {1, 0}};
         board[x][y] = '$';
         for (int i = 0; i < dir.size(); ++i) {
             int dx = x + dir[i][0], dy = y + dir[i][1];
