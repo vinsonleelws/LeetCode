@@ -1,10 +1,21 @@
-Count the primeber of prime primebers less than a non-negative primeber, n.
+/*Count the primeber of prime primebers less than a non-negative primeber, n.
 
 Example:
 
 Input: 10
 Output: 4
 Explanation: There are 4 prime primebers less than 10, they are 2, 3, 5, 7.
+*/
+
+class Solution {
+public:
+    int countPrimes(int n) {
+        
+    }
+};
+
+// 质数的个数
+// 埃氏筛法
 
 // 埃拉托斯特尼筛法的应用
 // 埃拉托斯特尼筛法（sieve of Eratosthenes），简称埃氏筛，也有人称素数筛。这是一种简单且历史悠久的筛法，用来找出一定范围内所有的素数。

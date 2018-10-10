@@ -24,12 +24,36 @@ Note:
     Could you do it in-place with O(1) extra space?
 */
 
-// 数组旋转
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        
+    }
+};
+
+// 数组旋转  [E]
 // 位置映射；循环置换；翻转；
     
 // Reference solution:
 
-// #1 
+// #1
+// 由于旋转数组的操作也可以看做从数组的末尾取k个数组放入数组的开头，所以我们用STL的push_back和erase可以很容易的实现这些操作。
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if (nums.empty() || (k %= nums.size()) == 0) 
+            return;
+
+        int n = nums.size();
+        for (int i = 0; i < n - k; ++i) 
+        {
+            nums.push_back(nums[0]);
+            nums.erase(nums.begin());
+        }
+    }
+};
+
+// #2 
 // Cyclic Replacements 循环置换法
 // 首先找到位置变换的映射表达式，对于位置i的数字，旋转后它的位置变为(i+k)%n
 // 然后我们对数字进行循环置换：
@@ -77,7 +101,7 @@ public:
     }
 };
 
-// #2
+// #3
 // 空间复杂度为O(n)的方法，仍然是利用位置映射表达式，只需3行
 // 复制一个和nums一样的数组，然后利用映射关系i -> (i+k)%n来交换数字
 class Solution {
@@ -90,7 +114,7 @@ public:
 };
 
 
-// #3
+// #4
 // Using Reverse
 // 类似翻转字符的方法，思路是先把前n-k个数字翻转一下，再把后k个数字翻转一下，最后再把整个数组翻转一下
 // eg:
@@ -109,19 +133,7 @@ public:
     }
 };
 
-// #4
-// 由于旋转数组的操作也可以看做从数组的末尾取k个数组放入数组的开头，所以我们用STL的push_back和erase可以很容易的实现这些操作。
-class Solution {
-public:
-    void rotate(vector<int>& nums, int k) {
-        if (nums.empty() || (k %= nums.size()) == 0) return;
-        int n = nums.size();
-        for (int i = 0; i < n - k; ++i) {
-            nums.push_back(nums[0]);
-            nums.erase(nums.begin());
-        }
-    }
-};
+
 
 // #5
 // 基于交换的方法。

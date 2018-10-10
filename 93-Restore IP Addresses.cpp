@@ -10,12 +10,12 @@ Output: ["255.255.11.135", "255.255.111.35"]
 class Solution {
 public:
     vector<string> restoreIpAddresses(string s) {
-        
+
     }
 };
 
 
-// 构建所有可能的IP地址
+// 构建所有可能的IP地址  [M]
 // DFS (Backtracking)
 
 // Reference solution:
@@ -28,37 +28,37 @@ public:
     vector<string> restoreIpAddresses(string s) {
         int n = s.length();
         vector<string> result;
-        if(n<4)
+        if (n < 4)
             return result;
         restoreIpAddressesBacktracking(s, 4, "", result);  // 4 : 4段字符串
         return result;
     }
-    
+
     void restoreIpAddressesBacktracking(const string& s, int n, string sol, vector<string>& result)
     {
-        if(n == 0)
+        if (n == 0)
         {
-            if(s.empty())
+            if (s.empty())
                 result.push_back(sol);
         }
         else
         {
-            for(int i=1; i<=3; i++)
+            for (int i = 1; i <= 3; i++)
             {
-                if(s.size()>=i)
+                if (s.size() >= i)
                 {
                     string str = s.substr(0, i);
-                    int num = atoi(str.c_str());
-                    if(num>255 || i>=2 && str[0]=='0') // num>255, 及00， 01， 001， 011， 000等非法情况
+                    int num = atoi(str.c_str());  // 将备选字符串转换为数字，便于判断
+                    if (num > 255 || i >= 2 && str[0] == '0') // num>255, 及00， 01， 001， 011， 000等非法情况
                         break;
                     else
                     {
-                        if(n!=1)
-                            restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str+".", result);  // 对子字符串s.substr(i)进行调用
+                        if (n != 1)
+                            restoreIpAddressesBacktracking(s.substr(i), n - 1, sol + str + ".", result); // 对子字符串s.substr(i)进行调用
                         else
-                            restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str, result);
+                            restoreIpAddressesBacktracking(s.substr(i), n - 1, sol + str, result);  // n == 1，最后一个子串不需加'.'
                     }
-                    
+
                 }
             }
         }
@@ -73,36 +73,36 @@ public:
     vector<string> restoreIpAddresses(string s) {
         int n = s.length();
         vector<string> result;
-        if(n<4)
+        if (n < 4)
             return result;
         restoreIpAddressesBacktracking(s, 4, "", result);
         return result;
     }
-    
+
     void restoreIpAddressesBacktracking(const string& s, int n, string sol, vector<string>& result)
     {
-        if(n == 0 && s.empty())
+        if (n == 0 && s.empty())
         {
             result.push_back(sol);
         }
         else
         {
-            for(int i=1; i<=3; i++)
+            for (int i = 1; i <= 3; i++)
             {
-                if(s.size()>=i)
+                if (s.size() >= i)
                 {
                     string str = s.substr(0, i);
                     int num = atoi(str.c_str());
-                    if(num>255 || i>=2 && str[0]=='0')
+                    if (num > 255 || i >= 2 && str[0] == '0')
                         break;
                     else
                     {
-                        if(n!=1)
-                            restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str+".", result);
+                        if (n != 1)
+                            restoreIpAddressesBacktracking(s.substr(i), n - 1, sol + str + ".", result);
                         else
-                            restoreIpAddressesBacktracking(s.substr(i), n-1, sol+str, result);
+                            restoreIpAddressesBacktracking(s.substr(i), n - 1, sol + str, result);
                     }
-                    
+
                 }
             }
         }
@@ -121,24 +121,24 @@ public:
     void restore(string s, int n, string sol, vector<string> &result) {
         if (n == 0)
         {
-            if(s.empty())
+            if (s.empty())
                 result.push_back(sol);
         }
         else {
-            for (int i = 1; i <= 3; ++i) 
+            for (int i = 1; i <= 3; ++i)
             {
-                if (s.size() >= i && isValid(s.substr(0, i))) 
+                if (s.size() >= i && isValid(s.substr(0, i)))
                 {
-                    if (n == 1) 
-                        restore(s.substr(i), n-1, sol+s.substr(0, i), result);
-                    else 
-                        restore(s.substr(i), n-1, sol+s.substr(0, i)+".", result);
+                    if (n == 1)
+                        restore(s.substr(i), n - 1, sol + s.substr(0, i), result);
+                    else
+                        restore(s.substr(i), n - 1, sol + s.substr(0, i) + ".", result);
                 }
             }
         }
     }
     bool isValid(string s) {
-        if (s.empty() || s.size() > 3 || (s.size() > 1 && s[0] == '0')) 
+        if (s.empty() || s.size() > 3 || (s.size() > 1 && s[0] == '0'))
             return false;
         int num = atoi(s.c_str());
         return num <= 255 && num >= 0;

@@ -23,7 +23,7 @@ public:
     }
 };
 
-// 移除链表元素
+// 移除链表元素（给定待删除节点的值）
 
 // My solution:
 class Solution {

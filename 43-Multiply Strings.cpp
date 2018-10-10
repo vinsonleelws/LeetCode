@@ -25,7 +25,7 @@ public:
     }
 };
 
-// 字符串相乘
+// 字符串相乘  [M]
 // Math ; 错位相乘相加法
 
 // 基于多位数的乘法过程，每位相乘然后错位相加，把错位相加后的结果保存到一个一维数组中，
@@ -47,7 +47,7 @@ public:
 
         for (int i = 0; i < n1; i++)
             for (int j = 0; j < n2; j++)
-                m[i + j + 1] += (num1[i] - '0') * (num2[j] - '0'); //m[0] is the highest position.
+                m[i + j + 1] += (num1[i] - '0') * (num2[j] - '0'); // m[0] is the highest position.
 
         int carry = 0;
         for (int i = last; i >= 0; i--)
@@ -64,10 +64,9 @@ public:
         if (i > last)
             return "0";
         for (; i <= last; i++)
-            result.push_back(m[i] + '0'); //'+' instead of '-'
+            result.push_back(m[i] + '0');  //'+' instead of '-'.  or  result += to_string(m[i]);
 
         return result;
-
     }
 };
 

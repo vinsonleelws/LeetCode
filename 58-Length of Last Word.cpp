@@ -12,51 +12,53 @@ Output: 5
 
 class Solution {
 public:
-    int lengthOfLastWord(string s) {
-        
-    }
+	int lengthOfLastWord(string s) {
+
+	}
 };
 
 
-// 求最后一个单词的长度
+// 求最后一个单词的长度  [E]
+
+// Reference solution:
+// 从字符串末尾开始，先将末尾的空格都去掉，然后开始找非空格的字符的长度即可
+class Solution {
+public:
+	int lengthOfLastWord(string s) {
+		int right = s.size() - 1, res = 0;
+		while (right >= 0 && s[right] == ' ') 
+			--right;
+		while (right >= 0 && s[right] != ' ' ) 
+		{
+			--right;
+			++res;
+		}
+		return res;
+	}
+};
 
 // My solution:
 class Solution {
 public:
-    int lengthOfLastWord(string s) {
-        if(s.empty())
-            return 0;
-        
-        int len=0;
-        for(int i=0; i<s.length(); i++)
-        {
-            if(s[i]!=' ')
-            {
-                if(i>0 && s[i-1]==' ')
-                    len = 1;
-                else
-                    len++;
-            }
-        }
-        return len;
-    }
+	int lengthOfLastWord(string s) {
+		if (s.empty())
+			return 0;
+
+		int len = 0;
+		for (int i = 0; i < s.length(); i++)
+		{
+			if (s[i] != ' ')
+			{
+				if (i > 0 && s[i - 1] == ' ')
+					len = 1;
+				else
+					len++;
+			}
+		}
+		return len;
+	}
 };
 
-
-// Another solution:
-// 从字符串末尾开始，先将末尾的空格都去掉，然后开始找非空格的字符的长度即可
-class Solution {
-public:
-    int lengthOfLastWord(string s) {
-        int right = s.size() - 1, res = 0;
-        while (right >= 0 && s[right] == ' ') --right;
-        while (right >= 0 && s[right] != ' ' ) {
-            --right; 
-            ++res;
-        }
-        return res;
-    }
-};
 
 // Testing cases:
 // Input: "a "

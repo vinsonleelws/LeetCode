@@ -15,8 +15,8 @@ Explanation: 3 is a peak element and your function should return the index numbe
 Example 2:
 
 Input: nums = [1,2,1,3,5,6,4]
-Output: 1 or 5 
-Explanation: Your function can return either index number 1 where the peak element is 2, 
+Output: 1 or 5
+Explanation: Your function can return either index number 1 where the peak element is 2,
              or index number 5 where the peak element is 6.
 
 Note:
@@ -24,24 +24,31 @@ Note:
 Your solution should be in logarithmic complexity.
  */
 
-// 寻找数组的局部峰值
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+
+    }
+};
+
+// 寻找数组的局部峰值  [M]
 // Binary Search
- 
+
 // 题目要求在对数时间复杂度内完成，自然而然就想到了二分查找法：
 // 解法如下，每次去比较中间数字和它右边一个数字的大小，进而缩小查找空间。
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        int low = 0, high = nums.size()-1;
-        while(low<high)
+        int low = 0, high = nums.size() - 1;
+        while (low < high)
         {
-            int mid = (low+high)>>1;
-            if(nums[mid]>nums[mid+1]) // 其中一个峰值在mid或mid之前
+            int mid = (low + high) >> 1;
+            if (nums[mid] > nums[mid + 1])  // 其中一个峰值在mid或mid之前
                 high = mid;
             else
-                low = mid+1; // 峰值在mid之后
+                low = mid + 1; // 峰值在mid之后
         }
-        
+
         return high;  // or low
     }
 };
@@ -53,12 +60,11 @@ public:
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        for(int i=1; i<nums.size(); i++)
-        {
-            if(nums[i]<nums[i-1])
-                return i-1;
-        }
-        
-        return nums.size()-1;
+        int n = nums.size();
+        for (int i = 1; i < n; i++)
+            if (nums[i] < nums[i - 1])
+                return i - 1;
+
+        return n - 1;
     }
 };

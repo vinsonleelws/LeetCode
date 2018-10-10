@@ -17,31 +17,31 @@ Note:
 
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+	vector<vector<string>> groupAnagrams(vector<string>& strs) {
 
-    }
+	}
 };
 
-// 求给定字符串集的所有错位词
+// 求给定字符串集的所有错位词  [M]
 // Hash Table
 
 // 思路：基于字符串排序 + 哈希表的算法。
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<vector<string>> result;
-        map<string, vector<string>> str_map;
-        for(string s:strs)
-        {
-            string key = s;
-            sort(key.begin(), key.end());
-            str_map[key].push_back(s);
-        }
-        for(auto x:str_map)
-            result.push_back(x.second);
-        
-        return result;
-    }
+	vector<vector<string>> groupAnagrams(vector<string>& strs) {
+		vector<vector<string>> result;
+		map<string, vector<string>> str_map;
+		for (string s : strs)
+		{
+			string key = s;
+			sort(key.begin(), key.end());
+			str_map[key].push_back(s);
+		}
+		for (auto x : str_map)
+			result.push_back(x.second);
+
+		return result;
+	}
 };
 
 
@@ -51,19 +51,19 @@ public:
 
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<vector<string>> res;
-        unordered_map<string, vector<string>> m;
-        for (string str : strs) {
-            vector<int> cnt(26, 0);
-            string t = "";
-            for (char c : str) ++cnt[c - 'a'];
-            for (int d : cnt) t += to_string(d) + "/";
-            m[t].push_back(str);
-        }
-        for (auto a : m) {
-            res.push_back(a.second);
-        }
-        return res;
-    }
+	vector<vector<string>> groupAnagrams(vector<string>& strs) {
+		vector<vector<string>> res;
+		unordered_map<string, vector<string>> m;
+		for (string str : strs) {
+			vector<int> cnt(26, 0);
+			string t = "";
+			for (char c : str) ++cnt[c - 'a'];
+			for (int d : cnt) t += to_string(d) + "/";
+			m[t].push_back(str);
+		}
+		for (auto a : m) {
+			res.push_back(a.second);
+		}
+		return res;
+	}
 };

@@ -1,4 +1,4 @@
-/* 
+/*
 Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
 
 The same repeated number may be chosen from candidates unlimited number of times.
@@ -28,9 +28,16 @@ A solution set is:
 ]
  */
 
-// 组合之和（数组中的数字可以重复使用）
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        
+    }
+};
+
+// 组合之和（数组中的数字可以重复使用）	 [M]
 // Backtracking
- 
+
 // 思路：
 // 像这种结果要求返回所有符合要求解的题十有八九都是要利用到递归，而且解题的思路都大同小异，
 // 相类似的题目有 Path Sum II 二叉树路径之和之二，Subsets II 子集合之二，Permutations 全排列，
@@ -40,34 +47,29 @@ A solution set is:
 
 class Solution {
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<vector<int>> result;
-        if(candidates.empty()||target<0)
-            return result;
-        vector<int> numbers;
-        combinationSumDFS(candidates, target, 0, numbers, result);
-        return result;
-    }
-    
-    void combinationSumDFS(vector<int>& candidates, int target, int start, vector<int> numbers, vector<vector<int>>& result){
-        if(target == 0)
-        {
-            result.push_back(numbers);
-            return;
-        }
-        else
-        {
-            for(int i=start; i<candidates.size(); i++)
-            {
-                if(candidates[i]<=target)
-                {
-                    numbers.push_back(candidates[i]);
-                    combinationSumDFS(candidates, target-candidates[i], i, numbers, result);
-                    numbers.pop_back();
-                }
-            }
-        }
+	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+		vector<vector<int>> result;
+		if (candidates.empty() || target < 0)
+			return result;
+		vector<int> numbers;
+		combinationSumDFS(candidates, target, 0, numbers, result);
+		return result;
+	}
 
-        
-    }
+	void combinationSumDFS(const vector<int>& candidates, int target, int start, vector<int> numbers, vector<vector<int>>& result) {
+		if (target == 0)
+			result.push_back(numbers);
+		else
+		{
+			for (int i = start; i < candidates.size(); i++)
+			{
+				if (candidates[i] <= target)
+				{
+					numbers.push_back(candidates[i]);
+					combinationSumDFS(candidates, target - candidates[i], i, numbers, result);  // i
+					numbers.pop_back();
+				}
+			}
+		}
+	}
 };

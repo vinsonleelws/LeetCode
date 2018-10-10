@@ -1,4 +1,4 @@
-Implement a basic calculator to evaluate a simple expression string.
+/*Implement a basic calculator to evaluate a simple expression string.
 
 The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
 
@@ -20,8 +20,16 @@ Output: 23
 Note:
 
     You may assume that the given expression is always valid.
-    Do not use the eval built-in library function.
+    Do not use the eval built-in library function.*/
 
+class Solution {
+public:
+    int calculate(string s) {
+        
+    }
+};
+
+// 基本计算器（只含+,-,正数和空格）
 // Stack
 
 // 参考思路：

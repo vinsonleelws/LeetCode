@@ -1,4 +1,4 @@
-/* 
+/*
 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
 (i.e., [0,0,1,2,2,5,6] might become [2,5,6,0,0,1,2]).
@@ -20,10 +20,10 @@ Follow up:
     This is a follow up problem to Search in Rotated Sorted Array, where nums may contain duplicates.
     Would this affect the run-time complexity? How and why?
      */
-     
-// 在旋转有序数组中搜索II
-// 
-    
+
+// 在旋转有序数组中搜索II  [M]
+// Binary Search
+
 // 这道是之前 "33-Search in Rotated Sorted Array" 在旋转有序数组中搜索的延伸，现在数组中允许出现重复数字，
 // 这个也会影响我们选择哪半边继续搜索，由于之前那道题不存在相同值，我们在比较中间值和最右值时就完全
 // 符合之前所说的规律：如果中间的数小于最右边的数，则右半段是有序的，若中间数大于最右边数，则左半段是有序的。
@@ -33,37 +33,37 @@ Follow up:
 
 class Solution {
 public:
-    bool search(vector<int>& nums, int target) {
-        if(nums.empty())
-            return false;
-       
-        int start = 0;
-        int end = nums.size()-1;
-        while(start<=end)
-        {
-            int mid = (start+end)>>1;
-            if(nums[mid] == target)
-                return true;
-            else if(nums[mid]<nums[end])
-            {
-                if(nums[end]>=target && nums[mid]<target)
-                    start = mid+1;
-                else
-                    end = mid-1;
-            }
-            else if(nums[mid]>nums[end])
-            {
-                if(nums[start]<=target && nums[mid]>target)
-                    end = mid-1;
-                else
-                    start = mid+1;
-            }
-            else // 重点在这个else
-                end--;
-        }
-    
-        return false;
-    }
+	bool search(vector<int>& nums, int target) {
+		if (nums.empty())
+			return false;
+
+		int start = 0;
+		int end = nums.size() - 1;
+		while (start <= end)
+		{
+			int mid = (start + end) >> 1;
+			if (nums[mid] == target)
+				return true;
+			else if (nums[mid] < nums[end])
+			{
+				if (nums[end] >= target && nums[mid] < target)
+					start = mid + 1;
+				else
+					end = mid - 1;
+			}
+			else if (nums[mid] > nums[end])
+			{
+				if (nums[start] <= target && nums[mid] > target)
+					end = mid - 1;
+				else
+					start = mid + 1;
+			}
+			else // 重点在这个else
+				end--;
+		}
+
+		return false;
+	}
 };
 
 // Corner case:

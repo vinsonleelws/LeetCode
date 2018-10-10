@@ -21,14 +21,14 @@
 
 using std::vector;
 
-// Approach 2 (Hash Table)
+// Approach 2 (Hash Table)	[E]
 // Time complexity: O(n), Space complexity: O(n)
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         if(nums.size() < 2)
-            throw new std::exception();
-		std::unordered_map<int, int> mapping;
+            return {};
+		unordered_map<int, int> mapping;
 		for(unsigned int i=0; i<nums.size(); i++)
 		{
 			int value = target - nums[i];

@@ -17,7 +17,14 @@ Output:
 ]
  */
 
-// 幂集II (nums数组中可能包含重复元素，返回所有可能的子集，要求子集不能重复)
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        
+    }
+};
+
+// 幂集II (nums数组中可能包含重复元素，返回所有可能的子集，要求子集不能重复)  [M]
 // DFS
 
 // DFS
@@ -26,18 +33,18 @@ public:
     vector<vector<int>> subsetsWithDup(vector<int> &nums) {
         if (nums.empty()) 
             return {};
-        vector<vector<int>> res;
+        vector<vector<int>> result;
         vector<int> sol;
-        sort(nums.begin(), nums.end());
-        getSubsets(nums, 0, sol, res);
-        return res;
+        sort(nums.begin(), nums.end());  // 先排序
+        getSubsets(nums, 0, sol, result);
+        return result;
     }
-    void getSubsets(vector<int> &nums, int pos, vector<int> &sol, vector<vector<int>> &res) {
-        res.push_back(sol);
+    void getSubsets(vector<int> &nums, int pos, vector<int> &sol, vector<vector<int>> &result) {
+        result.push_back(sol);
         for (int i = pos; i < nums.size(); ++i) 
         {
             sol.push_back(nums[i]);
-            getSubsets(nums, i + 1, sol, res);
+            getSubsets(nums, i + 1, sol, result);
             sol.pop_back();
             while (i + 1 < nums.size() && nums[i] == nums[i + 1]) // 跳过重复元素，相比"78-Subsets"多的一个步骤
                 ++i;

@@ -1,4 +1,4 @@
-/* 
+/*
 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
 (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
@@ -15,10 +15,17 @@ Output: 1
 Example 2:
 
 Input: [2,2,2,0,1]
-Output: 0 
+Output: 0
 */
 
-// 寻找旋转数组的最小值（可能包含重复元素）
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+
+    }
+};
+
+// 寻找旋转数组的最小值（可能包含重复元素）  [H]
 // Binary Search
 
 // 当旋转数组有重复项时，我们需考虑特殊情况：
@@ -28,24 +35,24 @@ Output: 0
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-        if(nums.empty())
+        if (nums.empty())
             return 0;
-        
-        int n=nums.size();
-        if(nums[0]<nums[n-1] || n==1)
+
+        int n = nums.size();
+        if (nums[0] < nums[n - 1] || n == 1)
             return nums[0];
-        
-        int start = 0, end = n-1;
-        while(nums[start] >= nums[end])
+
+        int start = 0, end = n - 1;
+        while (nums[start] >= nums[end])
         {
-            if(start == end-1)
+            if (start == end - 1)
                 return nums[end];
-            int mid = (start+end)>>1;
-            if(nums[start]==nums[mid] && nums[end]==nums[mid])  // 关键。相比"153-Find Minimum in Rotated Sorted Array"多的一步判断步骤
+            int mid = (start + end) >> 1;
+            if (nums[start] == nums[mid] && nums[end] == nums[mid]) // 关键。相比"153-Find Minimum in Rotated Sorted Array"多的一步判断步骤
                 start++;  // or end--;
-            else if(nums[mid] >= nums[start])
+            else if (nums[mid] >= nums[start])
                 start = mid;
-            else if(nums[mid] <= nums[end])
+            else if (nums[mid] <= nums[end])
                 end = mid;
         }
         return nums[start];

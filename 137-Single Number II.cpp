@@ -18,42 +18,42 @@ Output: 99
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        
+
     }
 };
 
 
-// 单独的数字II (除了一个元素只出现一次，其它都出现3次)
+// 单独的数字II (除了一个元素只出现一次，其它都出现3次)  [M]
 // Bit Manipulation
 
 // 法一：
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        if(nums.empty())
+        if (nums.empty())
             return 0;
-        
+
         vector<int> bitSum(32, 0);
-        
-        for(int i = 0; i<nums.size(); i++)
+
+        for (int i = 0; i < nums.size(); i++)
         {
             int mask = 1;
-            for(int j=31; j>=0; j--)
+            for (int j = 31; j >= 0; j--)
             {
-                if((nums[i]&mask)!=0)
-                    bitSum[j] += 1;
-                
+                if ((nums[i]&mask) != 0)
+                    bitSum[j]++;
+
                 mask <<= 1;
             }
         }
-        
+
         int result = 0;
-        for(int i = 0; i < 32; ++i)
+        for (int i = 0; i <= 31; ++i)
         {
             result = result << 1;
             result += bitSum[i] % 3;
         }
-        
+
         return result;
     }
 };
@@ -64,12 +64,12 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         int result = 0;
-        for (int i = 0; i < 32; ++i) 
+        for (int i = 0; i < 32; ++i)
         {
             int sum = 0;
-            for (int j = 0; j < nums.size(); ++j) 
+            for (int j = 0; j < nums.size(); ++j)
                 sum += (nums[j] >> i) & 1;
-            
+
             result |= (sum % 3) << i;
         }
         return result;

@@ -1,4 +1,4 @@
-Validate if a given string is numeric.
+/*Validate if a given string is numeric.
 
 Some examples:
 "0" => true
@@ -6,15 +6,40 @@ Some examples:
 "abc" => false
 "1 a" => false
 "2e10" => true
+" -90e3   " => true
+" 1e" => false
+"e3" => false
+" 6e-1" => true
+" 99e2.5 " => false
+"53.5e93" => true
+" --6 " => false
+"-+3" => false
+"95a54e53" => false
 
-Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
+Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one. However, here is a list of characters that can be in a valid decimal number:
+
+    Numbers 0-9
+    Exponent - "e"
+    Positive/negative sign - "+"/"-"
+    Decimal point - "."
+
+Of course, the context of these characters also matters in the input.
 
 Update (2015-02-10):
 The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button to reset your code definition.
+*/
+
+class Solution {
+public:
+    bool isNumber(string s) {
+
+    }
+};
+
+// 判断数字是否合法
 
 
-// 数字的格式可以用A[.[B]][e|EC]或者.B[e|EC]表示，其中A和C都是
-// 整数（可以有正负号，也可以没有），而B是一个无符号整数
+// 数字的格式可以用A[.[B]][e|EC]或者.B[e|EC]表示，其中A和C都是整数（可以有正负号，也可以没有），而B是一个无符号整数
 
 // 思路：
 // 首先应去出尽可能多的空格；
@@ -23,33 +48,34 @@ The signature of the C++ function had been updated. If you still see your functi
 // e/E前后必有数字，其中后面可以有由+/-构成的整数（不能有小数点）；
 // 最后还需注意处理可能存在的空格。
 
+// My solution
 class Solution {
 public:
     bool isNumber(string s) {
-        if(s.empty())
+        if (s.empty())
             return false;
         int len = s.length();
-        int i=0;
-        while(i<len && s[i]==' ')
+        int i = 0;
+        while (i < len && s[i] == ' ') // 忽略空格
             i++;
-        if(i==len)
+        if (i == len)
             return false;
-        
+
         bool numeric = scanInt(s, i);
-        if(i==len && numeric)
+        if (i == len && numeric)
             return true;
-        
-        if(s[i]=='.')
+
+        if (s[i] == '.')
         {
             i++;
-            numeric = scanUnsignedInt(s, i) || numeric;  // Note that scan... before ||...
+            numeric = scanUnsignedInt(s, i) || numeric;  // Note that scan... before ||...， 否则如果numeric为true，将不会调用scanUnsignedInt
             // 上一行代码用||的原因：
             // 1. 小数可以没有整数部分，例如.123等于0.123；
             // 2. 小数点后面可以没有数字，例如233.等于233.0；
             // 3. 当然小数点前面和后面可以有数字，例如233.666
         }
-        
-        if(s[i]=='e' || s[i]=='E')
+
+        if (s[i] == 'e' || s[i] == 'E')
         {
             i++;
             numeric = numeric && scanInt(s, i);
@@ -57,35 +83,35 @@ public:
             // 1. 当e或E前面没有数字时，整个字符串不能表示数字，例如.e1、e1；
             // 2. 当e或E后面没有整数时，整个字符串不能表示数字，例如12e、12e+5.4
         }
-        
+
         // Remove the last white spaces
-        while(i<len && s[i]==' ')
+        while (i < len && s[i] == ' ')
             i++;
-            
-        return numeric&&(i==len);
+
+        return numeric && (i == len);
     }
-    
+
     bool scanInt(const string& s, int& i)
     {
-        if(s[i]=='+'||s[i]=='-')
+        if (s[i] == '+' || s[i] == '-')
             i++;
-        
+
         int start = i;  // Note that start after +/-
-        if(i==s.length())
+        if (i == s.length())
             return false;
-        
-        while(i<s.length() && s[i]>='0' && s[i]<='9')
+
+        while (i < s.length() && s[i] >= '0' && s[i] <= '9')
             i++;
-        
-        return i-start;
+
+        return i - start;
     }
-    
+
     bool scanUnsignedInt(const string& s, int& i)
     {
         int start = i;
-        while(i<s.length() && s[i]>='0' && s[i]<='9')
+        while (i < s.length() && s[i] >= '0' && s[i] <= '9')
             i++;
-        return i-start;
+        return i - start;
     }
 };
 

@@ -1,4 +1,4 @@
-/* 
+/*
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
@@ -25,7 +25,14 @@ Example 2:
 Input: m = 7, n = 3
 Output: 28 */
 
-// 62-不同的路径数
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+
+    }
+};
+
+// 62-不同的路径数  [M]
 // DP
 
 // 思路：
@@ -37,10 +44,10 @@ class Solution {
 public:
     int uniquePaths(int m, int n) {
         vector<int> dp(n, 1);
-        for (int i = 1; i < m; ++i)
-            for (int j = 1; j < n; ++j)
-                dp[j] += dp[j - 1]; 
-            
+        for (int i = 1; i < m; ++i)  // 第0行走法都只有1种，因此循环从第1行开始
+            for (int j = 1; j < n; ++j)  // 对每一行，dp[0]总是等于1，因此从dp[1]开始更新，dp[j]本身是上面的走法数，dp[j-1]则是左边的走法数
+                dp[j] += dp[j - 1];
+
         return dp[n - 1];
     }
 };

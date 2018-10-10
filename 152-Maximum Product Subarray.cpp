@@ -1,4 +1,4 @@
-/* 
+/*
 Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
 
 Example 1:
@@ -14,11 +14,17 @@ Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
  */
 
- 
-// 最大子数组乘积
+class Solution {
+public:
+	int maxProduct(vector<int>& nums) {
+
+	}
+};
+
+// 最大连续子数组乘积  [M]
 // DP
 
- 
+
 // 每次记录最大值和最小值，在每遍历完一个数时，都要更新最终的最大值。递推公式：
 // mini = min(min(maximum*nums[i], minimum*nums[i]), nums[i]);
 // maxi = max(max(maximum*nums[i], minimum*nums[i]), nums[i]);
@@ -26,22 +32,22 @@ Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 // 即每次的最大值和最小值取决于当前数字与上一个最小值或最大值的乘积，以及当前数字本身
 class Solution {
 public:
-    int maxProduct(vector<int>& nums) {
-        if(nums.empty())
-            return 0;
-        
-        int n = nums.size();
-        int mini = nums[0], maxi = nums[0], result = nums[0];
-        for(int i = 1; i<n; i++)
-        {
-            int maximum = maxi, minimum = mini;
-            mini = min(min(maximum*nums[i], minimum*nums[i]), nums[i]);
-            maxi = max(max(maximum*nums[i], minimum*nums[i]), nums[i]);
-            result = max(result, maxi);
-        }
-        
-        return result;
-    }
+	int maxProduct(vector<int>& nums) {
+		if (nums.empty())
+			return 0;
+
+		int n = nums.size();
+		int mini = nums[0], maxi = nums[0], result = nums[0];
+		for (int i = 1; i < n; i++)
+		{
+			int m1 = maxi, m2 = mini;
+			mini = min(min(m1 * nums[i], m2 * nums[i]), nums[i]);
+			maxi = max(max(m1 * nums[i], m2 * nums[i]), nums[i]);
+			result = max(result, maxi);
+		}
+
+		return result;
+	}
 };
 
 
@@ -53,21 +59,21 @@ public:
 
 class Solution {
 public:
-    int maxProduct(vector<int>& nums) {
-        int res = nums[0], mx = res, mn = res;
-        for (int i = 1; i < nums.size(); ++i) {
-            if (nums[i] > 0) {
-                mx = max(mx * nums[i], nums[i]);
-                mn = min(mn * nums[i], nums[i]);
-            } else {
-                int t = mx;
-                mx = max(mn * nums[i], nums[i]);
-                mn = min(t * nums[i], nums[i]);
-            }
-            res = max(res, mx);
-        }
-        return res;
-    }
+	int maxProduct(vector<int>& nums) {
+		int res = nums[0], mx = res, mn = res;
+		for (int i = 1; i < nums.size(); ++i) {
+			if (nums[i] > 0) {
+				mx = max(mx * nums[i], nums[i]);
+				mn = min(mn * nums[i], nums[i]);
+			} else {
+				int t = mx;
+				mx = max(mn * nums[i], nums[i]);
+				mn = min(t * nums[i], nums[i]);
+			}
+			res = max(res, mx);
+		}
+		return res;
+	}
 };
 
 // 下面这道题使用了一个trick来将上面解法的分情况讨论合成了一种，在上面的解法中我们分析了当nums[i]为正数时，最大值和最小值的更新情况，为负数时，
@@ -76,14 +82,14 @@ public:
 // mx已经保存到mn中了，而且并没有改变，所以可以直接拿来用。
 class Solution {
 public:
-    int maxProduct(vector<int>& nums) {
-        int res = nums[0], mx = res, mn = res;
-        for (int i = 1; i < nums.size(); ++i) {
-            if (nums[i] < 0) swap(mx, mn);
-            mx = max(nums[i], mx * nums[i]);
-            mn = min(nums[i], mn * nums[i]);
-            res = max(res, mx);
-        }
-        return res;
-    }
+	int maxProduct(vector<int>& nums) {
+		int res = nums[0], mx = res, mn = res;
+		for (int i = 1; i < nums.size(); ++i) {
+			if (nums[i] < 0) swap(mx, mn);
+			mx = max(nums[i], mx * nums[i]);
+			mn = min(nums[i], mn * nums[i]);
+			res = max(res, mx);
+		}
+		return res;
+	}
 };

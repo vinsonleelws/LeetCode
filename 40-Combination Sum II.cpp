@@ -1,4 +1,4 @@
-/* 
+/*
 Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
 
 Each number in candidates may only be used once in the combination.
@@ -29,40 +29,44 @@ A solution set is:
 ]
  */
 
-// 组合之和II (数字不能重复使用)
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+
+    }
+};
+
+// 组合之和II (数字不能重复使用)    [M]
 // Backtracking
- 
+
 class Solution {
 public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector<vector<int>> result;
         sort(candidates.begin(), candidates.end());
-        if(candidates.empty()||target<candidates[0])
+        if (candidates.empty() || target < candidates[0])
             return result;
         vector<int> numbers;
         combinationSumDFS(candidates, target, 0, numbers, result);
         return result;
     }
-    
-    void combinationSumDFS(vector<int>& candidates, int target, int start, vector<int> numbers, vector<vector<int>>& result){
-        if(target == 0)
-        {
+
+    void combinationSumDFS(vector<int>& candidates, int target, int start, vector<int> numbers, vector<vector<int>>& result) {
+        if (target == 0)
             result.push_back(numbers);
-            return;
-        }
         else
         {
-            for(int i=start; i<candidates.size(); i++)
+            for (int i = start; i < candidates.size(); i++)
             {
-                if(i>start&& candidates[i] == candidates[i-1]) // 跳过重复数字
+                if (i > start && candidates[i] == candidates[i - 1]) // 跳过重复数字
                     continue;
-                if(candidates[i]<=target)
+                if (candidates[i] <= target)
                 {
                     numbers.push_back(candidates[i]);
-                    combinationSumDFS(candidates, target-candidates[i], i+1, numbers, result);  // i+1
+                    combinationSumDFS(candidates, target - candidates[i], i + 1, numbers, result); // i+1，避免重复
                     numbers.pop_back();
                 }
-                else
+                else  // 因为是排序的，数字递增，可提前终止
                     return;
             }
         }

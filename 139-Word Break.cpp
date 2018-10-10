@@ -24,8 +24,14 @@ Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
 */
 
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
 
-// 单词拆分
+    }
+};
+
+// 单词拆分  [M]
 // DP
 
 
@@ -37,16 +43,17 @@ Output: false
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        if(s.empty() || wordDict.empty())
+        if (s.empty() || wordDict.empty())
             return false;
+        
         int n = s.length();
-        vector<bool> dp(n+1, false);
+        vector<bool> dp(n + 1, false);
         dp[0] = true;
-        for(int i=0; i<n+1; i++)
+        for (int i = 0; i < n + 1; i++)
         {
-            for(int j=0; j<i; j++)
+            for (int j = 0; j < i; j++)
             {
-                if(dp[j] && find(wordDict.begin(), wordDict.end(), s.substr(j, i-j))!=wordDict.end())
+                if (dp[j] && find(wordDict.begin(), wordDict.end(), s.substr(j, i - j)) != wordDict.end())
                 {
                     dp[i] = true;
                     break;

@@ -42,11 +42,47 @@ public:
 };
 
 
-// 验证括号
+// 验证括号  [E]
 // Stack
 
 
 // My solution:
+class Solution {
+public:
+    bool isValid(string s) {
+        if (s == "")
+            return true;
+
+        stack<char> brackets;
+        int i = 0;
+        int n = s.length();
+        while (i < n)
+        {
+            if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+                brackets.push(s[i++]);
+            else if (brackets.empty())
+                return false;
+            else if (s[i] == ')' && brackets.top() != '(')
+                return false;
+            else if (s[i] == '}' && brackets.top() != '{')
+                return false;
+            else if (s[i] == ']' && brackets.top() != '[')
+                return false;
+            else
+            {
+                brackets.pop();
+                i++;
+            }
+        }
+
+        if (brackets.empty())
+            return true;
+        else
+            return false;
+    }
+};
+
+// 另一种写法
 class Solution {
 public:
     bool isValid(string s) {
@@ -99,13 +135,13 @@ public:
         for (int i = 0; i < s.size(); ++i) {
             if (s[i] == '(' || s[i] == '[' || s[i] == '{') parentheses.push(s[i]);
             else {
-                if (parentheses.empty()) 
+                if (parentheses.empty())
                     return false;
-                if (s[i] == ')' && parentheses.top() != '(') 
+                if (s[i] == ')' && parentheses.top() != '(')
                     return false;
-                if (s[i] == ']' && parentheses.top() != '[') 
+                if (s[i] == ']' && parentheses.top() != '[')
                     return false;
-                if (s[i] == '}' && parentheses.top() != '{') 
+                if (s[i] == '}' && parentheses.top() != '{')
                     return false;
                 parentheses.pop();
             }

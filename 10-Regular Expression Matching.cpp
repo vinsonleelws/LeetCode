@@ -1,4 +1,4 @@
-Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
+/*Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
@@ -47,43 +47,89 @@ Example 5:
 Input:
 s = "mississippi"
 p = "mis*is*p*."
-Output: false
-
+Output: false*/
 
 class Solution {
 public:
-    bool isMatch(string s, string p) {
-        assert(p[0]!='*');
-        return Match(s, p, 0, 0);
-    }
-    
-    bool Match(string& s, string& p, int i, int j)
-    {
-        if(i==s.length() && j==p.length())
-            return true;
-        else if(i>s.length() || j>p.length())
-            return false;
-        
-        if(p[j] == '.')
-        {
-            if(j < p.length()-1 && p[j+1] == '*')  // ".*"
-                return Match(s, p, i+1, j+2) || Match(s, p, i+1, j) || Match(s, p, i, j+2);
-            else
-                return Match(s, p, i+1, j+1);
-        }
-        
-        if(s[i] == p[j])
-        {
-            if(j<p.length()-1 && p[j+1] == '*')
-                return Match(s, p, i+1, j+2) || Match(s, p, i+1, j) || Match(s, p, i, j+2);
-            return Match(s, p, i+1, j+1);
-        }
-        else if(j<p.length()-1 && p[j+1] == '*')
-            return Match(s, p, i, j+2);
-        
-        return false;
-            
-    }
+	bool isMatch(string s, string p) {
+
+	}
+};
+
+// 正则表达式匹配  [H]
+// Backtrakcing
+
+// My solution:
+// #1
+class Solution {
+public:
+	bool isMatch(string s, string p) {
+		if (s.empty() && p.empty())
+			return true;
+
+		return matchDFS(s, p, 0, 0);
+	}
+
+	bool matchDFS(const string& s, const string& p, int i, int j)
+	{
+		if (i == s.size() && j == p.size())
+			return true;
+		if (i < s.size() && j >= p.size())
+			return false;
+
+		if (j + 1 < p.size() && p[j + 1] == '*')
+		{
+			if ( i < s.size() && (s[i] == p[j] || p[j] == '.') )
+				return matchDFS(s, p, i, j + 2) || matchDFS(s, p, i + 1, j + 2) || matchDFS(s, p, i + 1, j);
+			else
+				return matchDFS(s, p, i, j + 2);
+		}
+
+		if (i < s.size() && j < p.size())
+		{
+			if (s[i] == p[j] || p[j] == '.')
+				return matchDFS(s, p, i + 1, j + 1);
+		}
+
+		return false;
+	}
+};
+
+// #2
+class Solution {
+public:
+	bool isMatch(string s, string p) {
+		assert(p[0] != '*');
+		return Match(s, p, 0, 0);
+	}
+
+	bool Match(string& s, string& p, int i, int j)
+	{
+		if (i == s.length() && j == p.length())
+			return true;
+		else if (i > s.length() || j > p.length())
+			return false;
+
+		if (p[j] == '.')
+		{
+			if (j < p.length() - 1 && p[j + 1] == '*') // ".*"
+				return Match(s, p, i + 1, j + 2) || Match(s, p, i + 1, j) || Match(s, p, i, j + 2);
+			else
+				return Match(s, p, i + 1, j + 1);
+		}
+
+		if (s[i] == p[j])
+		{
+			if (j < p.length() - 1 && p[j + 1] == '*')
+				return Match(s, p, i + 1, j + 2) || Match(s, p, i + 1, j) || Match(s, p, i, j + 2);
+			return Match(s, p, i + 1, j + 1);
+		}
+		else if (j < p.length() - 1 && p[j + 1] == '*')
+			return Match(s, p, i, j + 2);
+
+		return false;
+
+	}
 };
 
 // Input: "aaa"

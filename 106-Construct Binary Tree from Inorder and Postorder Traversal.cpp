@@ -1,4 +1,4 @@
-/* 
+/*
 Given inorder and postorder traversal of a tree, construct the binary tree.
 
 Note:
@@ -16,9 +16,9 @@ Return the following binary tree:
   9  20
     /  \
    15   7
-   
+
  */
- 
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -32,11 +32,11 @@ Return the following binary tree:
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        
+
     }
 };
- 
-// 由中序和后序遍历建立二叉树
+
+// 由中序和后序遍历建立二叉树  [M]
 // DFS
 
 class Solution {
@@ -44,18 +44,19 @@ public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         return buildTree(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1);
     }
-    
-    TreeNode *buildTree(vector<int> &inorder, int iLeft, int iRight, vector<int> &postorder, int pLeft, int pRight) 
+
+    TreeNode *buildTree(vector<int> &inorder, int iLeft, int iRight, vector<int> &postorder, int pLeft, int pRight)
     {
-        if (pLeft > pRight || iLeft > iRight) 
+        if (pLeft > pRight || iLeft > iRight)
             return NULL;
-        int i = iLeft;
-        while(i<=iRight && postorder[pRight] != inorder[i])
-            i++;
         
+        int i = iLeft;
+        while (i <= iRight && postorder[pRight] != inorder[i])
+            i++;
+
         TreeNode *cur = new TreeNode(postorder[pRight]);
-        cur->left = buildTree(inorder, iLeft, i-1, postorder, pLeft, pLeft+i-1-iLeft);
-        cur->right = buildTree(inorder, i+1, iRight, postorder, pLeft+i-iLeft, pRight-1);
+        cur->left = buildTree(inorder, iLeft, i - 1, postorder, pLeft, pLeft + i - 1 - iLeft);
+        cur->right = buildTree(inorder, i + 1, iRight, postorder, pLeft + i - iLeft, pRight - 1);
         return cur;
     }
 };

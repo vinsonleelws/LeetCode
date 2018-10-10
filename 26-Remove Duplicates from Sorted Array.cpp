@@ -38,7 +38,7 @@ for (int i = 0; i < len; i++) {
 
  */
 
-// 删除有序数组中的重复项  
+// 删除有序数组中的重复项  [E]
 // Two Pointers 快慢指针
 
 // Reference method:
@@ -52,8 +52,10 @@ public:
     int removeDuplicates(vector<int>& nums) {
         if (nums.empty()) 
             return 0;
+
         int pre = 0, cur = 0;
-        while(cur < nums.size()) {
+        while(cur < nums.size()) 
+        {
             if(nums[pre] == nums[cur]) 
                 ++cur;
             else 
@@ -70,11 +72,12 @@ public:
     int removeDuplicates(vector<int>& nums) {
         if(nums.empty()) 
             return 0;
+
         int j = 0;
-        for(int i = 0; i < nums.size(); ++i) {
+        for(int i = 0; i < nums.size(); ++i)
             if (nums[i] != nums[j]) 
                 nums[++j] = nums[i];
-        }
+
         return j + 1;
     }
 };

@@ -1,17 +1,17 @@
-/* 
+/*
 Given a sorted integer array where the range of elements are [0, 99] inclusive, return its missing ranges.
-For example, given [0, 1, 3, 50, 75], return [“2”, “4->49”, “51->74”, “76->99”] 
+For example, given [0, 1, 3, 50, 75], return [“2”, “4->49”, “51->74”, “76->99”]
+
+*/
 
 class Solution {
 public:
     vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
-        
+
     }
 };
 
-*/
-
-// 寻找缺失区间
+// 寻找缺失区间  [M]
 // Two Pointers
 
 // ---------------------------------------------------------------------------------
@@ -30,12 +30,12 @@ public:
     vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
         vector<string> res;
         int l = lower;
-        for (int i = 0; i <= nums.size(); ++i) 
+        for (int i = 0; i <= nums.size(); ++i)
         {
             int r = (i < nums.size() && nums[i] <= upper) ? nums[i] : upper + 1;
-            if (l == r) 
+            if (l == r)
                 ++l;
-            else if (r > l) 
+            else if (r > l)
             {
                 res.push_back(r - l == 1 ? to_string(l) : to_string(l) + "->" + to_string(r - 1));
                 l = r + 1;

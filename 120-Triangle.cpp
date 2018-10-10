@@ -1,4 +1,4 @@
-/* 
+/*
 Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
 For example, given the following triangle
@@ -18,16 +18,23 @@ Bonus point if you are able to do this using only O(n) extra space, where n is t
 
  */
 
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+
+    }
+};
+
 // [2],
 // [3,4],
 // [6,5,7],
 // [4,1,8,3]
 
-// 三角形从顶部到底部的最小路径和
+// 三角形从顶部到底部的最小路径和  (M)
 // DP
 
 
-// 更加简洁的方法是从底向上维护dp数组
+// 更加简洁的方法是从底向上维护dp数组，可以归纳出一个统一的递推公式dp[j] = min(dp[j], dp[j+1]) + triangle[i][j]; (0<= j <= i, i从n-2到0)
 // Bottom up
 class Solution {
 public:
@@ -35,7 +42,7 @@ public:
         int n = triangle.size();
         vector<int> dp(triangle.back());
         for (int i = n - 2; i >= 0; --i) // 从倒数第二行开始
-            for (int j = 0; j <= i; ++j) 
+            for (int j = 0; j <= i; ++j)
                 dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j];
 
         return dp[0];
@@ -48,38 +55,38 @@ public:
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
-        if(triangle.empty() || triangle[0].empty())
+        if (triangle.empty() || triangle[0].empty())
             return 0;
-        
+
         int n = triangle.size();
         vector<int> dp(n, 0);
         dp[0] = triangle[0][0];
         int mintotal = INT_MAX;
-        for(int i=1; i<n; i++)
+        for (int i = 1; i < n; i++)  // 从第1行开始
         {
             int left = dp[0];
-            dp[0] += triangle[i][0];
-            for(int j=1; j<i; j++)
+            dp[0] += triangle[i][0];  // dp[0]
+            for (int j = 1; j < i; j++)  // dp[1]~dp[i-1]
             {
                 int tmp = dp[j];
                 dp[j] = triangle[i][j] + min(left, dp[j]);
                 left = tmp;
             }
-            dp[i] = triangle[i][i] + left;
+            dp[i] = triangle[i][i] + left;  // dp[i]
         }
-        
-        for(int i=0; i<n; i++)
-            if(dp[i]<mintotal)
+
+        for (int i = 0; i < n; i++)
+            if (dp[i] < mintotal)
                 mintotal = dp[i];
-        
+
         return mintotal;
     }
 };
 
 
 // Testing cases:
-// Input: 
-  // [[-1],
-   // [2,3],
- // [1,-1,-3]]
+// Input:
+// [[-1],
+// [2,3],
+// [1,-1,-3]]
 // Expected: -1

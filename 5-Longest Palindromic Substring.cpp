@@ -14,12 +14,12 @@ Output: "bb"
 
 class Solution {
 public:
-    string longestPalindrome(string s) {
-        
-    }
+	string longestPalindrome(string s) {
+
+	}
 };
 
-// 最长回文串
+// 最长回文串  [M]
 // Two Pointers ; DP ; Manacher's Alg.
 
 
@@ -27,49 +27,50 @@ public:
 // 双指针+判断回文字符串的函数
 class Solution {
 public:
-    string longestPalindrome(string s) {
-        if(s.c_str() == nullptr || s==string("") || s.length() == 1)
-            return s;
-        
-        unsigned length = s.length();
-        unsigned count = 0;
-        string result_str;
-        for(unsigned start = 0; start<length-1; start++)
-            for(unsigned end = length-1; end>start && end-start+1>count; end--)
-            {
-                if(s[start] == s[end])
-                {
-                    if(isPalindromicSubstr(s, start, end))
-                    {
-                        count = end-start+1;
-                        result_str = s.substr(start, end-start+1);
-                    }
-                }
-            }
-        
-        if(count)
-            return result_str;
-        else
-            return s.substr(0,1); // 若未找到回文字符串则返回第一个字符
-    }
-    
-    bool isPalindromicSubstr(string& s, int start, int end)
-    {
-        if(start>end)
-            return false;
-        while(start<end)
-        {
-            if(s[start] == s[end])
-            {
-                start++;
-                end--;
-            }
-            else
-                return false;
-        }
-        
-        return true;
-    }
+	string longestPalindrome(string s) {
+		if (s.c_str() == nullptr || s == string("") || s.length() == 1)
+			return s;
+
+		unsigned n = s.length();
+		unsigned count = 0;
+		string result_str;
+		for (unsigned start = 0; start < n - 1; start++)
+			for (unsigned end = n - 1; end > start && end - start + 1 > count; end--)
+			{
+				if (s[start] == s[end])
+				{
+					if (isPalindromicSubstr(s, start, end))
+					{
+						count = end - start + 1;
+						result_str = s.substr(start, end - start + 1);
+					}
+				}
+			}
+
+		if (count)
+			return result_str;
+		else
+			return s.substr(0, 1); // 若未找到回文字符串则返回第一个字符
+	}
+
+	bool isPalindromicSubstr(string& s, int start, int end)
+	{
+		if (start > end)
+			return false;
+
+		while (start < end)
+		{
+			if (s[start] == s[end])
+			{
+				start++;
+				end--;
+			}
+			else
+				return false;
+		}
+
+		return true;
+	}
 };
 
 
@@ -84,51 +85,51 @@ public:
 
 class Solution {
 public:
-    string longestPalindrome(string s) {
-        int dp[s.size()][s.size()] = {0}, left = 0, right = 0, len = 0;
-        for (int i = 0; i < s.size(); ++i) 
-        {
-            for (int j = 0; j < i; ++j) 
-            {
-                dp[j][i] = (s[i] == s[j] && (i - j < 2 || dp[j + 1][i - 1]));
-                if (dp[j][i] && len < i - j + 1) 
-                {
-                    len = i - j + 1;
-                    left = j;
-                    right = i;
-                }
-            }
-            dp[i][i] = 1;
-        }
-        return s.substr(left, right - left + 1);
-    }
+	string longestPalindrome(string s) {
+		int dp[s.size()][s.size()] = {0}, left = 0, right = 0, len = 0;  // left, right 分别记录回文串的起始位置
+		for (int i = 0; i < s.size(); ++i)
+		{
+			for (int j = 0; j < i; ++j)
+			{
+				dp[j][i] = (s[i] == s[j] && (i - j < 2 || dp[j + 1][i - 1]));
+				if (dp[j][i] && len < i - j + 1)
+				{
+					len = i - j + 1;
+					left = j;
+					right = i;
+				}
+			}
+			dp[i][i] = 1;
+		}
+		return s.substr(left, right - left + 1);
+	}
 };
 
 
 // 马拉车算法Manacher's Algorithm
 class Solution {
 public:
-    string longestPalindrome(string s) {
-        string t ="$#";
-        for (int i = 0; i < s.size(); ++i) {
-            t += s[i];
-            t += '#';
-        }
-        int p[t.size()] = {0}, id = 0, mx = 0, resId = 0, resMx = 0;
-        for (int i = 0; i < t.size(); ++i) {
-            p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
-            while (t[i + p[i]] == t[i - p[i]]) ++p[i];
-            if (mx < i + p[i]) {
-                mx = i + p[i];
-                id = i;
-            }
-            if (resMx < p[i]) {
-                resMx = p[i];
-                resId = i;
-            }
-        }
-        return s.substr((resId - resMx) / 2, resMx - 1);
-    }
+	string longestPalindrome(string s) {
+		string t = "$#";
+		for (int i = 0; i < s.size(); ++i) {
+			t += s[i];
+			t += '#';
+		}
+		int p[t.size()] = {0}, id = 0, mx = 0, resId = 0, resMx = 0;
+		for (int i = 0; i < t.size(); ++i) {
+			p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
+			while (t[i + p[i]] == t[i - p[i]]) ++p[i];
+			if (mx < i + p[i]) {
+				mx = i + p[i];
+				id = i;
+			}
+			if (resMx < p[i]) {
+				resMx = p[i];
+				resId = i;
+			}
+		}
+		return s.substr((resId - resMx) / 2, resMx - 1);
+	}
 };
 
 // Testing cases:

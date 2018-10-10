@@ -1,4 +1,6 @@
-/*You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+/*You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed.
+All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile,
+adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
 
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
 
@@ -16,8 +18,14 @@ Output: 4
 Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
              Total amount you can rob = 1 + 3 = 4.*/
 
+class Solution {
+public:
+    int rob(vector<int>& nums) {
 
-// 打家劫舍II (房子连成圈)
+    }
+};
+
+// 打家劫舍II (房子连成圈)  [M]
 // DP
 
 
@@ -28,28 +36,28 @@ Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        if(nums.empty())
+        if (nums.empty())
             return 0;
-        else if(nums.size()==1)
+        else if (nums.size() == 1)
             return nums[0];
-        
-        int m1 = rob(nums, 1, nums.size()-1);
-        int m2 = rob(nums, 0, nums.size()-2);
+
+        int m1 = rob(nums, 1, nums.size() - 1);
+        int m2 = rob(nums, 0, nums.size() - 2);
         return max(m1, m2);
     }
-    
+
     int rob(vector<int>& nums, const int& left, const int& right) {
-        if(left>right)
+        if (left > right)
             return 0;
-        else if(left == right)
+        else if (left == right)
             return nums[left];
-        
+
         int p1 = nums[left];
-        int p2 = max(nums[left], nums[left+1]);
+        int p2 = max(nums[left], nums[left + 1]);
         int result = p2;
-        for(int i=left+2; i<=right; i++)
+        for (int i = left + 2; i <= right; i++)
         {
-            result = max(nums[i]+p1, p2);
+            result = max(nums[i] + p1, p2);
             p1 = p2;
             p2 = result;
         }

@@ -1,4 +1,4 @@
-/* 
+/*
 Say you have an array for which the ith element is the price of a given stock on day i.
 
 If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
@@ -19,39 +19,46 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
  */
 
-// 买卖股票的最佳时间（限制只买入和卖出一次）
-// Greedy
 
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        if(prices.empty() || prices.size()==1)
-            return 0;
         
-        int profit = 0;
-        int cur = prices[0];
-        for(int i=0; i<prices.size(); i++)
-        {
-            if(prices[i]>cur)
-                profit = max(profit, prices[i]-cur);
-            else if(prices[i]<cur)
-                cur = prices[i];
-        }
-        
-        return profit;
     }
+};
+
+// 买卖股票的最佳时间（限制只买入和卖出一次）  [E]
+// Greedy
+
+class Solution {
+public:
+	int maxProfit(vector<int>& prices) {
+		if (prices.empty() || prices.size() == 1)
+			return 0;
+
+		int result = 0, low = prices[0];
+		for (int i = 0; i < prices.size(); i++)
+		{
+			if (prices[i] > low && prices[i] - low > result)
+				result = prices[i] - low;
+			else if (prices[i] < low)
+				low = prices[i];
+		}
+
+		return result;
+	}
 };
 
 // 另一种写法
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int res = 0, buy = INT_MAX;
-        for (int price : prices) 
-        {
-            buy = min(buy, price);
-            res = max(res, price - buy);
-        }
-        return res;
-    }
+	int maxProfit(vector<int>& prices) {
+		int res = 0, buy = INT_MAX;
+		for (int price : prices)
+		{
+			buy = min(buy, price);
+			res = max(res, price - buy);
+		}
+		return res;
+	}
 };

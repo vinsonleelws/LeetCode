@@ -26,8 +26,15 @@ Input: [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        
+    }
+};
  
-// 买卖股票的最佳时间II (不限制买入和卖出次数)
+// 买卖股票的最佳时间II (不限制买入和卖出次数)  [E]
 // Greedy
 
 // 若不限制买入和卖出次数的话，我们可以获得全局最高利润。因此只需遍历数组，将利润相加即可。

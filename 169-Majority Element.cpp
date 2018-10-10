@@ -14,7 +14,14 @@ Input: [2,2,1,1,1,2,2]
 Output: 2
 */
 
-// 众数（找次数超|_n/2_|的数）
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+    }
+};
+
+// 众数（找次数超|_n/2_|的数）  [E]
 // 找规律（摩尔投票法，O(n)，O(1)）；Hash Table；Bit Manipulation
 
 // 思路：最简单的方法是用哈希表来做，时间复杂度和空间复杂度都为O(n)
@@ -29,7 +36,8 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         int res = 0, cnt = 0;
-        for (int num : nums) {
+        for (int num : nums) 
+        {
             if (cnt == 0) 
             {
                 res = num; 

@@ -30,7 +30,7 @@ public:
     }
 };
 
-// 包围区域
+// 包围区域（将被X包围住的O变成X）  [M]
 // DFS
 
 
@@ -46,10 +46,13 @@ public:
                     solveDFS(board, i, j);
             }
         }
+
         for (int i = 0; i < board.size(); ++i) {
             for (int j = 0; j < board[i].size(); ++j) {
-                if (board[i][j] == 'O') board[i][j] = 'X';
-                if (board[i][j] == '$') board[i][j] = 'O';
+                if (board[i][j] == 'O') 
+                    board[i][j] = 'X';
+                if (board[i][j] == '$') 
+                    board[i][j] = 'O';
             }
         }
     }

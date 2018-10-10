@@ -1,4 +1,4 @@
-/* 
+/*
 Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
 
 Example 1:
@@ -17,50 +17,58 @@ Input: [1,2,1], k = 0
 Output: false
 */
 
-// 包含重复值II（坐标之差在一定范围内）
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+
+    }
+};
+
+// 包含重复值II（坐标之差在一定范围内）  [E]
 // Hash Table
 
 // 此题一开始用Brute force，被OJ无情地判为TLE。其实正解应该使用Hash Table来解：
+// 哈希表键~值为：元素值~下标位置
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_map<int, int> m;
-        for (int i = 0; i < nums.size(); ++i) 
+        for (int i = 0; i < nums.size(); ++i)
         {
-            if (m.find(nums[i]) != m.end() && i - m[nums[i]] <= k) 
+            if (m.find(nums[i]) != m.end() && i - m[nums[i]] <= k)
                 return true;
-            else 
+            else
                 m[nums[i]] = i;
         }
-        
+
         return false;
     }
 };
 
 
 // My solution:
-// Brute force (TLE)
+// Brute force (TLE)， Two Pointers
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        if(nums.empty() || k<=0)
+        if (nums.empty() || k <= 0)
             return false;
-        
+
         int n = nums.size();
-        int i=0, j=i+k;
-        while(i<n)
+        int i = 0, j = i + k;
+        while (i < n)
         {
-            for(int t=j; t>i; t--)
+            for (int t = j; t > i; t--)
             {
-                if(t<n && nums[i] == nums[t])
+                if (t < n && nums[i] == nums[t])
                     return true;
             }
 
             i++;
-            if(j<n)
+            if (j < n)
                 j++;
         }
-        
+
         return false;
     }
 };

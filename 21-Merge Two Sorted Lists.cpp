@@ -17,6 +17,7 @@ Output: 1->1->2->3->4->4
  */
  
 // 合并两个有序链表
+// 循环 ; 递归
 
 // Reference solution:
 // #1
@@ -24,11 +25,15 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         ListNode *dummy = new ListNode(-1), *cur = dummy;
-        while (l1 && l2) {
-            if (l1->val < l2->val) {
+        while (l1 && l2) 
+        {
+            if (l1->val < l2->val) 
+            {
                 cur->next = l1;
                 l1 = l1->next;
-            } else {
+            } 
+            else 
+            {
                 cur->next = l2;
                 l2 = l2->next;
             }
@@ -39,16 +44,19 @@ public:
     }
 };
 
-// #2 递归解法
+// #2 递归解法 - 非常简洁
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         if (!l1) return l2;
         if (!l2) return l1;
-        if (l1->val < l2->val) {
+        if (l1->val < l2->val) 
+        {
             l1->next = mergeTwoLists(l1->next, l2);
             return l1;
-        } else {
+        } 
+        else 
+        {
             l2->next = mergeTwoLists(l1, l2->next);
             return l2;
         }

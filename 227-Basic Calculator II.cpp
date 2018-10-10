@@ -1,4 +1,4 @@
-Implement a basic calculator to evaluate a simple expression string.
+/*Implement a basic calculator to evaluate a simple expression string.
 
 The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
 
@@ -20,7 +20,17 @@ Output: 5
 Note:
 
     You may assume that the given expression is always valid.
-    Do not use the eval built-in library function.
+    Do not use the eval built-in library function.*/
+
+class Solution {
+public:
+    int calculate(string s) {
+        
+    }
+};
+
+//  基本计算器II（包含+-*/，正数和空格）
+//  Stack
 
 // My solution:
 class Solution {
@@ -31,29 +41,29 @@ public:
         int num = 0;
         stack<int> st;
         bool negative = false;
-        for(int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
         {
-            if(s[i]>='0')
-                num = num*10+s[i]-'0';
-            else if(s[i] == '*' || s[i] == '/')
+            if (s[i] >= '0')
+                num = num * 10 + s[i] - '0';
+            else if (s[i] == '*' || s[i] == '/')
             {
                 int right  = 0;
                 char op = s[i];
-                while(++i<n)
+                while (++i < n)
                 {
-                    if(s[i] == ' ')
+                    if (s[i] == ' ')
                         continue;
-                    if(s[i]>='0')
-                        right = right*10 + s[i]-'0';
+                    if (s[i] >= '0')
+                        right = right * 10 + s[i] - '0';
                     else
                         break;
                 }
                 i--;
                 num = (op == '*') ? num * right : num / right;
             }
-            else if(s[i] == '+' || s[i] == '-')
+            else if (s[i] == '+' || s[i] == '-')
             {
-                if(negative)
+                if (negative)
                     st.push(-num);
                 else
                     st.push(num);
@@ -63,13 +73,14 @@ public:
             else
                 continue;
         }
-        result = negative? -num : num;
-        while(st.size())
+
+        result = negative ? -num : num;
+        while (st.size())
         {
             result += st.top();
             st.pop();
         }
-        
+
         return result;
     }
 };
@@ -96,7 +107,7 @@ public:
                 }
                 op = s[i];
                 num = 0;
-            } 
+            }
         }
         while (!st.empty()) {
             res += st.top();
@@ -119,10 +130,10 @@ public:
             }
             if (c == '+' || c == '-' || c == '*' || c == '/' || i == n - 1) {
                 switch (op) {
-                    case '+': curRes += num; break;
-                    case '-': curRes -= num; break;
-                    case '*': curRes *= num; break;
-                    case '/': curRes /= num; break;
+                case '+': curRes += num; break;
+                case '-': curRes -= num; break;
+                case '*': curRes *= num; break;
+                case '/': curRes /= num; break;
                 }
                 if (c == '+' || c == '-' || i == n - 1) {
                     res += curRes;
@@ -130,7 +141,7 @@ public:
                 }
                 op = c;
                 num = 0;
-            } 
+            }
         }
         return res;
     }

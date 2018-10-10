@@ -1,4 +1,4 @@
-Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+/*Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
 
 
 The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
@@ -7,6 +7,17 @@ Example:
 
 Input: [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
+*/
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        
+    }
+};
+
+//  收集雨水  [H]
+//  Two Pointers ; Stack
 
 // 只需要遍历一次即可的解法，这个算法需要start和end两个指针分别指向数组的首尾位置，
 // 从两边向中间扫描，在当前两指针确定的范围内，先比较两头找出较小值，如果较小值是start指向的值，
@@ -16,22 +27,22 @@ Output: 6
 class Solution {
 public:
     int trap(vector<int>& height) {
-        int sum=0;
-        int start=0, end=height.size()-1;
-        while(start<end)
+        int sum = 0;
+        int start = 0, end = height.size() - 1;
+        while (start < end)
         {
-            int n = min(height[start], height[end]);
-            if(n==height[start])
-            {   
+            int h = min(height[start], height[end]);
+            if (h == height[start])
+            {
                 start++;
-                while(start<end && height[start]<=n)
-                    sum+=n-height[start++];
+                while (start < end && height[start] <= h) // 从左到右递减
+                    sum += h - height[start++];
             }
             else
             {
                 end--;
-                while(start<end && height[end]<=n)
-                    sum+=n-height[end--];
+                while (start < end && height[end] <= h)  // 从右到左递减
+                    sum += h - height[end--];
             }
         }
         return sum;

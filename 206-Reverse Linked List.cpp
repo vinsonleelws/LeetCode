@@ -33,29 +33,25 @@ public:
  
 
 // #1 Iterative
-// Iterative（使用dummy结点）
 
 // My solution
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        if (!head) 
+        if(!head)
             return head;
-        ListNode *dummy = new ListNode(-1);
-        dummy->next = head;
-        ListNode *cur = head;
-        ListNode *curNext = cur->next;
+        
+        ListNode* cur = head->next, *pre = head, *next = head->next;
         head->next = NULL;
-        while (curNext) 
+        while(cur)
         {
-            ListNode *curNextNext = curNext->next;
-            curNext->next = cur;
-            cur = curNext;
-            curNext = curNextNext;
+            next = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = next;
         }
-        dummy->next = cur;
-
-        return dummy->next;
+        
+        return pre;
     }
 };
 

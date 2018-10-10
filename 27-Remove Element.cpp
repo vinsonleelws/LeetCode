@@ -41,8 +41,24 @@ for (int i = 0; i < len; i++) {
 }
  */
  
-// 删除指定元素
+// 删除指定元素	[E]
 // Two Pointers 快慢指针。数值覆盖法。
+
+// Reference solution:
+// 基于赋值的方法。
+// 只需要一个变量用来计数，然后遍历原数组，如果当前的值和给定值不同，我们就把当前值覆盖计数变量的位置，并将计数变量加1。
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int len = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] != val) 
+                nums[len++] = nums[i];
+        }
+        return len;
+    }
+};
+
 
 // My solution.
 // 基于两数交换的方法。
@@ -76,20 +92,6 @@ public:
     }
 };
 
-// Reference solution:
-// 基于赋值的方法。
-// 只需要一个变量用来计数，然后遍历原数组，如果当前的值和给定值不同，我们就把当前值覆盖计数变量的位置，并将计数变量加1。
-class Solution {
-public:
-    int removeElement(vector<int>& nums, int val) {
-        int len = 0;
-        for (int i = 0; i < nums.size(); ++i) {
-            if (nums[i] != val) 
-                nums[len++] = nums[i];
-        }
-        return len;
-    }
-};
 
 
 // Testing cases

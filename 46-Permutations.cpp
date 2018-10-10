@@ -16,42 +16,44 @@ Output:
 
 class Solution {
 public:
-    string getPermutation(int n, int k) {
+    vector<vector<int>> permute(vector<int>& nums) {
         
     }
 };
 
-// 全排列
+// 全排列  [M]
 // DFS (Backtracking) + visit数组
 
 // My solution:
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> result;
-        vector<bool> iFlag(nums.size(), 0);
-        vector<int> res;
-        permutations(nums, n, iFlag, res, result);
-        return result;
-    }
-    
-    void permutations(vector<int>& nums, int level, vector<bool> iFlag, vector<int>& res, vector<vector<int>>& result)
-    {
-        if(level==0)
-            result.push_back(res);
-        else
-            for(int i=0; i<nums.size(); i++)
-            {   
-                if(!iFlag[i])
-                {
-                    res.push_back(nums[i]);
-                    iFlag[i] = true;
-                    permutations(nums, level-1, iFlag, res, result);
-                    res.pop_back();
-                    iFlag[i] = false;
-                }
-            }
-    }
+	vector<vector<int>> permute(vector<int>& nums) {
+		vector<vector<int>> result;
+		vector<bool> visited(nums.size(), 0);
+		vector<int> res;
+		permutations(nums, nums.size(), visited, res, result);
+		return result;
+	}
+
+	void permutations(const vector<int>& nums, int level, vector<bool> visited, vector<int>& res, vector<vector<int>>& result)
+	{
+		if (level == 0)
+			result.push_back(res);
+		else
+		{
+			for (int i = 0; i < nums.size(); i++)
+			{
+				if (!visited[i])
+				{
+					res.push_back(nums[i]);
+					visited[i] = true;
+					permutations(nums, level - 1, visited, res, result);
+					res.pop_back();
+					visited[i] = false;
+				}
+			}
+		}
+	}
 };
 
 /*
@@ -67,50 +69,81 @@ Output:
 */
 
 
+// 基于交换的方法：（更加简洁）
+class Solution {
+public:
+	vector<vector<int>> permute(vector<int>& nums) {
+		vector<vector<int>> result;
+		if (nums.empty())
+			return result;
+
+		permuteDFS(0, result, nums);
+		return result;
+	}
+
+	void permuteDFS(int level, vector<vector<int>>& result, vector<int>& nums)
+	{
+		if (level == nums.size())
+		{
+			result.push_back(nums);
+		}
+		else
+		{
+			for (int i = level; i < nums.size(); i++)
+			{
+				swap(nums[i], nums[level]);
+				permuteDFS(level + 1, result, nums);
+				swap(nums[i], nums[level]);
+			}
+		}
+	}
+};
+
+
 // Other reference solution:
 // #1
 class Solution {
 public:
-    vector<vector<int> > permute(vector<int> &num) {
-        vector<vector<int> > res;
-        vector<int> out;
-        vector<int> visited(num.size(), 0);
-        permuteDFS(num, 0, visited, out, res);
-        return res;
-    }
-    void permuteDFS(vector<int> &num, int level, vector<int> &visited, vector<int> &out, vector<vector<int> > &res) {
-        if (level == num.size()) res.push_back(out);
-        else {
-            for (int i = 0; i < num.size(); ++i) {
-                if (visited[i] == 0) {
-                    visited[i] = 1;
-                    out.push_back(num[i]);
-                    permuteDFS(num, level + 1, visited, out, res);
-                    out.pop_back();
-                    visited[i] = 0;
-                }
-            }
-        }
-    }
+	vector<vector<int> > permute(vector<int> &num) {
+		vector<vector<int> > res;
+		vector<int> out;
+		vector<int> visited(num.size(), 0);
+		permuteDFS(num, 0, visited, out, res);
+		return res;
+	}
+	void permuteDFS(vector<int> &num, int level, vector<int> &visited, vector<int> &out, vector<vector<int> > &res) {
+		if (level == num.size()) res.push_back(out);
+		else {
+			for (int i = 0; i < num.size(); ++i) {
+				if (visited[i] == 0) {
+					visited[i] = 1;
+					out.push_back(num[i]);
+					permuteDFS(num, level + 1, visited, out, res);
+					out.pop_back();
+					visited[i] = 0;
+				}
+			}
+		}
+	}
 };
 
 // #2
 // 每次交换num里面的两个数字，经过递归可以生成所有的排列情况
 class Solution {
 public:
-    vector<vector<int> > permute(vector<int> &num) {
-        vector<vector<int> > res;
-        permuteDFS(num, 0, res);
-        return res;
-    }
-    void permuteDFS(vector<int> &num, int start, vector<vector<int> > &res) {
-        if (start >= num.size()) res.push_back(num);
-        for (int i = start; i < num.size(); ++i) {
-            swap(num[start], num[i]);
-            permuteDFS(num, start + 1, res);
-            swap(num[start], num[i]);
-        }
-    }
+	vector<vector<int> > permute(vector<int> &num) {
+		vector<vector<int> > res;
+		permuteDFS(num, 0, res);
+		return res;
+	}
+	void permuteDFS(vector<int> &num, int start, vector<vector<int> > &res) {
+		if (start >= num.size()) res.push_back(num);
+		for (int i = start; i < num.size(); ++i) {
+			swap(num[start], num[i]);
+			permuteDFS(num, start + 1, res);
+			swap(num[start], num[i]);
+		}
+	}
 };
 
 // #3
@@ -122,20 +155,20 @@ public:
 // _ a2 _ a1 _ : a3a2a1, a2a3a1, a2a1a3
 class Solution {
 public:
-    vector<vector<int> > permute(vector<int> &num) {
-        if (num.empty()) return vector<vector<int> >(1, vector<int>());
-        vector<vector<int> > res;
-        int first = num[0];
-        num.erase(num.begin());
-        vector<vector<int> > words = permute(num);
-        for (auto &a : words) {
-            for (int i = 0; i <= a.size(); ++i) {
-                a.insert(a.begin() + i, first);
-                res.push_back(a);
-                a.erase(a.begin() + i);
-            }
-        }   
-        return res;
-    }
+	vector<vector<int> > permute(vector<int> &num) {
+		if (num.empty()) return vector<vector<int> >(1, vector<int>());
+		vector<vector<int> > res;
+		int first = num[0];
+		num.erase(num.begin());
+		vector<vector<int> > words = permute(num);
+		for (auto &a : words) {
+			for (int i = 0; i <= a.size(); ++i) {
+				a.insert(a.begin() + i, first);
+				res.push_back(a);
+				a.erase(a.begin() + i);
+			}
+		}
+		return res;
+	}
 };
 

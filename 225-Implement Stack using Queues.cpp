@@ -1,4 +1,4 @@
-Implement the following operations of a stack using queues.
+/*Implement the following operations of a stack using queues.
 
     push(x) -- Push element x onto stack.
     pop() -- Removes the element on top of the stack.
@@ -10,7 +10,7 @@ Notes:
     You must use only standard operations of a queue -- which means only push to back, peek/pop from front, size, and is empty operations are valid.
     Depending on your language, queue may not be supported natively. You may simulate a queue by using a list or deque (double-ended queue), as long as you use only standard operations of a queue.
     You may assume that all operations are valid (for example, no pop or top operations will be called on an empty stack).
-
+*/
     
 class MyStack {
 public:
@@ -48,6 +48,10 @@ public:
  * int param_3 = obj.top();
  * bool param_4 = obj.empty();
  */
+
+
+// 用队列实现栈
+// 双队列
  
 // -------------------------------------------------------------
 
@@ -65,14 +69,14 @@ public:
     
     /** Push element x onto stack. */
     void push(int x) {
-        queue<int> tmp;
-        while (!q.empty()) 
+        queue<int> tmp;     // 两次转移
+        while (!q.empty())  // 转移到临时队列中
         {
             tmp.push(q.front());
             q.pop();
         }
         q.push(x);
-        while (!tmp.empty()) 
+        while (!tmp.empty()) // 转移回原队列
         {
             q.push(tmp.front());
             tmp.pop();
@@ -132,8 +136,10 @@ public:
 
     // Get the top element.
     int top(void) {
-        if (q2.empty()) {
-            for (int i = 0; i < (int)q1.size() - 1; ++i) {
+        if (q2.empty()) 
+        {
+            for (int i = 0; i < (int)q1.size() - 1; ++i) 
+            {
                 q1.push(q1.front());
                 q1.pop();
             }

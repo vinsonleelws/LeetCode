@@ -14,35 +14,41 @@ Note:
 Follow up: For C programmers, try to solve it in-place in O(1) space.
 */
 
-// 翻转字符串中的单词
-// 
+class Solution {
+public:
+    void reverseWords(string &s) {
+        
+    }
+};
 
+// 翻转字符串中的单词  [M]
+// reverse(s.begin(), s.end()) ; istringstream
 
 // 不仅要实现反转，还需将多余的空格去掉：去掉头尾空格，单词间的空格有多个的话变成一个。
 
 // Reference solution:
 // #1
 // 先整个字符串整体翻转一次，然后再分别翻转每一个单词（或者先分别翻转每一个单词，然后再整个字符串整体翻转一次），此时就能得到我们需要的结果了。
-// 那么这里我们需要定义一些变量来辅助我们解题，cur表示当前存储到的位置，n为字符串的长度。我们先给整个字符串反转一下，然后我们开始循环，
+// 这里我们需要定义一些变量来辅助我们解题，cur表示当前存储到的位置，n为字符串的长度。我们先给整个字符串反转一下，然后我们开始循环，
 // 遇到空格直接跳过，如果是非空格字符，我们此时看cur是否为0，为0的话表示第一个单词，不用增加空格；如果不为0，说明不是第一个单词，需要在单词中间加一个空格，
 // 然后我们要找到下一个单词的结束位置我们用一个while循环来找下一个为空格的位置，在此过程中继续覆盖原字符串，找到结束位置了，下面就来翻转这个单词，然后更新i为结尾位置，
 // 最后遍历结束，我们剪裁原字符串到cur位置。
 class Solution {
 public:
     void reverseWords(string &s) {
-        int cur = 0, n = s.size();
+        int cur = 0, n = s.size();  // cur表示当前存储到的位置
         reverse(s.begin(), s.end());  // 先翻转整个字符串
         for (int i = 0; i < n; ++i) 
         {
-            if (s[i] != ' ') 
+            if (s[i] != ' ') // 如果是空格，直接跳过； 如果是字母，则开始处理单词
             {
                 if (cur != 0) 
                     s[cur++] = ' ';
                 int j = i;
-                while (j < n && s[j] != ' ') 
+                while (j < n && s[j] != ' ')  // 复制单词
                     s[cur++] = s[j++];
-                reverse(s.begin() + cur - (j - i), s.begin() + cur);
-                i = j;
+                reverse(s.begin() + cur - (j - i), s.begin() + cur); // 翻转单词
+                i = j;  // 更新位置
             }
         }
         s.resize(cur);

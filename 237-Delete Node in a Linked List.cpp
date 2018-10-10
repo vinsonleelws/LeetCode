@@ -24,6 +24,18 @@ public:
 // 删除链表中的某结点（只给出待删除结点，不提供链表的起点）
 // 结点值覆盖
 
+// 还有一种更有时间效率的方法：
+// 先用下一节点的值覆盖当前节点的值，然后把除了下一节点的后续所有节点链接在当前结点后面~
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        ListNode *tmp = node->next;
+        node->next = tmp->next;
+        delete tmp;
+    }
+};
+
 // 这道题让我们删除链表的一个节点，与平常不一样的是没有给我们链表的起点，只给我们了一个要删的节点。
 // 这道题的处理方法是先把当前节点的值用下一个节点的值覆盖，如此进行直到最后一个节点，最后将倒数第二个节点的next置空即可。
 // My solution:
@@ -39,17 +51,5 @@ public:
             node = node->next;
         }
         pre->next = NULL;
-    }
-};
-
-// 还有一种更有时间效率的方法：
-// 先用下一节点的值覆盖当前节点的值，然后把除了下一节点的后续所有节点链接在当前结点后面~
-class Solution {
-public:
-    void deleteNode(ListNode* node) {
-        node->val = node->next->val;
-        ListNode *tmp = node->next;
-        node->next = tmp->next;
-        delete tmp;
     }
 };

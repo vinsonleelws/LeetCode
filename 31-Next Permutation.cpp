@@ -12,7 +12,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 1,1,5 → 1,5,1 
 */
 
-// 下一个排列
+// 下一个排列  [M]
 // 找规律
 
 // 思路：
@@ -27,6 +27,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 // 然后我们再从后往前找第一个比2大的数字，是3，那么我们交换2和3，再把此时3后面的所有数字转置一下.
 
 // Reference solution.
+// 从尾向头找到第一个变小的数字num[i]，再从尾向头找第一个大于该数字的num[j]，两者交换，再翻转num[j]后面的所有数字
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {

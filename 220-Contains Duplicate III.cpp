@@ -1,4 +1,4 @@
-Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k.
+/*Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k.
 
 Example 1:
 
@@ -12,8 +12,18 @@ Output: true
 
 Example 3:
 
-Input: [4,2], k = 2, t = 1 
-Output: false
+Input: [4,2], k = 2, t = 1
+Output: false*/
+
+class Solution {
+public:
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+        
+    }
+};
+
+// 包含重复值III（指定两数之差和坐标之差的范围）  [M]
+// Hash Table
 
 // 与"219-Contains Duplicate II"一样，此题如果使用Brute force会TLE。还是应当使用哈希表来解，注意两个限制条件即可：两个数字的坐标差不能大于k，值差不能大于t。
 // 这里需要两个指针i和j，刚开始i和j都指向0，然后i开始向右走遍历数组，如果i和j之差大于k，且m中有nums[j]，则删除并j加一。这样保证了m中所有的数的下标之差都不大于k，
@@ -23,11 +33,12 @@ public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
         map<long long, int> m;
         int j = 0;
-        for (int i = 0; i < nums.size(); ++i) 
+        for (int i = 0; i < nums.size(); ++i)
         {
-            if (i - j > k) m.erase(nums[j++]);
-            auto a = m.lower_bound((long long)nums[i] - t);
-            if (a != m.end() && abs(a->first - nums[i]) <= t) 
+            if (i - j > k) 
+                m.erase(nums[j++]);
+            auto a = m.lower_bound((long long)nums[i] - t);  // x - nums[i] <= t 找第一个满足此表达式的x
+            if (a != m.end() && abs(a->first - nums[i]) <= t)
                 return true;
             m[nums[i]] = i;
         }

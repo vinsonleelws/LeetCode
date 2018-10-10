@@ -13,12 +13,12 @@ For example, given n = 3, a solution set is:
 
 class Solution {
 public:
-    vector<string> generateParenthesis(int n) {
-        
-    }
+	vector<string> generateParenthesis(int n) {
+
+	}
 };
 
-// 生成括号
+// 生成括号  [M]
 // DFS (Backtracking)
 
 
@@ -26,28 +26,55 @@ public:
 // 采用递归法
 class Solution {
 public:
-  vector<string> generateParenthesis(int n) {
-    vector<string> brackets;
-    generate(n, n, brackets, "");
-    return brackets;
-  }
+	vector<string> generateParenthesis(int n) {
+		vector<string> brackets;
+		generate(n, n, brackets, "");
+		return brackets;
+	}
 
-  void generate(int left, int right, vector<string>& brackets, string str)
-  {
-    if (left > right)
-      return;
-    else if (left == 0 && right == 0)
-      brackets.push_back(str);
-    else  // left < right
-    {
-      if (left > 0)
-        generate(left - 1, right, brackets, str + '(');
+	void generate(int left, int right, vector<string>& brackets, string str)
+	{
+		if (left > right)
+			return;
+		else if (left == 0 && right == 0)
+			brackets.push_back(str);
+		else  // left < right
+		{
+			if (left > 0)
+				generate(left - 1, right, brackets, str + '(');
 
-      if (right > 0)
-        generate(left, right - 1, brackets, str + ')');
-    }
+			if (right > 0)
+				generate(left, right - 1, brackets, str + ')');
+		}
 
-  }
+	}
+};
+
+
+// Reference method (另一种写法)
+class Solution {
+public:
+	vector<string> generateParenthesis(int n) {
+		vector<string> brackets;
+		generate(n, n, brackets, "");
+		return brackets;
+	}
+
+	void generate(int left, int right, vector<string>& brackets, string str)
+	{
+		if (left == 0 && right == 0)
+		{
+			brackets.push_back(str);
+			return;
+		}
+
+		if (left > 0)
+			generate(left - 1, right, brackets, str + '(');
+
+		if (right > left)
+			generate(left, right - 1, brackets, str + ')');
+
+	}
 };
 
 // 在LeetCode中有关括号的题共有三道，除了这一道的另外两道是 "20-Valid Parentheses 验证括号"和 "32-Longest Valid Parentheses 最长有效括号".
@@ -57,28 +84,3 @@ public:
 // 生成的字符串已有3个左括号和3个右括号，且字符串合法，则存入结果中后返回。如果以上两种情况都不满足，若此时left大于0，则调用递归函数，注意参数的更新，
 // 若right大于0，则调用递归函数，同样要更新参数。
 
-// Reference method (另一种写法)
-class Solution {
-public:
-  vector<string> generateParenthesis(int n) {
-    vector<string> brackets;
-    generate(n, n, brackets, "");
-    return brackets;
-  }
-
-  void generate(int left, int right, vector<string>& brackets, string str)
-  {
-    if (left == 0 && right == 0)
-    {
-      brackets.push_back(str);
-      return;
-    }
-
-    if (left > 0)
-      generate(left - 1, right, brackets, str + '(');
-
-    if (right > left)
-      generate(left, right - 1, brackets, str + ')');
-
-  }
-};

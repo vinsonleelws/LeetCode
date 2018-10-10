@@ -23,8 +23,15 @@ There are two ways to reach the bottom-right corner:
 1. Right -> Right -> Down -> Down
 2. Down -> Down -> Right -> Right
  */
- 
-// 63-不同的路径数II(有障碍物)
+
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        
+    }
+};
+
+// 63-不同的路径数II(有障碍物)  [M]
 // DP
 
 // 使用动态规划，当遇到为1的点，将该位置的dp数组中的值清零；
@@ -33,7 +40,7 @@ There are two ways to reach the bottom-right corner:
 class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        if(obstacleGrid.empty() || obstacleGrid[0].empty() || obstacleGrid[0][0] == 1)  // 注意障碍物在原点的情况
+        if (obstacleGrid.empty() || obstacleGrid[0].empty() || obstacleGrid[0][0] == 1) // 注意障碍物在原点的情况
             return 0;
         int m = obstacleGrid.size();
         int n = obstacleGrid[0].size();
@@ -42,13 +49,12 @@ public:
         for (int i = 0; i < m; ++i)
             for (int j = 0; j < n; ++j)
             {
-                if(obstacleGrid[i][j]==1)
+                if (obstacleGrid[i][j] == 1)
                     dp[j] = 0;
-                else if(j>0)  // 注意是j>0
-                    dp[j] += dp[j - 1]; 
+                else if (j > 0) // 注意是j>0，第一列左边没有路径
+                    dp[j] += dp[j - 1];
             }
-            
+
         return dp[n - 1];
-        
     }
 };

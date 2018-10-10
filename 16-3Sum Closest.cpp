@@ -7,7 +7,7 @@
 
 // The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
-// 最接近目标的三数之和
+// 最接近目标的三数之和	[M]
 // Sort + Two Pointers
 
 class Solution {
@@ -23,7 +23,7 @@ public:
                 neg_target = true;
             for(int i=0; i<nums.size(); i++)  // 每次固定一个数nums[i]
             {
-                if(neg_target && nums[i]>=0)
+                if(neg_target && nums[i]>=0)  // 提前退出
                     break;
                 
                 if(i>0 && nums[i]==nums[i-1])

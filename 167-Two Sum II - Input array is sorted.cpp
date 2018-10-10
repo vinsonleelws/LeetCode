@@ -16,20 +16,20 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 
 // 两数之和II-输入数组有序
 // Two Pointers ; Binary Search
- 
+
 // 介于是sorted array，我们可以使用分别指向头尾的双指针，时间复杂度为O(n)。
 // My solution:
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         vector<int> result;
-        int start=0, end=numbers.size()-1;
-        
-        while(start<end)
+        int start = 0, end = numbers.size() - 1;
+
+        while (start < end)
         {
-            if(numbers[start]+numbers[end]==target)
-                return {start+1, end+1};  /* result.push_back(start); result.push_back(start); return result; */
-            else if(numbers[start]+numbers[end]<target)
+            if (numbers[start] + numbers[end] == target)
+                return {start + 1, end + 1};    /* result.push_back(start); result.push_back(start); return result; */
+            else if (numbers[start] + numbers[end] < target)
                 start++;
             else
                 end--;
@@ -46,11 +46,11 @@ public:
             int t = target - numbers[i], left = i + 1, right = numbers.size() - 1;
             while (left < right) {
                 int mid = left + (right - left) / 2;
-                if (numbers[mid] == t) 
+                if (numbers[mid] == t)
                     return {i + 1, mid + 1};
-                else if (numbers[mid] < t) 
+                else if (numbers[mid] < t)
                     left = mid + 1;
-                else 
+                else
                     right = mid;
             }
         }

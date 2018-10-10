@@ -1,19 +1,31 @@
-Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+/*Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
 
 Above is a histogram where width of each bar is 1, given height = [2,1,5,6,2,3].
 
- 
+
 
 
 The largest rectangle is shown in the shaded area, which has area = 10 unit.
 
- 
+
 
 Example:
 
 Input: [2,1,5,6,2,3]
 Output: 10
+*/
+
+class Solution {
+public:
+	int largestRectangleArea(vector<int>& heights) {
+
+	}
+};
+
+
+// 84-直方图中最大的矩形  (H)
+// Stack
 
 // Reference solution:
 // #1
@@ -37,45 +49,44 @@ Output: 10
 
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& heights) {
-        if(heights.empty())
-            return 0;
-        
-        stack<int> h;
-        heights.push_back(0);
-        int result = 0;
-        for(int i=0; i<heights.size(); i++)
-        {
-            while(h.size() && heights[h.top()]>=heights[i])
-            {
-                int cur = h.top();
-                h.pop();
-                result = max(result, heights[cur]*(h.empty()? i : (i-h.top()-1)));
-            }
-            h.push(i);
-        }
-        return result;
-    }
+	int largestRectangleArea(vector<int>& heights) {
+		if (heights.empty())
+			return 0;
+
+		stack<int> h;
+		heights.push_back(0);  // trick
+		int result = 0;
+		for (int i = 0; i < heights.size(); i++)
+		{
+			while (h.size() && heights[h.top()] >= heights[i]) // 每当遇到小于栈顶的元素，则开始往回处理计算和更新面积值
+			{
+				int cur = h.top(); h.pop();
+				result = max(result, heights[cur] * (h.empty() ? i : (i - 1 - h.top())));
+			}
+			h.push(i);
+		}
+		return result;
+	}
 };
 
 // 另一种写法：
 class Solution {
 public:
-    int largestRectangleArea(vector<int> &height) {
-        int res = 0;
-        stack<int> st;
-        height.push_back(0);
-        for (int i = 0; i < height.size(); ++i) {
-            if (st.empty() || height[st.top()] < height[i]) {
-                st.push(i);
-            } else {
-                int cur = st.top(); st.pop();
-                res = max(res, height[cur] * (st.empty() ? i : (i - st.top() - 1)));
-                --i;
-            }     
-        }
-        return res;
-    }
+	int largestRectangleArea(vector<int> &height) {
+		int res = 0;
+		stack<int> st;
+		height.push_back(0);
+		for (int i = 0; i < height.size(); ++i) {
+			if (st.empty() || height[st.top()] < height[i]) {
+				st.push(i);
+			} else {
+				int cur = st.top(); st.pop();
+				res = max(res, height[cur] * (st.empty() ? i : (i - st.top() - 1)));
+				--i;
+			}
+		}
+		return res;
+	}
 };
 
 // #2
@@ -84,19 +95,19 @@ public:
 // Pruning optimize
 class Solution {
 public:
-    int largestRectangleArea(vector<int> &height) {
-        int res = 0;
-        for (int i = 0; i < height.size(); ++i) {
-            if (i + 1 < height.size() && height[i] <= height[i + 1]) {
-                continue;
-            }
-            int minH = height[i];
-            for (int j = i; j >= 0; --j) {
-                minH = min(minH, height[j]);
-                int area = minH * (i - j + 1);
-                res = max(res, area);
-            }
-        }
-        return res;
-    }
+	int largestRectangleArea(vector<int> &height) {
+		int res = 0;
+		for (int i = 0; i < height.size(); ++i) {
+			if (i + 1 < height.size() && height[i] <= height[i + 1]) {
+				continue;
+			}
+			int minH = height[i];
+			for (int j = i; j >= 0; --j) {
+				minH = min(minH, height[j]);
+				int area = minH * (i - j + 1);
+				res = max(res, area);
+			}
+		}
+		return res;
+	}
 };

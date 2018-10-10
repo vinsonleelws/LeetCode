@@ -28,12 +28,12 @@ Output: "1211"
 class Solution {
 public:
     string countAndSay(int n) {
-        
+
     }
 };
 
 
-// 数一数，说一说
+// 数一数，说一说  [E]
 // 找规律
 
 
@@ -42,32 +42,23 @@ public:
 class Solution {
 public:
     string countAndSay(int n) {
-        if(n==1)
+        if (n == 1)
             return "1";
         string str = "11";
-        for(int i=3; i<=n; i++)
+        for (int i = 3; i <= n; i++)
         {
-            int j=0;
+            int j = 0;
             string s;
-            while(j<=str.length()-1)
+            while (j <= str.length() - 1)
             {
-                int count=1;
-                while(j<str.length()-1 && str[j]==str[j+1])
+                int count = 1;
+                while (j < str.length() - 1 && str[j] == str[j + 1])
                 {
                     count++;
                     j++;
                 }
-                if(count==1)
-                {
-                    s+='1';
-                    s+=str[j];
-                }
-                else
-                {
-                    s+=to_string(count);
-                    s+=str[j];
-                }
-                j++;
+                s += to_string(count);
+                s += str[j++];
             }
             str = s;
         }

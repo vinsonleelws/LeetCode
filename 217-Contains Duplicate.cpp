@@ -19,8 +19,15 @@ Input: [1,1,1,3,3,4,3,2,4,2]
 Output: true
 */
 
-// 包含重复值
-// Hash Table ; Sort
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        
+    }
+};
+
+// 包含重复值  [E]
+// Hash Table ; Sort + 遍历
 
 // 有两种方法：1是排序后遍历，2是使用哈希表
 

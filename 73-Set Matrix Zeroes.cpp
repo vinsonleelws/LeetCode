@@ -2,13 +2,13 @@
 
 Example 1:
 
-Input: 
+Input:
 [
   [1,1,1],
   [1,0,1],
   [1,1,1]
 ]
-Output: 
+Output:
 [
   [1,0,1],
   [0,0,0],
@@ -17,13 +17,13 @@ Output:
 
 Example 2:
 
-Input: 
+Input:
 [
   [0,1,2,0],
   [3,4,5,2],
   [1,3,1,5]
 ]
-Output: 
+Output:
 [
   [0,0,0,0],
   [0,4,5,0],
@@ -36,10 +36,17 @@ Follow up:
     A simple improvement uses O(m + n) space, but still not the best solution.
     Could you devise a constant space solution?
  */
- 
-// 73-矩阵赋零
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+
+    }
+};
+
+// 73-矩阵赋零  [M]
 // Trick
- 
+
 // 解法比较：
 // 空间复杂度为O(mn)的直接解法：直接新建一个和matrix等大小的矩阵，然后一行一行的扫，只要有0，
 // 就将新建的矩阵的对应行全赋0，行扫完再扫列，然后把更新完的矩阵赋给matrix即可，这个算法的空间复杂度太高。
@@ -57,52 +64,52 @@ Follow up:
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        if(matrix.empty() || matrix[0].empty())
+        if (matrix.empty() || matrix[0].empty())
             return;
         int m = matrix.size(), n = matrix[0].size();
         bool firstRowZero = false, firstColZero = false;
 
-        for(int i=0; i<n; i++)
-            if(matrix[0][i]==0)
+        for (int i = 0; i < n; i++)
+            if (matrix[0][i] == 0)
             {
                 firstRowZero = true;
                 break;
             }
-        for(int i=0; i<m; i++)
-            if(matrix[i][0]==0)
+        for (int i = 0; i < m; i++)
+            if (matrix[i][0] == 0)
             {
                 firstColZero = true;
                 break;
             }
-        
-        for(int i=1; i<m; i++)
-            for(int j=1; j<n; j++)
+
+        for (int i = 1; i < m; i++)
+            for (int j = 1; j < n; j++)
             {
-                if(matrix[i][j]==0)
+                if (matrix[i][j] == 0)
                 {
                     matrix[0][j] = 0;
                     matrix[i][0] = 0;
                 }
             }
-            
-        for(int i=1; i<m; i++)
-            for(int j=1; j<n; j++)
+
+        for (int i = 1; i < m; i++)
+            for (int j = 1; j < n; j++)
             {
-                if(matrix[i][0]==0 || matrix[0][j]==0)
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
                 {
                     matrix[i][j] = 0;
                 }
             }
 
-        if(firstRowZero)
+        if (firstRowZero)
         {
-            for(int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
                 matrix[0][i] = 0;
         }
-        
-        if(firstColZero)
+
+        if (firstColZero)
         {
-            for(int j=0; j<m; j++)
+            for (int j = 0; j < m; j++)
                 matrix[j][0] = 0;
         }
     }

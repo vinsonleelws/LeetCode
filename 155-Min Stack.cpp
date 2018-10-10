@@ -1,4 +1,4 @@
-Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+/*Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
     push(x) -- Push element x onto stack.
     pop() -- Removes the element on top of the stack.
@@ -14,7 +14,9 @@ minStack.push(-3);
 minStack.getMin();   --> Returns -3.
 minStack.pop();
 minStack.top();      --> Returns 0.
-minStack.getMin();   --> Returns -2.
+minStack.getMin();   --> Returns -2.*/
+
+// 包含min函数的栈
 
 // 关键是要找到一种方法来追踪栈中的最小元素。
 
