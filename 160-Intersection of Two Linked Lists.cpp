@@ -5,7 +5,7 @@ For example, the following two linked lists:
 A:          a1 → a2
                    ↘
                      c1 → c2 → c3
-                   ↗            
+                   ↗
 B:     b1 → b2 → b3
 
 begin to intersect at node c1.
@@ -29,12 +29,13 @@ Notes:
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        
+
     }
 };
 
 
-// 两个链表的交叉点
+// 两个链表的交叉点  [E]
+// 遍历求链表长度，较长的先走差值步数，然后再一起走
 
 
 // 思路：分别遍历两个链表，得到分别对应的长度。然后求长度的差值，把较长的那个链表向后移动这个差值的个数，然后一一比较即可
@@ -44,40 +45,40 @@ public:
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(!headA || !headB)
+        if (!headA || !headB)
             return NULL;
-        
-        int n1=1, n2=1;
+
+        int n1 = 1, n2 = 1;
         ListNode * p1 = headA, *p2 = headB;
-        while(p1->next)
+        while (p1->next)
         {
             p1 = p1->next;
             n1++;
         }
-        while(p2->next)
+        while (p2->next)
         {
             p2 = p2->next;
             n2++;
         }
-        
+
         p1 = headA, p2 = headB;
-        if(n1>n2)
+        if (n1 > n2)
         {
-            for(int i=0; i<n1-n2; i++)
+            for (int i = 0; i < n1 - n2; i++)
                 p1 = p1->next;
         }
         else
         {
-            for(int i=0; i<n2-n1; i++)
+            for (int i = 0; i < n2 - n1; i++)
                 p2 = p2->next;
         }
-        
-        while(p1!=p2)
+
+        while (p1 != p2)
         {
             p1 = p1->next;
             p2 = p2->next;
         }
-        
+
         return p1;
     }
 };
@@ -91,7 +92,7 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if (!headA || !headB) return NULL;
         ListNode *a = headA, *b = headB;
-        while (a != b) 
+        while (a != b)
         {
             a = a ? a->next : headB;
             b = b ? b->next : headA;

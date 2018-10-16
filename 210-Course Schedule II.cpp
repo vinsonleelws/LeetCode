@@ -40,11 +40,47 @@ public:
 };
 
 // 课程表II
-// DFS / BFS
+// BFS / DFS
 
 // 这道题是"207-Course Schedule"的延伸，要求我们若发现时有环图则返回空数组，若能修完所有可能则返回修课序列。
-// #1 DFS
-// 首先根据输入构建有向图，同时建立一个一维数组visit，表示某个结点的访问状态：0代表初始态，1代表已访问，若再访问则有冲突，2代表已访问且无冲突。
+
+// #1 BFS
+// 可直接从"207-Course Schedule"中扩展：
+// 只需将每次从queue中出队的元素加入到结果数组中。最终若有向图中有环，则结果中元素的个数不等于总课程数，那我们将结果清空即可。
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<int> res;
+        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<int> in(numCourses, 0);
+        for (auto &a : prerequisites)
+        {
+            graph[a.second].push_back(a.first);
+            ++in[a.first];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i)
+            if (in[i] == 0) q.push(i);
+
+        while (!q.empty())
+        {
+            int t = q.front();
+            res.push_back(t);  // 相比"207-Course Schedule"，增加的一句
+            q.pop();
+            for (auto &a : graph[t])
+            {
+                --in[a];
+                if (in[a] == 0) q.push(a);
+            }
+        }
+        if (res.size() != numCourses)
+            res.clear();
+        return res;
+    }
+};
+
+// #2 DFS
+// 首先根据输入构建有向图，同时建立一个一维数组visit，表示某个结点的访问状态：0 - 代表初始态，1 - 代表已访问，若再访问则有冲突，2 - 代表已访问且无冲突。
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
@@ -78,42 +114,6 @@ public:
         result.push_back(i);
         visit[i] = 2;
         return true;
-    }
-};
-
-
-// #2 BFS
-// 可直接从"207-Course Schedule"中扩展：
-// 只需将每次从queue中出队的元素加入到结果数组中。最终若有向图中有环，则结果中元素的个数不等于总课程数，那我们将结果清空即可。
-class Solution {
-public:
-    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
-        vector<int> res;
-        vector<vector<int> > graph(numCourses, vector<int>(0));
-        vector<int> in(numCourses, 0);
-        for (auto &a : prerequisites)
-        {
-            graph[a.second].push_back(a.first);
-            ++in[a.first];
-        }
-        queue<int> q;
-        for (int i = 0; i < numCourses; ++i)
-            if (in[i] == 0) q.push(i);
-
-        while (!q.empty())
-        {
-            int t = q.front();
-            res.push_back(t);
-            q.pop();
-            for (auto &a : graph[t])
-            {
-                --in[a];
-                if (in[a] == 0) q.push(a);
-            }
-        }
-        if (res.size() != numCourses)
-            res.clear();
-        return res;
     }
 };
 

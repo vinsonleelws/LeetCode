@@ -50,7 +50,7 @@ public:
  */
 
 
-// 用队列实现栈
+// 用队列实现栈  [E]
 // 双队列
  
 // -------------------------------------------------------------
@@ -59,7 +59,7 @@ public:
 
 // Reference solution:
 // #1
-// 每次把新加入的数插到前头的方法
+// 使用辅助队列，每次把新加入的数插到前头的方法
 class MyStack {
 public:
     /** Initialize your data structure here. */

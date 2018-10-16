@@ -28,7 +28,7 @@ public:
 };
 
 
-// 删除有序链表中的重复项（保留一个）
+// 删除有序链表中的重复项（保留一个）  [E]
 
  
 class Solution {
@@ -36,12 +36,13 @@ public:
     ListNode* deleteDuplicates(ListNode* head) {
         if(head==NULL)
             return head;
-        ListNode* pNode = head;
-        while(pNode)
+        
+        ListNode* node = head;
+        while(node)
         {
-            while(pNode->next && pNode->val == pNode->next->val)
-                pNode->next = pNode->next->next;
-            pNode = pNode->next;
+            while(node->next && node->val == node->next->val)
+                node->next = node->next->next;
+            node = node->next;
         }
         
         return head;

@@ -30,15 +30,15 @@ rotate 4 steps to the right: 2->0->1->NULL
  */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        
-    }
+	ListNode* rotateRight(ListNode* head, int k) {
+
+	}
 };
 
 
-// 旋转链表
+// 旋转链表（旋转后k个结点到头部）  [M]
 
- 
+
 // 思路：
 // 若k大于链表长度n，则取k=k%n;
 // 在原链表上走n-k-1步，这时的结点作为最后一个结点，而它下一个节点作为头结点;
@@ -46,39 +46,39 @@ public:
 // 特殊情况的考虑：
 // 当n==k或n==1时，相当于不旋转，直接返回.
 // 当head==nullptr或k==0时，直接返回head.
- 
+
 // My solution:
 class Solution {
 public:
-    ListNode* rotateRight(ListNode* head, int k) {
-        if(head==nullptr || k<=0)
-            return head;
-        int n=0;
-        ListNode* pNode=head;
-        while(pNode)  // 计算链表长度n
-        {
-            n++;
-            pNode = pNode->next;
-        }
-        
-        if(k==n || n==1)
-            return head;
-        else if(k>n)
-            k = k%n;
-        
-        if(k==0)
-            return head;
-        
-        pNode = head;
-        for(int i=0; i<n-k-1; i++)
-            pNode=pNode->next;
-        ListNode* pNext = pNode->next;
-        ListNode* newHead = pNext;
-        while(pNext->next)
-            pNext=pNext->next;
-        pNext->next = head;
-        pNode->next = nullptr;
-        
-        return newHead;
-    }
+	ListNode* rotateRight(ListNode* head, int k) {
+		if (head == nullptr || k <= 0)
+			return head;
+		int n = 0;
+		ListNode* pNode = head;
+		while (pNode) // 计算链表长度n
+		{
+			n++;
+			pNode = pNode->next;
+		}
+
+		if (k == n || n == 1)
+			return head;
+		else if (k > n)
+			k = k % n;
+
+		if (k == 0)
+			return head;
+
+		pNode = head;
+		for (int i = 0; i < n - k - 1; i++)
+			pNode = pNode->next;
+		ListNode* pNext = pNode->next;
+		ListNode* newHead = pNext;
+		while (pNext->next)
+			pNext = pNext->next;
+		pNext->next = head;
+		pNode->next = nullptr;
+
+		return newHead;
+	}
 };

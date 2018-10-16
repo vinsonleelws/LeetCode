@@ -33,75 +33,75 @@ Return:
 
 class Solution {
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
-        
-    }
+	vector<vector<int>> pathSum(TreeNode* root, int sum) {
+
+	}
 };
 
 
-// 二叉树的路径和II (找所有合法路径)
+// 二叉树的路径和II (找所有合法路径)  [M]
 // DFS
 
 
 class Solution {
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
-        if(!root)
-            return {};
-        vector<vector<int>> result;
-        vector<int> sol;
-        pathSumDFS(root, sum, 0, sol, result);
-        return result;
-    }
-    
-    void pathSumDFS(const TreeNode* root, const int& sum, int cursum, vector<int> sol, vector<vector<int>>& result)
-    {
-        if(!root)
-            return;
-        else
-        {
-            cursum += root->val;
-            sol.push_back(root->val);
-            if(!root->left && !root->right && cursum==sum)
-                result.push_back(sol);
-            else
-            {
-                pathSumDFS(root->left, sum, cursum, sol, result);
-                pathSumDFS(root->right, sum, cursum, sol, result);
-            }
-        }
-    }
+	vector<vector<int>> pathSum(TreeNode* root, int sum) {
+		if (!root)
+			return {};
+		vector<vector<int>> result;
+		vector<int> sol;
+		pathSumDFS(root, sum, 0, sol, result);
+		return result;
+	}
+
+	void pathSumDFS(const TreeNode* root, const int& sum, int cursum, vector<int> sol, vector<vector<int>>& result)
+	{
+		if (!root)
+			return;
+		else
+		{
+			cursum += root->val;
+			sol.push_back(root->val);
+			if (!root->left && !root->right && cursum == sum)
+				result.push_back(sol);
+			else
+			{
+				pathSumDFS(root->left, sum, cursum, sol, result);
+				pathSumDFS(root->right, sum, cursum, sol, result);
+			}
+		}
+	}
 };
 
 // 另一种更简洁的写法：
 class Solution {
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
-        if(!root)
-            return {};
-        vector<vector<int>> result;
-        vector<int> sol;
-        pathSumDFS(root, sum, sol, result);
-        return result;
-    }
-    
-    void pathSumDFS(const TreeNode* root, int sum, vector<int> sol, vector<vector<int>>& result)
-    {
-        if(!root)
-            return;
-        else
-        {
-            sum -= root->val;
-            sol.push_back(root->val);
-            if(!root->left && !root->right && sum==0)
-                result.push_back(sol);
-            else
-            {
-                pathSumDFS(root->left, sum, sol, result);
-                pathSumDFS(root->right, sum, sol, result);
-            }
-        }
-    }
+	vector<vector<int>> pathSum(TreeNode* root, int sum) {
+		if (!root)
+			return {};
+		vector<vector<int>> result;
+		vector<int> sol;
+		pathSumDFS(root, sum, sol, result);
+		return result;
+	}
+
+	void pathSumDFS(const TreeNode* root, int sum, vector<int> sol, vector<vector<int>>& result)
+	{
+		if (!root)
+			return;
+		else
+		{
+			sum -= root->val;
+			sol.push_back(root->val);
+			if (!root->left && !root->right && sum == 0)
+				result.push_back(sol);
+			else
+			{
+				pathSumDFS(root->left, sum, sol, result);
+				pathSumDFS(root->right, sum, sol, result);
+			}
+		}
+	}
 };
 
 
@@ -112,33 +112,33 @@ public:
 // 右子节点存在且不等于pre，我们直接将指针移到右子节点，反之我们更新pre为cur，cur重置为空，val减去当前节点，s删掉最后一个节点.
 class Solution {
 public:
-    vector<vector<int> > pathSum(TreeNode *root, int sum) {
-        vector<vector<int>> res;
-        vector<TreeNode*> s;
-        TreeNode *cur = root, *pre = NULL;
-        int val = 0;
-        while (cur || !s.empty()) {
-            while (cur) {
-                s.push_back(cur);
-                val += cur->val;
-                cur = cur->left;
-            }
-            cur = s.back(); 
-            if (!cur->left && !cur->right && val == sum) {
-                vector<int> v;
-                for (auto it : s) {
-                    v.push_back(it->val);
-                }
-                res.push_back(v);
-            }
-            if (cur->right && cur->right != pre) cur = cur->right;
-            else {
-                pre = cur;
-                val -= cur->val;
-                s.pop_back();
-                cur = NULL;
-            }
-        }
-        return res;
-    }
+	vector<vector<int> > pathSum(TreeNode *root, int sum) {
+		vector<vector<int>> res;
+		vector<TreeNode*> s;
+		TreeNode *cur = root, *pre = NULL;
+		int val = 0;
+		while (cur || !s.empty()) {
+			while (cur) {
+				s.push_back(cur);
+				val += cur->val;
+				cur = cur->left;
+			}
+			cur = s.back();
+			if (!cur->left && !cur->right && val == sum) {
+				vector<int> v;
+				for (auto it : s) {
+					v.push_back(it->val);
+				}
+				res.push_back(v);
+			}
+			if (cur->right && cur->right != pre) cur = cur->right;
+			else {
+				pre = cur;
+				val -= cur->val;
+				s.pop_back();
+				cur = NULL;
+			}
+		}
+		return res;
+	}
 };

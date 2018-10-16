@@ -41,7 +41,7 @@ public:
 };
 
 
-// 将二叉树（按前序遍历的顺序）展开成链表  
+// 将二叉树（按前序遍历的顺序）展开成链表  [M]
 // DFS
 
 
@@ -58,6 +58,7 @@ public:
             flatten(root->left);
         if (root->right) 
             flatten(root->right);
+          
         TreeNode *tmp = root->right;
         root->right = root->left;  // 根的右子指向左子
         root->left = NULL;  // 左子置空

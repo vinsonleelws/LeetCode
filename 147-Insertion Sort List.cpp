@@ -3,7 +3,7 @@
 
 A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.
 With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list
- 
+
 
 Algorithm of Insertion Sort:
 
@@ -35,13 +35,13 @@ Output: -1->0->3->4->5
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
-        
+
     }
 };
 
 
-// 链表插入排序
-
+// 链表插入排序  [M]
+// dummy结点 + 插入排序
 
 // Reference solution: O(n^2)
 // 以dummy结点为头结点，新建一个链表，逐步往新链表中插入元素
@@ -49,11 +49,11 @@ class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
         ListNode *dummy = new ListNode(INT_MIN), *cur = dummy;
-        while (head) 
+        while (head)
         {
             ListNode *t = head->next;
             cur = dummy;
-            while (cur->next && cur->next->val <= head->val) // 找到第一个大于当前结点的结点，将该结点插入到当前结点前面
+            while (cur->next && cur->next->val <= head->val) // 找到第一个大于当前结点的结点，将当前结点放到该结点前面
                 cur = cur->next;
             head->next = cur->next;
             cur->next = head;
@@ -74,27 +74,27 @@ public:
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
-        if(!head)
+        if (!head)
             return NULL;
-        
+
         ListNode* dummy = new ListNode(INT_MIN);
         dummy->next = head;
         ListNode* pCur = head;
-        while(pCur->next)
+        while (pCur->next)
         {
             ListNode* pNext = pCur->next;
             ListNode* pHead = dummy->next;
-            if(pHead->val > pNext->val) // 若结点值小于头结点的值，将其插入到头结点
+            if (pHead->val > pNext->val) // 若结点值小于头结点的值，将其插入到头结点
             {
                 pCur->next = pNext->next;
                 dummy->next = pNext;
                 pNext->next = pHead;
             }
-            else if(pCur->val > pNext->val)
+            else if (pCur->val > pNext->val)
             {
-                while(pHead->next && pHead->next!=pNext && pHead->next->val <= pNext->val)
+                while (pHead->next && pHead->next != pNext && pHead->next->val <= pNext->val)
                     pHead = pHead->next;
-                
+
                 pCur->next = pNext->next;
                 pNext->next = pHead->next;
                 pHead->next = pNext;
@@ -102,7 +102,7 @@ public:
             else
                 pCur = pCur->next;
         }
-        
+
         return dummy->next;
     }
 };

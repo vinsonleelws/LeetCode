@@ -49,7 +49,7 @@ public:
 };
 
 
-// 判断是否是平衡二叉树（the depth of the two subtrees of every node never differ by more than 1）
+// 判断是否是平衡二叉树（the depth of the two subtrees of every node never differ by more than 1）  [E]
 // DFS
 
 

@@ -12,9 +12,15 @@ Return a deep copy of the list.
  *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
  * };
  */
+class Solution {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        
+    }
+};
 
 
-// 拷贝带随机指针的链表
+// 拷贝带随机指针的链表  [M]
 // 复制-连接-断开 ; Hash Table
 
 // 法一：

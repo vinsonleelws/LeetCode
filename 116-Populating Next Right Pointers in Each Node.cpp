@@ -47,11 +47,11 @@ After calling your function, the tree should look like:
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
-        
+
     }
 };
- 
-// 填充完全二叉树的每个结点的右向指针
+
+// 填充完全二叉树的每个结点的右向指针  [M]
 // DFS ; Levelorder traversal
 
 
@@ -60,16 +60,16 @@ public:
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
-        if (!root) 
+        if (!root)
             return;
         TreeLinkNode *start = root, *cur = NULL;
-        while (start->left) 
+        while (start->left)
         {
             cur = start;
-            while (cur) 
+            while (cur)
             {
                 cur->left->next = cur->right;
-                if (cur->next) 
+                if (cur->next)
                     cur->right->next = cur->next->left;
                 cur = cur->next;
             }
@@ -82,13 +82,13 @@ public:
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
-        if(!root)
+        if (!root)
             return;
-        if(root->left)
+        if (root->left)
             root->left->next = root->right;
-        if(root->right)
-            root->right->next = root->next? root->next->left : NULL;
-        
+        if (root->right)
+            root->right->next = root->next ? root->next->left : NULL;
+
         connect(root->left);
         connect(root->right);
     }

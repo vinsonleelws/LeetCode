@@ -1,3 +1,4 @@
+/*
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 
 According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
@@ -25,6 +26,13 @@ Output: 2
 Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself 
              according to the LCA definition.
 
+Note:
+
+    All of the nodes' values will be unique.
+    p and q are different and both values will exist in the BST.
+
+*/
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -34,6 +42,17 @@ Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of 
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        
+    }
+};
+
+
+// 二叉搜索树的最近公共父节点  [E]
+// DFS
 
 // 利用BST的性质：
 // 由于二叉搜索树的特点是左<根<右，所以根节点的值一直都是中间值，大于左子树的所有节点值，小于右子树的所有节点值，因此，

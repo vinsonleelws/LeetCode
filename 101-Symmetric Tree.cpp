@@ -33,12 +33,12 @@ Bonus points if you could solve it both recursively and iteratively.
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        
+
     }
 };
 
 
-// 判断某树是否对称
+// 判断某树是否对称  [E]
 // DFS
 
 
@@ -46,19 +46,19 @@ public:
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        if(!root)
+        if (!root)
             return true;
-        
+
         return isSymmetric(root->left, root->right);
     }
-    
+
     bool isSymmetric(TreeNode* l, TreeNode* r)
     {
-        if(!l && !r)
+        if (!l && !r)
             return true;
-        else if(!l && r || l && !r || l->val!=r->val)
+        else if (!l && r || l && !r || l->val != r->val)
             return false;
-        
+
         return isSymmetric(l->left, r->right) && isSymmetric(l->right, r->left);
     }
 };
@@ -68,25 +68,25 @@ public:
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        if(!root)
+        if (!root)
             return true;
-        
+
         queue<TreeNode*> q1, q2;
         q1.push(root->left);
         q2.push(root->right);
-        
-        while(q1.size() && q2.size())
+
+        while (q1.size() && q2.size())
         {
             TreeNode* l = q1.front();
             TreeNode* r = q2.front();
             q1.pop();
             q2.pop();
-            if(l && !r || !l && r)
+            if (l && !r || !l && r)
                 return false;
-            
-            if(l && r)
+
+            if (l && r)
             {
-                if(l->val != r->val)
+                if (l->val != r->val)
                     return false;
                 q1.push(l->left);
                 q1.push(l->right);

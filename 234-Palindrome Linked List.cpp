@@ -26,14 +26,14 @@ Could you do it in O(n) time and O(1) space?
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        
+
     }
 };
 
 
 
-// 回文链表
-// 快慢指针+翻转
+// 回文链表  [E]
+// 快慢指针 + 翻转
 
 
 // O(n) time and O(1) space
@@ -42,31 +42,31 @@ public:
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        if(!head || !head->next)
+        if (!head || !head->next)
             return true;
-        
+
         ListNode* fast = head, *slow = head;
-        while(fast->next && fast->next->next)
+        while (fast->next && fast->next->next)
         {
             slow = slow->next;
             fast = fast->next->next;
         }
-        
+
         ListNode* node = slow->next;
         slow->next = NULL;
         ListNode* pre = NULL;
-        while(node)
+        while (node)
         {
             ListNode* next = node->next;
             node->next = pre;
             pre = node;
             node = next;
         }
-        
+
         node = pre;
-        while(node)
+        while (node)
         {
-            if(node->val != head->val)
+            if (node->val != head->val)
                 return false;
             node = node->next;
             head = head->next;

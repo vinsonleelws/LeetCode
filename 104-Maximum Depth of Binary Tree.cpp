@@ -31,12 +31,12 @@ return its depth = 3.
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        
+
     }
 };
 
 
-// 求二叉树的最大深度
+// 求二叉树的最大深度  [E]
 // DFS ; Levelorder traversal
 
 
@@ -44,13 +44,13 @@ public:
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if(!root)
+        if (!root)
             return 0;
-        
+
         int left = maxDepth(root->left);
         int right = maxDepth(root->right);
-        
-        return left>right? left+1 : right+1;
+
+        return left > right ? left + 1 : right + 1;
     }
 };
 

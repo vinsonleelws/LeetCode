@@ -29,12 +29,12 @@ return its minimum depth = 2.
 class Solution {
 public:
     int minDepth(TreeNode* root) {
-        
+
     }
 };
 
 
-// 求二叉树的最小深度
+// 求二叉树的最小深度  [E]
 // DFS
 
 
@@ -42,16 +42,16 @@ public:
 class Solution {
 public:
     int minDepth(TreeNode *root) {
-        if (!root) 
+        if (!root)
             return 0;
-        if (!root->left && !root->right) 
+        if (!root->left && !root->right)
             return 1;
-        
-        if (!root->left) 
+
+        if (!root->left)
             return minDepth(root->right) + 1;
-        else if (!root->right) 
+        else if (!root->right)
             return minDepth(root->left) + 1;
-        else 
+        else
             return 1 + min(minDepth(root->left), minDepth(root->right));
     }
 };

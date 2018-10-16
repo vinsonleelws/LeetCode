@@ -27,7 +27,7 @@ public:
     }
 };
 
-// 链表排序 (O(nlogn))
+// 链表排序 (O(nlogn))  [M]
 // Merge Sort
 
 // 这里题目限定了时间必须为O(nlgn)，符合要求只有快速排序，归并排序，堆排序。而根据单链表的特点，最适于用归并排序。
@@ -46,6 +46,7 @@ public:
         pre->next = NULL; // 断开为两条链表
         return merge(sortList(head), sortList(slow));
     }
+    
     ListNode* merge(ListNode* l1, ListNode* l2) {
         ListNode *dummy = new ListNode(-1);
         ListNode *cur = dummy;

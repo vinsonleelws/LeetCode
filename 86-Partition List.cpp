@@ -27,7 +27,7 @@ public:
 };
 
 
-// 划分链表
+// 划分链表  [M]
 // Two Pointers
 
 // Reference solution:
@@ -38,52 +38,6 @@ public:
 // 之后的操作就是在pPrev/pNode/pNext之间根据结点值与x的大小关系修改连接关系.
 // 为了方便处理结点插入到头结点的情况，可使用一个虚拟头结点dummy，令dummy->next = head.
 
-// 不使用dummy结点的解法：
-// 需特别注意插入到头结点的情况 (头结点元素值大于等于x，且后面有小于x的节点存在)
-class Solution {
-public:
-    ListNode* partition(ListNode* head, int x) {
-        if(head==NULL)
-            return head;
-
-        ListNode* pNode = head;
-        ListNode* pPrev = NULL;
-        
-        if(pNode->val < x)
-        {
-            while(pNode->next && pNode->next->val < x)
-                pNode = pNode->next;
-            pPrev = pNode;
-        }
-        else
-            pPrev = NULL;
-        
-        while(pNode->next)
-        {
-            ListNode* pNext = pNode->next;
-            if(pNext->val >= x)
-                pNode = pNode->next;
-            else
-            {
-                if(!pPrev)
-                {
-                    pNode->next = pNext->next;
-                    pNext->next = head;
-                    pPrev = head = pNext;
-                }
-                else
-                {
-                    pNode->next = pNext->next;
-                    pNext->next = pPrev->next;
-                    pPrev->next = pNext;
-                    pPrev = pNext;
-                }
-            }
-        }
-        return head;
-    }
-};
-
 // 使用dummy结点的写法：
 class Solution {
 public:
@@ -93,24 +47,24 @@ public:
         
         ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode* pNode = dummy;
-        ListNode* pPrev = dummy;
+        ListNode* node = dummy;
+        ListNode* prev = dummy;
         
-        while(pNode->next && pNode->next->val < x)  // 找到值大于等于x的结点
-            pNode = pNode->next;
-        pPrev = pNode;
+        while(node->next && node->next->val < x)  // 先找到值大于等于x的结点
+            node = node->next;
+        prev = node;
         
-        while(pNode->next)
+        while(node->next)
         {
-            ListNode* pNext = pNode->next;
+            ListNode* pNext = node->next;
             if(pNext->val >= x)  // 如果大于等于x，接着走
-                pNode = pNode->next;
-            else                // 反之，将其插入pPrev之后
+                node = node->next;
+            else                // 反之，将其插入prev之后
             {
-                pNode->next = pNext->next;
-                pNext->next = pPrev->next;
-                pPrev->next = pNext;
-                pPrev = pNext;
+                node->next = pNext->next;
+                pNext->next = prev->next;
+                prev->next = pNext;
+                prev = pNext;
             }
         }
         head = dummy->next;
@@ -124,6 +78,52 @@ public:
 // 1 -> 4 -> 3 -> 2 -> 5 -> 2 
 // 1 -> 2 -> 4 -> 3 -> 5 -> 2 
 // 1 -> 2 -> 2 -> 4 -> 3 -> 5
+
+// 不使用dummy结点的解法：
+// 需特别注意插入到头结点的情况 (头结点元素值大于等于x，且后面有小于x的节点存在)
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        if(head==NULL)
+            return head;
+
+        ListNode* node = head;
+        ListNode* prev = NULL;
+        
+        if(node->val < x)
+        {
+            while(node->next && node->next->val < x)
+                node = node->next;
+            prev = node;
+        }
+        else
+            prev = NULL;
+        
+        while(node->next)
+        {
+            ListNode* pNext = node->next;
+            if(pNext->val >= x)
+                node = node->next;
+            else
+            {
+                if(!prev)
+                {
+                    node->next = pNext->next;
+                    pNext->next = head;
+                    prev = head = pNext;
+                }
+                else
+                {
+                    node->next = pNext->next;
+                    pNext->next = prev->next;
+                    prev->next = pNext;
+                    prev = pNext;
+                }
+            }
+        }
+        return head;
+    }
+};
 
 
 // #2

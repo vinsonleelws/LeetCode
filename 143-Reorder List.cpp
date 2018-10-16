@@ -25,12 +25,12 @@ Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        
+
     }
 };
 
 
-// 链表重排序
+// 链表重排序  [M]
 // 找中间节点（快慢指针or遍历） + 翻转链表 + 隔元素插入结点
 
 // 思路：
@@ -43,43 +43,47 @@ public:
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if(!head)
+        if (!head)
             return;
-        
-        int n=1;
-        ListNode* pNode = head;
-        while(pNode->next)
+
+        int n = 1;
+        ListNode* node = head;
+        while (node->next)
         {
             n++;
-            pNode = pNode->next;
+            node = node->next;
         }
-        
-        if(n<=2)
-            return;
-        pNode = head;
-        for(int i=0; i<n/2; i++)
-            pNode = pNode->next;
 
-        ListNode* harf = pNode->next;  // 将链表分割为两部分
-        pNode->next = NULL;
-        ListNode* pNext = harf->next;
-        harf->next = NULL;
-        while(pNext) // 翻转后面的第二个链表
+        if (n <= 2)
+            return;
+        
+        ListNode* node1 = head;
+        for (int i = 0; i < n / 2; i++)
+            node1 = node1->next;
+
+        ListNode* node2 = node1->next;  // 将链表分割为两部分
+        node1->next = NULL;
+        ListNode* cur = node2->next;
+        ListNode* pre = node2;
+        node2->next = NULL;
+        while (cur) // 翻转后面的第二个链表
         {
-           ListNode* pNextNext = pNext->next;
-           pNext->next = harf;
-           harf = pNext;
-           pNext = pNextNext;
+            ListNode* next = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = next;
         }
-        pNode = head;
-        while(pNode && harf)
+
+        node1 = head;
+        node2 = pre;
+        while (node1 && node2)
         {
-            pNext = pNode->next;
-            ListNode* pNext2 = harf->next;
-            pNode->next = harf;
-            harf->next = pNext;
-            pNode = pNext;
-            harf = pNext2;
+            ListNode* next1 = node1->next;
+            ListNode* next2 = node2->next;
+            node1->next = node2;
+            node2->next = next1;
+            node1 = next1;
+            node2 = next2;
         }
         return;
     }

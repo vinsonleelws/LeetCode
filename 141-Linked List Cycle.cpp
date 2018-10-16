@@ -2,7 +2,7 @@
 Given a linked list, determine if it has a cycle in it.
 
 Follow up:
-Can you solve it without using extra space? 
+Can you solve it without using extra space?
 */
 
 /**
@@ -17,26 +17,26 @@ Can you solve it without using extra space?
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        
+
     }
 };
 
 
-// 链表环
+// 链表环  [E]
 // Two Pointers 快慢指针
 
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
         ListNode* fast = head, slow = head;
-        while(fast && fast->next)
+        while (fast && fast->next)
         {
             fast = fast->next->next;
             slow = slow->next;
-            if(fast==slow)
+            if (fast == slow)
                 return true;
         }
-        
+
         return false;
     }
 };

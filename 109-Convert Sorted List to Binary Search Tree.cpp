@@ -36,12 +36,12 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        
+
     }
 };
 
 
-// 将有序链表转换为二叉搜索树
+// 将有序链表转换为二叉搜索树  [M]
 // DFS ; 快慢指针+DFS
 
 
@@ -49,31 +49,31 @@ public:
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        if(head == NULL)
+        if (head == NULL)
             return NULL;
-        
-        int len=0;
+
+        int len = 0;
         ListNode* pNode = head;
-        while(pNode->next)  // 计算链表长度len
+        while (pNode->next) // 计算链表长度len
         {
             len++;
             pNode = pNode->next;
         }
-        
+
         return sortedListToBSTRecursive(head, 0, len);
     }
-    
+
     TreeNode* sortedListToBSTRecursive(ListNode* head, int start, int end) {
-        if(start>end)
+        if (start > end)
             return NULL;
-        
-        int mid = (start+end)>>1;  
+
+        int mid = (start + end) >> 1;
         ListNode* midnode = head;
-        for(int i=0; i<mid; i++)
-            midnode = midnode->next;	// 找到中间结点作为根结点
+        for (int i = 0; i < mid; i++)
+            midnode = midnode->next;    // 找到中间结点作为根结点
         TreeNode* root = new TreeNode(midnode->val);
-        root->left = sortedListToBSTRecursive(head, start, mid-1);
-        root->right = sortedListToBSTRecursive(head, mid+1, end);
+        root->left = sortedListToBSTRecursive(head, start, mid - 1);
+        root->right = sortedListToBSTRecursive(head, mid + 1, end);
         return root;
     }
 };
@@ -89,9 +89,9 @@ public:
 class Solution {
 public:
     TreeNode *sortedListToBST(ListNode *head) {
-        if (!head) 
+        if (!head)
             return NULL;
-        if (!head->next) 
+        if (!head->next)
             return new TreeNode(head->val);
         ListNode *slow = head;
         ListNode *fast = head;
@@ -104,7 +104,7 @@ public:
         fast = slow->next; // 用fast标记右子树的开端
         last->next = NULL; // 断开左子树的尾端
         TreeNode *root = new TreeNode(slow->val);
-        if (head != slow) 
+        if (head != slow)
             root->left = sortedListToBST(head);
         root->right = sortedListToBST(fast);
         return root;

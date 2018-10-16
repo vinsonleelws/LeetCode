@@ -4,7 +4,7 @@ Given a linked list, return the node where the cycle begins. If there is no cycl
 Note: Do not modify the linked list.
 
 Follow up:
-Can you solve it without using extra space? 
+Can you solve it without using extra space?
 */
 
 /**
@@ -18,12 +18,12 @@ Can you solve it without using extra space?
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        
+
     }
 };
 
 
-// 链表环II（找环的入口）
+// 链表环II（找环的入口）  [M]
 // Two Pointers 快慢指针
 
 // 仍然用快慢指针来做。
@@ -38,14 +38,15 @@ public:
         {
             slow = slow->next;
             fast = fast->next->next;
-            if (slow == fast) 
+            if (slow == fast)
                 break;
         }
 
-        if (!fast || !fast->next) 
+        if (!fast || !fast->next)
             return NULL;
+
         slow = head; // slow 从头开始走
-        while (slow != fast) 
+        while (slow != fast)
         {
             slow = slow->next;
             fast = fast->next;

@@ -19,27 +19,27 @@ Output: 1->2->3->4->5
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        
+
     }
 };
 
-// 移除链表元素（给定待删除节点的值）
+// 移除链表元素（给定待删除节点的值）  [E]
 
 // My solution:
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if(!head)
+        if (!head)
             return NULL;
-        
+
         ListNode* dummy = new ListNode(0);
         dummy->next = head;
         ListNode* node = dummy;
-        while(node->next)
+        while (node->next)
         {
-            if(node->next->val == val)
+            if (node->next->val == val)
             {
-                if(node->next->next)  // 若待删除结点后面还有结点
+                if (node->next->next) // 若待删除结点后面还有结点
                 {
                     ListNode* pNext = node->next->next;
                     node->next = pNext;
@@ -50,7 +50,7 @@ public:
             else
                 node = node->next;
         }
-        
+
         return dummy->next;
     }
 };
@@ -59,8 +59,9 @@ public:
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if (!head) 
+        if (!head)
             return NULL;
+        
         head->next = removeElements(head->next, val);
         return head->val == val ? head->next : head;
     }
