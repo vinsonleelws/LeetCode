@@ -16,7 +16,7 @@ minStack.pop();
 minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.*/
 
-// 包含min函数的栈
+// 包含min函数的栈  [E]
 
 // 关键是要找到一种方法来追踪栈中的最小元素。
 

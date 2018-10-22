@@ -22,7 +22,7 @@ Note:
     n is a 32-bit signed integer, within the range [−2^31, 2^31 − 1]*/
 
 
-// 数值的整数次方
+// 数值的整数次方  [M]
 // Math
 
 // My solution:
@@ -51,8 +51,7 @@ public:
             return x;
         else
         {
-            double result = 1.0;
-            result *= powerRecursive(x, n / 2);
+            double result = powerRecursive(x, n / 2);
             result *= result;
             if (n & 0x1)
                 result *= x;

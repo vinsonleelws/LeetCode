@@ -25,7 +25,7 @@ public:
 };
 
 
-// 格雷码
+// 格雷码  [M]
 // Math ; Backtracking
 
 

@@ -20,7 +20,7 @@ public:
     }
 };
 
-// 位1的个数
+// 位1的个数  [E]
 // Bit Manipulation
 
 // My solution: Runtime beats 100% of cpp submissions.

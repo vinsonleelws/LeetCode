@@ -41,7 +41,7 @@ public:
  */
  
 
-// 添加和查找单词 - 数据结构设计
+// 添加和查找单词 - 数据结构设计  [M]
 // Backtracking, Design, Trie
 
 

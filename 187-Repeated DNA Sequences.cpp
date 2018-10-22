@@ -23,7 +23,7 @@ public:
 };
 
 
-// 重复的DNA序列
+// 重复的DNA序列  [M]
 // Hash Table ; Bit Manipulation
 
 
